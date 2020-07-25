@@ -1,19 +1,15 @@
 import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
+import Tip from './Tip';
 
-const Tips = () => {
+const TipBox = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.headerText}> Here are the Category Tips:</Text>
-      <View style={styles.tipBox}>
-        <Text style={styles.boxText}> Tip 1 </Text>
-      </View>
-      <View style={styles.tipBox}>
-        <Text style={styles.boxText}> Tip 2 </Text>
-      </View>
-      <View style={styles.tipBox}>
-        <Text style={styles.boxText}> Tip 3 </Text>
-      </View>
+      <Tip tipName="Tip 1" />
+      <Tip tipName="Tip 2" />
+      <Tip tipName="Tip 3" />
+      <Tip tipName="Tip 4" />
     </View>
   );
 };
@@ -41,4 +37,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Tips;
+export default TipBox;

@@ -1,11 +1,11 @@
 import React from 'react';
 import { SafeAreaView, Text, View, StyleSheet } from 'react-native';
-import Tips from './components/Tips';
+import TipBox from './components/TipBox';
 
 const App = () => {
   return (
     <SafeAreaView style={styles.safeArea}>
-      <Tips />
+      <TipBox />
     </SafeAreaView>
   );
 };
