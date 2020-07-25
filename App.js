@@ -1,23 +1,16 @@
 import React from 'react';
-import { Text, View, SafeAreaView, StyleSheet } from 'react-native';
+import { SafeAreaView, Text, View, StyleSheet } from 'react-native';
+import Tips from './components/Tips';
 
 const App = () => {
   return (
     <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
-        <Text> Hello World!</Text>
-      </View>
+      <Tips />
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: 'teal',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
-  },
   safeArea: {
     flex: 1,
   },
