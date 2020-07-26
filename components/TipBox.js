@@ -6,25 +6,15 @@ const TipBox = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.headerText}> Here are the Category Tips:</Text>
-      <Tip tipName="Tip 1" />
-      <Tip tipName="Tip 2" />
-      <Tip tipName="Tip 3" />
-      <Tip tipName="Tip 4" />
+      <Tip tipName="Tip 1" hexCode="#33A5FF" />
+      <Tip tipName="Tip 2" hexCode="#8986B7" />
+      <Tip tipName="Tip 3" hexCode="#B7EC7F" />
+      <Tip tipName="Tip 4" hexCode="#E57872" />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  tipBox: {
-    backgroundColor: 'bisque',
-    padding: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 10,
-  },
-  boxText: {
-    fontWeight: 'bold',
-  },
   container: {
     paddingHorizontal: 10,
     paddingTop: 30,

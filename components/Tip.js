@@ -1,9 +1,13 @@
 import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 
-const Tip = ({ tipName }) => {
+const Tip = ({ tipName, hexCode }) => {
+  const containerColor = {
+    backgroundColor: hexCode,
+  };
+
   return (
-    <View style={styles.tipBox}>
+    <View style={[styles.tipBox, containerColor]}>
       <Text style={styles.boxText}>{tipName} </Text>
     </View>
   );
@@ -11,7 +15,7 @@ const Tip = ({ tipName }) => {
 
 const styles = StyleSheet.create({
   tipBox: {
-    backgroundColor: 'bisque',
+    // backgroundColor: 'bisque',
     padding: 10,
     justifyContent: 'center',
     alignItems: 'center',
