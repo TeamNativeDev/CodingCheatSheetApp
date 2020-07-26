@@ -1,20 +1,20 @@
 import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 
-const Tip = ({ tipName, hexCode }) => {
+const Category = ({ categoryName, hexCode }) => {
   const containerColor = {
     backgroundColor: hexCode,
   };
 
   return (
-    <View style={[styles.tipBox, containerColor]}>
-      <Text style={styles.boxText}>{tipName} </Text>
+    <View style={[styles.categoryBox, containerColor]}>
+      <Text style={styles.boxText}>{categoryName} </Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  tipBox: {
+  categoryBox: {
     // backgroundColor: 'bisque',
     padding: 10,
     justifyContent: 'center',
@@ -26,4 +26,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Tip;
+export default Category;
