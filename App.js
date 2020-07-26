@@ -1,12 +1,15 @@
 import React from 'react';
 import { SafeAreaView, Text, View, StyleSheet } from 'react-native';
-import CategoryBox from './components/CategoryBox';
+import Categories from './screens/Categories';
+import { NavigationContainer } from '@react-navigation/native';
 
 const App = () => {
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <CategoryBox />
-    </SafeAreaView>
+    <NavigationContainer>
+      <SafeAreaView style={styles.safeArea}>
+        <Categories />
+      </SafeAreaView>
+    </NavigationContainer>
   );
 };
 
