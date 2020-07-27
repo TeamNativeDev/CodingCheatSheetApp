@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, FlatList } from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native';
 import Category from '../components/Category';
 import { Color } from '../helpers/CreateColors';
-const CategoryTitles = [
-  { title: 'HTML', hexCode: '#A5D0DA' },
-  { title: 'JavaScript', hexCode: '#F8FA31' },
-  { title: 'Ruby', hexCode: '#FF576C' },
-  { title: 'CSS', hexCode: '#D1B0FF' },
-];
 
-const Categories = () => {
+const Categories = ({ navigation }) => {
   const [categories, setCategories] = useState([]);
   useEffect(() => {
     fetch('https://flatiron-cheat-sheet.herokuapp.com/api/v1/categories')
@@ -24,7 +24,9 @@ const Categories = () => {
         data={categories}
         keyExtractor={(item) => item.title}
         renderItem={({ item }) => (
-          <Category categoryName={item.title} hexCode={Color()} />
+          <TouchableOpacity onPress={() => navigation.navigate('Tips')}>
+            <Category categoryName={item.title} hexCode={Color()} />
+          </TouchableOpacity>
         )}
       />
     </View>
