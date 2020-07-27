@@ -5,7 +5,7 @@ const Category = ({ categoryName, hexCode }) => {
   const containerColor = {
     backgroundColor: hexCode,
   };
-
+  // console.warn(hexCode);
   return (
     <View style={[styles.categoryBox, containerColor]}>
       <Text style={styles.boxText}>{categoryName} </Text>
