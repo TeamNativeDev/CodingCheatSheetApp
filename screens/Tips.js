@@ -14,10 +14,11 @@ const TIPS = [
   { title: 'tip 9', description: 'this is info on tip 9', hexCode: '#A5D8DA' },
 ];
 
-const Tips = () => {
+const Tips = ({ route }) => {
+  const { title } = route.params;
   return (
     <View style={styles.container}>
-      <Text style={styles.headerText}> Tips:</Text>
+      <Text style={styles.headerText}> {title} Tips:</Text>
       <FlatList
         data={TIPS}
         keyExtractor={(item) => item.title}
