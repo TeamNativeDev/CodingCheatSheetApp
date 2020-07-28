@@ -1,19 +1,30 @@
 import React from 'react';
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
 import { borderRadius, shadow } from '../styles/MainStyles';
 
 const Tip = ({ title, description, hexCode, code_snippet, votes }) => {
   const containerColor = {
     backgroundColor: hexCode,
   };
-  // console.warn(hexCode);
   return (
     <View style={[styles.tipBox, containerColor]}>
-      <Text style={styles.boxText}>{title} </Text>
-      <Text style={styles.boxText}>{description} </Text>
-      <View style={styles.codeSnippetBox}>
-        <Text style={styles.codeSnippetText}>{code_snippet}</Text>
-      </View>
+      <Text style={styles.headerText}>{title} </Text>
+
+      <ScrollView style={styles.scroll} scrollEnabled={true}>
+        <View style={styles.descriptionView}>
+          <Text style={styles.descriptionText}>Description: {description}</Text>
+        </View>
+        <View style={styles.codeSnippetBox}>
+          <Text style={styles.codeSnippetText}>{code_snippet}</Text>
+        </View>
+      </ScrollView>
+
       <View>
         <Text> Up Voted {votes.length} Times</Text>
         <TouchableOpacity onPress={() => console.warn('pressed')} />
@@ -24,16 +35,27 @@ const Tip = ({ title, description, hexCode, code_snippet, votes }) => {
 
 const styles = StyleSheet.create({
   tipBox: {
-    // backgroundColor: 'bisque',
     ...shadow,
+    flex: 1,
+    height: 150,
     paddingVertical: 10,
     paddingHorizontal: 5,
-    justifyContent: 'center',
+    // justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 10,
   },
-  boxText: {
+  descriptionText: {
     fontWeight: 'bold',
+  },
+  descriptionView: {
+    ...borderRadius,
+  },
+  headerText: {
+    textAlignVertical: 'top',
+    fontWeight: 'bold',
+  },
+  scroll: {
+    flexGrow: 1,
   },
   codeSnippetBox: {
     ...borderRadius,
