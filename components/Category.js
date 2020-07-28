@@ -2,14 +2,14 @@ import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 
 const Category = (props, { navigation }) => {
-  const { categoryName, hexCode } = props;
+  const { title, color } = props;
   const containerColor = {
-    backgroundColor: hexCode,
+    backgroundColor: color,
   };
   // console.warn(props, navigation);
   return (
     <View style={[styles.categoryBox, containerColor]}>
-      <Text style={styles.boxText}>{categoryName} </Text>
+      <Text style={styles.boxText}>{title} </Text>
     </View>
   );
 };

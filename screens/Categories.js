@@ -24,7 +24,8 @@ const Categories = ({ navigation }) => {
         keyExtractor={(item) => item.title}
         renderItem={({ item }) => (
           <TouchableOpacity onPress={() => navigation.navigate('Tips', item)}>
-            <Category categoryName={item.title} hexCode={item.color} />
+            {/* using destructuring to clean & readable code */}
+            <Category {...item} />
           </TouchableOpacity>
         )}
       />
