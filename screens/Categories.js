@@ -15,7 +15,6 @@ const Categories = ({ navigation }) => {
       .then((resp) => resp.json())
       .then((data) => setCategories(data));
   }, []);
-  // console.warn(Colors());
   return (
     <View style={styles.container}>
       <Text style={styles.headerText}> All Categories:</Text>
