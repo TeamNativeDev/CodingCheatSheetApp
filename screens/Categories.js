@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Category from '../components/Category';
-import { Color } from '../helpers/CreateColors';
 
 const Categories = ({ navigation }) => {
   const [categories, setCategories] = useState([]);
@@ -25,7 +24,7 @@ const Categories = ({ navigation }) => {
         keyExtractor={(item) => item.title}
         renderItem={({ item }) => (
           <TouchableOpacity onPress={() => navigation.navigate('Tips', item)}>
-            <Category categoryName={item.title} hexCode={Color()} />
+            <Category categoryName={item.title} hexCode={item.color} />
           </TouchableOpacity>
         )}
       />
