@@ -2,18 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, FlatList } from 'react-native';
 import Tip from '../components/Tip';
 
-// const TIPS = [
-//   { title: 'tip 1', description: 'this is info on tip 1' },
-//   { title: 'tip 2', description: 'this is info on tip 2' },
-//   { title: 'tip 3', description: 'this is info on tip 3' },
-//   { title: 'tip 4', description: 'this is info on tip 4' },
-//   { title: 'tip 5', description: 'this is info on tip 5' },
-//   { title: 'tip 6', description: 'this is info on tip 6' },
-//   { title: 'tip 7', description: 'this is info on tip 7' },
-//   { title: 'tip 8', description: 'this is info on tip 8' },
-//   { title: 'tip 9', description: 'this is info on tip 9' },
-// ];
-
 const Tips = ({ route }) => {
   const { color, id } = route.params;
   // console.warn(id);
