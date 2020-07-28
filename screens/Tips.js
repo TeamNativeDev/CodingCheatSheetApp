@@ -8,44 +8,6 @@ const Tips = ({ route }) => {
   const [input, setInput] = useState('');
   const [filter, setFilter] = useState(tips);
 
-  // const TIPS = [
-  //   {
-  //     title: 'The title for a fake tip 1',
-  //     description:
-  //       'this is a fake description that i am tryuing to make really long so i have something to scroll wiith aND can learn how scrollView work in react native. Great hopefully trhis is long enough.',
-  //     code_snippet: 'rails new <YOURAPPNAME> --api --database=postgres',
-  //     votes: [1, 3, 56, 6, 7, 5],
-  //   },
-  //   {
-  //     title: 'The title for a fake tip 2',
-  //     description:
-  //       'this is a fake description that i am tryuing to make really long so i have something to scroll wiith aND can learn how scrollView work in react native. Great hopefully trhis is long enough.',
-  //     code_snippet: 'rails new <YOURAPPNAME> --api --database=postgres',
-  //     votes: [1, 3, 56, 6, 7, 5],
-  //   },
-  //   {
-  //     title: 'The title for a fake tip 3',
-  //     description:
-  //       'this is a fake description that i am tryuing to make really long so i have something to scroll wiith aND can learn how scrollView work in react native. Great hopefully trhis is long enough.',
-  //     code_snippet: 'rails new <YOURAPPNAME> --api --database=postgres',
-  //     votes: [1, 3, 56, 6, 7, 5],
-  //   },
-  //   {
-  //     title: 'The title for a fake tip 4',
-  //     description:
-  //       'this is a fake description that i am tryuing to make really long so i have something to scroll wiith aND can learn how scrollView work in react native. Great hopefully trhis is long enough. this is a fake description that i am tryuing to make really long so i have something to scroll wiith aND can learn how scrollView work in react native. Great hopefully trhis is long enough.',
-  //     code_snippet: 'rails new <YOURAPPNAME> --api --database=postgres',
-  //     votes: [1, 3, 56, 6, 7, 5],
-  //   },
-  //   {
-  //     title: 'The title for a fake tip 5',
-  //     description:
-  //       'this is a fake description that i am tryuing to make really long so i have something to scroll wiith aND can learn how scrollView work in react native. Great hopefully trhis is long enough.',
-  //     code_snippet: 'rails new <YOURAPPNAME> --api --database=postgres',
-  //     votes: [1, 3, 56, 6, 7, 5],
-  //   },
-  // ];
-
   useEffect(() => {
     fetch(`https://flatiron-cheat-sheet.herokuapp.com/api/v1/categories/${id}`)
       .then((resp) => resp.json())
