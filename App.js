@@ -15,7 +15,11 @@ const App = () => {
       <Stack.Navigator>
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Categories" component={Categories} />
-        <Stack.Screen name="Tips" component={Tips} />
+        <Stack.Screen
+          name="Tips"
+          component={Tips}
+          options={({ route }) => ({ title: `${route.params.title} Tips` })}
+        />
       </Stack.Navigator>
       {/* </SafeAreaView> */}
     </NavigationContainer>
