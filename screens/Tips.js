@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, FlatList } from 'react-native';
+import { View, StyleSheet, FlatList, TextInput } from 'react-native';
 import Tip from '../components/Tip';
 
 const Tips = ({ route }) => {
   const { color, id } = route.params;
-  // console.warn(id);
   const [tips, setTips] = useState([]);
+  const [input, setInput] = useState('');
 
   useEffect(() => {
     fetch(`https://flatiron-cheat-sheet.herokuapp.com/api/v1/categories/${id}`)
@@ -16,6 +16,9 @@ const Tips = ({ route }) => {
 
   return (
     <View style={styles.container}>
+      <View>
+        <TextInput onChangeText={(text) => setInput(text)} value={input} />
+      </View>
       <FlatList
         data={tips}
         keyExtractor={(item) => item.title}
