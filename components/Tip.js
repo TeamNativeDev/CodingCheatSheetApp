@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
-import { borderRadius } from '../styles/MainStyles';
+import { borderRadius, shadow } from '../styles/MainStyles';
 
 const Tip = ({ title, description, hexCode, code_snippet, votes }) => {
   const containerColor = {
@@ -16,9 +16,7 @@ const Tip = ({ title, description, hexCode, code_snippet, votes }) => {
       </View>
       <View>
         <Text> Up Voted {votes.length} Times</Text>
-        <TouchableOpacity
-          onPress={() => console.warn('pressed')}
-        ></TouchableOpacity>
+        <TouchableOpacity onPress={() => console.warn('pressed')} />
       </View>
     </View>
   );
@@ -27,6 +25,7 @@ const Tip = ({ title, description, hexCode, code_snippet, votes }) => {
 const styles = StyleSheet.create({
   tipBox: {
     // backgroundColor: 'bisque',
+    ...shadow,
     paddingVertical: 10,
     paddingHorizontal: 5,
     justifyContent: 'center',
