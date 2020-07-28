@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
+import { shadow, borderRadius } from '../styles/MainStyles';
 
 const Category = (props) => {
   const { title, color } = props;
@@ -16,6 +17,8 @@ const Category = (props) => {
 
 const styles = StyleSheet.create({
   categoryBox: {
+    ...shadow,
+    ...borderRadius,
     padding: 10,
     justifyContent: 'center',
     alignItems: 'center',
