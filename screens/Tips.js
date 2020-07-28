@@ -4,8 +4,45 @@ import Tip from '../components/Tip';
 
 const Tips = ({ route }) => {
   const { color, id } = route.params;
-  // console.warn(id);
   const [tips, setTips] = useState([]);
+
+  // const TIPS = [
+  //   {
+  //     title: 'The title for a fake tip 1',
+  //     description:
+  //       'this is a fake description that i am tryuing to make really long so i have something to scroll wiith aND can learn how scrollView work in react native. Great hopefully trhis is long enough.',
+  //     code_snippet: 'rails new <YOURAPPNAME> --api --database=postgres',
+  //     votes: [1, 3, 56, 6, 7, 5],
+  //   },
+  //   {
+  //     title: 'The title for a fake tip 2',
+  //     description:
+  //       'this is a fake description that i am tryuing to make really long so i have something to scroll wiith aND can learn how scrollView work in react native. Great hopefully trhis is long enough.',
+  //     code_snippet: 'rails new <YOURAPPNAME> --api --database=postgres',
+  //     votes: [1, 3, 56, 6, 7, 5],
+  //   },
+  //   {
+  //     title: 'The title for a fake tip 3',
+  //     description:
+  //       'this is a fake description that i am tryuing to make really long so i have something to scroll wiith aND can learn how scrollView work in react native. Great hopefully trhis is long enough.',
+  //     code_snippet: 'rails new <YOURAPPNAME> --api --database=postgres',
+  //     votes: [1, 3, 56, 6, 7, 5],
+  //   },
+  //   {
+  //     title: 'The title for a fake tip 4',
+  //     description:
+  //       'this is a fake description that i am tryuing to make really long so i have something to scroll wiith aND can learn how scrollView work in react native. Great hopefully trhis is long enough. this is a fake description that i am tryuing to make really long so i have something to scroll wiith aND can learn how scrollView work in react native. Great hopefully trhis is long enough.',
+  //     code_snippet: 'rails new <YOURAPPNAME> --api --database=postgres',
+  //     votes: [1, 3, 56, 6, 7, 5],
+  //   },
+  //   {
+  //     title: 'The title for a fake tip 5',
+  //     description:
+  //       'this is a fake description that i am tryuing to make really long so i have something to scroll wiith aND can learn how scrollView work in react native. Great hopefully trhis is long enough.',
+  //     code_snippet: 'rails new <YOURAPPNAME> --api --database=postgres',
+  //     votes: [1, 3, 56, 6, 7, 5],
+  //   },
+  // ];
 
   useEffect(() => {
     fetch(`https://flatiron-cheat-sheet.herokuapp.com/api/v1/categories/${id}`)
@@ -17,6 +54,7 @@ const Tips = ({ route }) => {
   return (
     <View style={styles.container}>
       <FlatList
+        scrollEnabled={true}
         data={tips}
         keyExtractor={(item) => item.title}
         renderItem={({ item }) => <Tip {...item} hexCode={color} />}

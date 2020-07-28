@@ -15,14 +15,11 @@ const Tip = ({ title, description, hexCode, code_snippet, votes }) => {
   return (
     <View style={[styles.tipBox, containerColor]}>
       <Text style={styles.headerText}>{title} </Text>
+
       <ScrollView scrollEnabled={true}>
         <View style={styles.descriptionView}>
-          <Text style={styles.descriptionText}>
-            {' '}
-            Description: {description}{' '}
-          </Text>
+          <Text style={styles.descriptionText}>Description: {description}</Text>
         </View>
-
         <View style={styles.codeSnippetBox}>
           <Text style={styles.codeSnippetText}>{code_snippet}</Text>
         </View>
@@ -32,7 +29,6 @@ const Tip = ({ title, description, hexCode, code_snippet, votes }) => {
         <Text> Up Voted {votes.length} Times</Text>
         <TouchableOpacity onPress={() => console.warn('pressed')} />
       </View>
-      {/* </ScrollView> */}
     </View>
   );
 };
