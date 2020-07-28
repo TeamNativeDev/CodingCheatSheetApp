@@ -6,6 +6,7 @@ const Tips = ({ route }) => {
   const { color, id } = route.params;
   const [tips, setTips] = useState([]);
   const [input, setInput] = useState('');
+  const [filter, setFilter] = useState(tips);
 
   useEffect(() => {
     fetch(`https://flatiron-cheat-sheet.herokuapp.com/api/v1/categories/${id}`)
@@ -14,13 +15,25 @@ const Tips = ({ route }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    if (input === '') {
+      setFilter(tips);
+    } else {
+      let regex = new RegExp(input, 'gi');
+      let arr = tips.filter(
+        (e) => e.title.match(regex) || e.description.match(regex),
+      );
+      setFilter(arr);
+    }
+  }, [input, tips]);
+
   return (
     <View style={styles.container}>
       <View>
         <TextInput onChangeText={(text) => setInput(text)} value={input} />
       </View>
       <FlatList
-        data={tips}
+        data={filter}
         keyExtractor={(item) => item.title}
         renderItem={({ item }) => <Tip {...item} hexCode={color} />}
       />
