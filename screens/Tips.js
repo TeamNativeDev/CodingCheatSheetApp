@@ -71,12 +71,7 @@ const Tips = ({ route }) => {
         <TextInput onChangeText={(text) => setInput(text)} value={input} />
       </View>
       <FlatList
-<<<<<<< HEAD
         data={filter}
-=======
-        scrollEnabled={true}
-        data={tips}
->>>>>>> e3d98d7cc9badcd82e9faae29a6fe88db610a0f1
         keyExtractor={(item) => item.title}
         renderItem={({ item }) => <Tip {...item} hexCode={color} />}
       />
