@@ -1,6 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useCallback } from 'react';
 import { View, StyleSheet, FlatList, TextInput, Text } from 'react-native';
 import Tip from '../components/Tip';
+import FloatLabelInput from '../components/FloatLabelInput';
 
 const Tips = ({ route }) => {
   const { color, id } = route.params;
@@ -74,18 +76,13 @@ const Tips = ({ route }) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.floatLabel}>
-        <Text style={styles.label}>
-          {isFocused ? '' : 'Search your Favorite Tip'}
-        </Text>
-        <TextInput
-          onChangeText={(text) => setInput(text)}
-          value={input}
-          style={styles.input}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
-        />
-      </View>
+      <FloatLabelInput
+        mainLabel="Search your Favorite Tip"
+        // if second label is not given it will use main
+        secondLabel="Let's discover!!"
+        value={input}
+        setValue={setInput}
+      />
       <FlatList
         data={filter}
         keyExtractor={(item) => item.title}
