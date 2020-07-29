@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { View, StyleSheet, FlatList, TextInput, Text } from 'react-native';
 import Tip from '../components/Tip';
 
 const Tips = ({ route }) => {
   const { color, id } = route.params;
+  const [isRefreshing, setIsRefreshing] = useState(false);
   const [tips, setTips] = useState([]);
   const [input, setInput] = useState('');
   const [filter, setFilter] = useState(tips);
@@ -39,11 +40,24 @@ const Tips = ({ route }) => {
     },
   });
 
+  const fetchTips = useCallback(async () => {
+    const result = await fetch(
+      `https://flatiron-cheat-sheet.herokuapp.com/api/v1/categories/${id}`,
+    );
+    const fetchedTips = await result.json();
+    setTips(fetchedTips);
+  }, []);
+
+  const handleRefresh = useCallback(async () => {
+    setIsRefreshing(true);
+    await fetchTips();
+    setTimeout(() => {
+      setIsRefreshing(false);
+    }, 1000);
+  }, []);
+
   useEffect(() => {
-    fetch(`https://flatiron-cheat-sheet.herokuapp.com/api/v1/categories/${id}`)
-      .then((resp) => resp.json())
-      .then((data) => setTips(data));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    fetchTips();
   }, []);
 
   useEffect(() => {
@@ -62,7 +76,7 @@ const Tips = ({ route }) => {
     <View style={styles.container}>
       <View style={styles.floatLabel}>
         <Text style={styles.label}>
-          {isFocused ? "Let's discover!!" : 'Search your Favorite Tip'}
+          {isFocused ? '' : 'Search your Favorite Tip'}
         </Text>
         <TextInput
           onChangeText={(text) => setInput(text)}
@@ -76,6 +90,8 @@ const Tips = ({ route }) => {
         data={filter}
         keyExtractor={(item) => item.title}
         renderItem={({ item }) => <Tip {...item} hexCode={color} />}
+        refreshing={isRefreshing}
+        onRefresh={() => handleRefresh()}
       />
     </View>
   );
