@@ -3,8 +3,8 @@ import { StyleSheet, Text, View, TextInput } from 'react-native';
 
 const FloatLabelInput = (props) => {
   const [isFocused, setIsFocused] = useState(false);
+  const { value, setValue, mainLabel, secondLabel = mainLabel } = props;
 
-  console.warn(props);
   const styles = StyleSheet.create({
     floatLabel: {
       paddingHorizontal: 5,
@@ -27,15 +27,17 @@ const FloatLabelInput = (props) => {
   });
   return (
     <View style={styles.floatLabel}>
-      <Text style={styles.label}>
-        {isFocused ? "Let's discover!!" : 'Search your Favorite Tip'}
-      </Text>
+      <Text style={styles.label}>{isFocused ? secondLabel : mainLabel}</Text>
       <TextInput
-        onChangeText={(text) => onChangeText(text)}
+        onChangeText={(text) => setValue(text)}
         value={value}
         style={styles.input}
         onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
+        onBlur={() => {
+          if (value === '') {
+            setIsFocused(false);
+          }
+        }}
       />
     </View>
   );
