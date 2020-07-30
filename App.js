@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import Home from './screens/Home';
 import Categories from './screens/Categories';
 import Tips from './screens/Tips';
 import { createStackNavigator } from '@react-navigation/stack';
 import TipModal from './screens/TipModal';
+import AnimatedSplash from 'react-native-animated-splash-screen';
 
 const RootStack = createStackNavigator();
 const MainStack = createStackNavigator();
@@ -24,18 +25,33 @@ const MainStackScreen = () => {
 };
 
 const App = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoaded(true);
+    }, 2000);
+  }, []);
   return (
-    <NavigationContainer>
-      <RootStack.Navigator mode="modal">
-        <RootStack.Screen
-          name="Main"
-          component={MainStackScreen}
-          options={{ headerShown: false }}
-        />
+    <AnimatedSplash
+      translucent={true}
+      isLoaded={isLoaded}
+      logoImage={require('./assets/logo.png')}
+      backgroundColor={'#fff'}
+      logoHeight={300}
+      logoWidth={300}
+    >
+      <NavigationContainer>
+        <RootStack.Navigator mode="modal">
+          <RootStack.Screen
+            name="Main"
+            component={MainStackScreen}
+            options={{ headerShown: false }}
+          />
 
-        <RootStack.Screen name="TipModal" component={TipModal} />
-      </RootStack.Navigator>
-    </NavigationContainer>
+          <RootStack.Screen name="TipModal" component={TipModal} />
+        </RootStack.Navigator>
+      </NavigationContainer>
+    </AnimatedSplash>
   );
 };
 
