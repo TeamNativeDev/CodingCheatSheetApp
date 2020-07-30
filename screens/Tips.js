@@ -1,6 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useCallback } from 'react';
-import { View, StyleSheet, FlatList, TextInput, Text } from 'react-native';
+import { View, StyleSheet, FlatList, Text } from 'react-native';
 import Tip from '../components/Tip';
+import FloatLabelInput from '../components/FloatLabelInput';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { borderRadius, shadow } from '../styles/MainStyles';
 
 const Tips = ({ route }) => {
   const { color, id } = route.params;
@@ -8,35 +12,26 @@ const Tips = ({ route }) => {
   const [tips, setTips] = useState([]);
   const [input, setInput] = useState('');
   const [filter, setFilter] = useState(tips);
-  const [isFocused, setIsFocused] = useState(false);
 
   const styles = StyleSheet.create({
-    floatLabel: {
-      paddingHorizontal: 5,
-      paddingTop: 18,
-      marginBottom: 10,
-    },
-    label: {
-      position: 'absolute',
-      left: 10,
-      top: isFocused ? 0 : 18,
-      fontSize: isFocused ? 16 : 20,
-      color: isFocused ? '#000' : '#555',
-    },
-    input: {
-      paddingHorizontal: 5,
-      fontSize: 20,
-      borderBottomWidth: 2,
-      borderBottomColor: isFocused ? 'blue' : 'black',
-    },
     container: {
       paddingHorizontal: 10,
+      flex: 1,
     },
 
     headerText: {
       fontSize: 18,
       fontWeight: 'bold',
       marginBottom: 10,
+    },
+    button: {
+      ...borderRadius,
+      ...shadow,
+      backgroundColor: 'teal',
+      paddingHorizontal: 10,
+      paddingVertical: 20,
+      margin: 10,
+      alignItems: 'center',
     },
   });
 
@@ -77,18 +72,13 @@ const Tips = ({ route }) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.floatLabel}>
-        <Text style={styles.label}>
-          {isFocused ? '' : 'Search your Favorite Tip'}
-        </Text>
-        <TextInput
-          onChangeText={(text) => setInput(text)}
-          value={input}
-          style={styles.input}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
-        />
-      </View>
+      <FloatLabelInput
+        mainLabel="Search your Favorite Tip"
+        // if second label is not given it will use main
+        secondLabel="Let's discover!!"
+        value={input}
+        setValue={setInput}
+      />
       <FlatList
         data={filter}
         keyExtractor={(item) => item.title}
@@ -96,6 +86,9 @@ const Tips = ({ route }) => {
         refreshing={isRefreshing}
         onRefresh={() => handleRefresh()}
       />
+      <TouchableOpacity style={styles.button}>
+        <Text>Add your brand new learned Tip</Text>
+      </TouchableOpacity>
     </View>
   );
 };
