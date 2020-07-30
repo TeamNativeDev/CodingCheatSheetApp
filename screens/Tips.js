@@ -46,6 +46,7 @@ const Tips = ({ route }) => {
     );
     const fetchedTips = await result.json();
     setTips(fetchedTips);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleRefresh = useCallback(async () => {
@@ -54,10 +55,12 @@ const Tips = ({ route }) => {
     setTimeout(() => {
       setIsRefreshing(false);
     }, 1000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     fetchTips();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
