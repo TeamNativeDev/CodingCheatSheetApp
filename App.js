@@ -12,7 +12,7 @@ const MainStack = createStackNavigator();
 const MainStackScreen = () => {
   return (
     <MainStack.Navigator>
-      <MainStack.Screen name="Home" component={Home} />
+      {/* <MainStack.Screen name="Home" component={Home} /> */}
       <MainStack.Screen name="Categories" component={Categories} />
       <MainStack.Screen
         name="Tips"
