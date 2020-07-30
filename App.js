@@ -1,27 +1,39 @@
 import React from 'react';
-// import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import Home from './screens/Home';
 import Categories from './screens/Categories';
 import Tips from './screens/Tips';
 import { createStackNavigator } from '@react-navigation/stack';
+import TipModal from './screens/TipModal';
 
-const Stack = createStackNavigator();
+const RootStack = createStackNavigator();
+const MainStack = createStackNavigator();
+
+const MainStackScreen = () => {
+  return (
+    <MainStack.Navigator>
+      <MainStack.Screen name="Home" component={Home} />
+      <MainStack.Screen name="Categories" component={Categories} />
+      <MainStack.Screen
+        name="Tips"
+        component={Tips}
+        options={({ route }) => ({ title: `${route.params.title} Tips` })}
+      />
+    </MainStack.Navigator>
+  );
+};
 
 const App = () => {
   return (
     <NavigationContainer>
-      {/* <SafeAreaView style={styles.safeArea}> */}
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Categories" component={Categories} />
-        <Stack.Screen
-          name="Tips"
-          component={Tips}
-          options={({ route }) => ({ title: `${route.params.title} Tips` })}
+      <RootStack.Navigator mode="modal">
+        <RootStack.Screen
+          name="Main"
+          component={MainStackScreen}
+          options={{ headerShown: false }}
         />
-      </Stack.Navigator>
-      {/* </SafeAreaView> */}
+        <RootStack.Screen name="TipModal" component={TipModal} />
+      </RootStack.Navigator>
     </NavigationContainer>
   );
 };
