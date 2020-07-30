@@ -6,13 +6,14 @@ import FloatLabelInput from '../components/FloatLabelInput';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { borderRadius, shadow } from '../styles/MainStyles';
 
-const Tips = ({ route }) => {
+const Tips = ({ route, navigation }) => {
   const { color, id } = route.params;
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [tips, setTips] = useState([]);
   const [input, setInput] = useState('');
   const [filter, setFilter] = useState(tips);
 
+  // console.warn(props);
   const styles = StyleSheet.create({
     container: {
       paddingHorizontal: 10,
@@ -86,7 +87,10 @@ const Tips = ({ route }) => {
         refreshing={isRefreshing}
         onRefresh={() => handleRefresh()}
       />
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('TipModal')}
+        style={styles.button}
+      >
         <Text>Add your brand new learned Tip</Text>
       </TouchableOpacity>
     </View>

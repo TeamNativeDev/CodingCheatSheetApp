@@ -32,6 +32,7 @@ const App = () => {
           component={MainStackScreen}
           options={{ headerShown: false }}
         />
+
         <RootStack.Screen name="TipModal" component={TipModal} />
       </RootStack.Navigator>
     </NavigationContainer>

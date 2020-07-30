@@ -9,6 +9,7 @@ import {
 import Category from '../components/Category';
 
 const Categories = ({ navigation }) => {
+  // console.warn(navigation.navigate);
   const [categories, setCategories] = useState([]);
   useEffect(() => {
     fetch('https://flatiron-cheat-sheet.herokuapp.com/api/v1/categories')
