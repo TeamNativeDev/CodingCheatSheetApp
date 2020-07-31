@@ -32,7 +32,7 @@ const TipModal = ({ route, navigation }) => {
       .then((data) => data.json())
       .then((json) => {
         if (json.message === 'ok') {
-          navigation.navigate('Categories');
+          navigation.navigate('Tips', { data: json.data, ...route.params });
         }
       });
   };

@@ -7,7 +7,7 @@ import FloatLabelInput from '../components/FloatLabelInput';
 import AppButton from '../components/AppButton';
 
 const Tips = ({ route, navigation }) => {
-  const { color, id } = route.params;
+  const { color, id, data = null } = route.params;
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [tips, setTips] = useState([]);
   const [input, setInput] = useState('');
@@ -28,6 +28,12 @@ const Tips = ({ route, navigation }) => {
       backgroundColor: 'red',
     },
   });
+
+  useEffect(() => {
+    if (data) {
+      setTips((prevState) => [data, ...prevState]);
+    }
+  }, [data]);
 
   const fetchTips = useCallback(async () => {
     const result = await fetch(
