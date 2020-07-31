@@ -7,8 +7,16 @@ const TipModal = ({ route, navigation }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [snippet, setSnippet] = useState('');
-  const { id, title: categoryTitle } = route.params;
-  console.warn(route);
+  const { id, title: categoryTitle, color } = route.params;
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+    },
+    button: {
+      backgroundColor: color,
+    },
+  });
   return (
     <KeyboardAvoidingView style={styles.container} behavior={'padding'}>
       <FloatLabelInput value={title} setValue={setTitle} mainLabel="Title" />
@@ -27,16 +35,11 @@ const TipModal = ({ route, navigation }) => {
         numberOfLines={5}
         code={true}
       />
-      <AppButton onPress={() => console.warn('hello')}>
+      <AppButton style={styles.button} onPress={() => console.warn('hello')}>
         Send, your new {categoryTitle} Tip
       </AppButton>
     </KeyboardAvoidingView>
   );
 };
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 export default TipModal;
