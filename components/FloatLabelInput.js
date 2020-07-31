@@ -23,6 +23,7 @@ const FloatLabelInput = (props) => {
       top: isFocused ? 0 : 25,
       fontSize: isFocused ? 16 : 20,
       color: isFocused ? '#000' : '#555',
+      zIndex: 5,
     },
     input: {
       paddingHorizontal: 5,
@@ -31,6 +32,7 @@ const FloatLabelInput = (props) => {
       borderBottomColor: isFocused ? 'blue' : 'black',
       textAlignVertical: 'top',
       backgroundColor: code ? 'black' : null,
+      color: code ? 'white' : 'black',
     },
   });
   return (
