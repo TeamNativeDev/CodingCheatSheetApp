@@ -3,14 +3,14 @@ import { Text, View, StyleSheet } from 'react-native';
 import { shadow, borderRadius } from '../styles/MainStyles';
 
 const Category = (props) => {
-  const { title, color } = props;
+  const { title, color, id } = props;
   const containerColor = {
     backgroundColor: color,
   };
 
   return (
     <View style={[styles.categoryBox, containerColor]}>
-      <Text style={styles.boxText}>{title}</Text>
+      <Text style={styles.boxText}>{title + id}</Text>
     </View>
   );
 };

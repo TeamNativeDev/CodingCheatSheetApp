@@ -12,9 +12,11 @@ const Categories = ({ navigation }) => {
   // console.warn(navigation.navigate);
   const [categories, setCategories] = useState([]);
   useEffect(() => {
-    fetch('https://flatiron-cheat-sheet.herokuapp.com/api/v1/categories')
+    // fetch('https://flatiron-cheat-sheet.herokuapp.com/api/v1/categories')
+    fetch('http://localhost:3000/api/v1/categories')
       .then((resp) => resp.json())
       .then((data) => setCategories(data));
+    // .then(console.warn(categories));
   }, []);
   return (
     <View style={styles.container}>

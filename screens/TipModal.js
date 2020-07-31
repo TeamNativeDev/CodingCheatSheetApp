@@ -24,11 +24,17 @@ const TipModal = ({ route, navigation }) => {
           code_snippet: snippet,
           category_id: id,
           more_info: moreInfo,
-          user_id: 44,
+          user_id: 10,
         },
       }),
     };
-    fetch('http://localhost:3000/api/v1/tips', configObject);
+    fetch('http://localhost:3000/api/v1/tips', configObject)
+      .then((data) => data.json())
+      .then((json) => {
+        if (json.message === 'ok') {
+          navigation.navigate('Categories');
+        }
+      });
   };
 
   const styles = StyleSheet.create({
