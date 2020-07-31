@@ -1,10 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useCallback } from 'react';
-import { View, StyleSheet, FlatList, Text } from 'react-native';
+import { View, StyleSheet, FlatList } from 'react-native';
 import Tip from '../components/Tip';
 import FloatLabelInput from '../components/FloatLabelInput';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { borderRadius, shadow } from '../styles/MainStyles';
+
 import AppButton from '../components/AppButton';
 
 const Tips = ({ route, navigation }) => {
@@ -14,7 +13,6 @@ const Tips = ({ route, navigation }) => {
   const [input, setInput] = useState('');
   const [filter, setFilter] = useState(tips);
 
-  // console.warn(props);
   const styles = StyleSheet.create({
     container: {
       paddingHorizontal: 10,
@@ -37,7 +35,6 @@ const Tips = ({ route, navigation }) => {
     );
     const fetchedTips = await result.json();
     setTips(fetchedTips);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleRefresh = useCallback(async () => {
@@ -46,12 +43,10 @@ const Tips = ({ route, navigation }) => {
     setTimeout(() => {
       setIsRefreshing(false);
     }, 1000);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     fetchTips();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -84,7 +79,7 @@ const Tips = ({ route, navigation }) => {
       />
       <AppButton
         style={styles.button}
-        onPress={() => navigation.navigate('TipModal')}
+        onPress={() => navigation.navigate('TipModal', { ...route.params })}
       >
         Add your brand new learned Tip
       </AppButton>
