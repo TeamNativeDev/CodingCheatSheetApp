@@ -5,6 +5,7 @@ import Tip from '../components/Tip';
 import FloatLabelInput from '../components/FloatLabelInput';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { borderRadius, shadow } from '../styles/MainStyles';
+import AppButton from '../components/AppButton';
 
 const Tips = ({ route, navigation }) => {
   const { color, id } = route.params;
@@ -26,13 +27,7 @@ const Tips = ({ route, navigation }) => {
       marginBottom: 10,
     },
     button: {
-      ...borderRadius,
-      ...shadow,
-      backgroundColor: 'teal',
-      paddingHorizontal: 10,
-      paddingVertical: 20,
-      margin: 10,
-      alignItems: 'center',
+      backgroundColor: 'red',
     },
   });
 
@@ -87,12 +82,12 @@ const Tips = ({ route, navigation }) => {
         refreshing={isRefreshing}
         onRefresh={() => handleRefresh()}
       />
-      <TouchableOpacity
-        onPress={() => navigation.navigate('TipModal')}
+      <AppButton
         style={styles.button}
+        onPress={() => navigation.navigate('TipModal')}
       >
-        <Text>Add your brand new learned Tip</Text>
-      </TouchableOpacity>
+        Add your brand new learned Tip
+      </AppButton>
     </View>
   );
 };
