@@ -3,10 +3,12 @@ import { KeyboardAvoidingView, StyleSheet } from 'react-native';
 import FloatLabelInput from '../components/FloatLabelInput';
 import AppButton from '../components/AppButton';
 
-const TipModal = () => {
+const TipModal = ({ route, navigation }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [snippet, setSnippet] = useState('');
+  const { id, title: categoryTitle } = route.params;
+  console.warn(route);
   return (
     <KeyboardAvoidingView style={styles.container} behavior={'padding'}>
       <FloatLabelInput value={title} setValue={setTitle} mainLabel="Title" />
@@ -26,7 +28,7 @@ const TipModal = () => {
         code={true}
       />
       <AppButton onPress={() => console.warn('hello')}>
-        Send, It will go on Rails
+        Send, your new {categoryTitle} Tip
       </AppButton>
     </KeyboardAvoidingView>
   );
