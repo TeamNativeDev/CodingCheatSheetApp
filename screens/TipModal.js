@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { KeyboardAvoidingView, StyleSheet } from 'react-native';
 import FloatLabelInput from '../components/FloatLabelInput';
 import AppButton from '../components/AppButton';
@@ -7,7 +7,29 @@ const TipModal = ({ route, navigation }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [snippet, setSnippet] = useState('');
+  const [moreInfo, setMoreInfo] = useState('');
   const { id, title: categoryTitle, color } = route.params;
+
+  const handleSubmit = () => {
+    const configObject = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        tip: {
+          title,
+          description,
+          code_snippet: snippet,
+          category_id: id,
+          more_info: moreInfo,
+          user_id: 44,
+        },
+      }),
+    };
+    fetch('http://localhost:3000/api/v1/tips', configObject);
+  };
 
   const styles = StyleSheet.create({
     container: {
@@ -35,7 +57,13 @@ const TipModal = ({ route, navigation }) => {
         numberOfLines={5}
         code={true}
       />
-      <AppButton style={styles.button} onPress={() => console.warn('hello')}>
+      <FloatLabelInput
+        value={moreInfo}
+        setValue={setMoreInfo}
+        mainLabel="Write a Url with more useful info about it"
+        secondLabel="Url to an other resource"
+      />
+      <AppButton style={styles.button} onPress={() => handleSubmit()}>
         Send, your new {categoryTitle} Tip
       </AppButton>
     </KeyboardAvoidingView>
