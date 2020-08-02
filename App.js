@@ -64,7 +64,7 @@ const App = () => {
             options={({ route }) => ({ title: `${route.params.title} Tips` })}
           />
           <RootStack.Screen
-            name="NewTip"
+            name="TipModal"
             component={TipModal}
             options={({ route }) => ({
               title: 'New Tip',
