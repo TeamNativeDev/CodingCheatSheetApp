@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {
   Text,
-  View,
+  SafeAreaView,
   StyleSheet,
   FlatList,
   TouchableOpacity,
@@ -19,7 +19,7 @@ const Categories = ({ navigation }) => {
     // .then(console.warn(categories));
   }, []);
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.headerText}> All Categories:</Text>
       <FlatList
         data={categories}
@@ -31,7 +31,7 @@ const Categories = ({ navigation }) => {
           </TouchableOpacity>
         )}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 

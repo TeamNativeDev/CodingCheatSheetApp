@@ -1,14 +1,14 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { SafeAreaView, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 const Home = ({ navigation }) => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.text}>Hello Flatironers !</Text>
       <TouchableOpacity onPress={() => navigation.navigate('Categories')}>
         <Text style={styles.text}>Click here to see Categories !</Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 };
 
