@@ -1,13 +1,13 @@
 import React from 'react';
-import { SafeAreaView, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { SafeAreaView, Text, View, StyleSheet } from 'react-native';
 
 const Home = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.text}>Hello Flatironers !</Text>
-      <TouchableOpacity onPress={() => navigation.navigate('Categories')}>
-        <Text style={styles.text}>Click here to see Categories !</Text>
-      </TouchableOpacity>
+      <Text style={styles.headerText}>Hello Flatironers !</Text>
+      <View>
+        <Text style={styles.mainText}> Populate Home Screen with things!</Text>
+      </View>
     </SafeAreaView>
   );
 };
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  text: {
+  headerText: {
     fontSize: 18,
     fontWeight: 'bold',
     padding: 10,
@@ -25,6 +25,12 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     marginBottom: 20,
     backgroundColor: '#2aa198',
+  },
+  mainText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
