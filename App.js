@@ -6,6 +6,7 @@ import Tips from './screens/Tips';
 import { createStackNavigator } from '@react-navigation/stack';
 import TipModal from './screens/TipModal';
 import AnimatedSplash from 'react-native-animated-splash-screen';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const RootStack = createStackNavigator();
 const MainStack = createStackNavigator();
