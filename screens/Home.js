@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
+    marginVertical: 40,
   },
   headerText: {
     fontSize: 18,
