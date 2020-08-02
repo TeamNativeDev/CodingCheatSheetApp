@@ -10,7 +10,7 @@ const Category = (props) => {
 
   return (
     <View style={[styles.categoryBox, containerColor]}>
-      <Text style={styles.boxText}>{title + id}</Text>
+      <Text style={styles.boxText}>{title}</Text>
     </View>
   );
 };
