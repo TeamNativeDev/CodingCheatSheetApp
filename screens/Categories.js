@@ -12,8 +12,8 @@ const Categories = ({ navigation }) => {
   // console.warn(navigation.navigate);
   const [categories, setCategories] = useState([]);
   useEffect(() => {
-    // fetch('https://flatiron-cheat-sheet.herokuapp.com/api/v1/categories')
-    fetch('http://localhost:3000/api/v1/categories')
+    fetch('https://flatiron-cheat-sheet.herokuapp.com/api/v1/categories')
+      // fetch('http://localhost:3000/api/v1/categories')
       .then((resp) => resp.json())
       .then((data) => setCategories(data));
     // .then(console.warn(categories));
@@ -38,12 +38,13 @@ const Categories = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 10,
-    paddingTop: 30,
+    paddingVertical: 40,
   },
 
   headerText: {
     fontSize: 18,
     fontWeight: 'bold',
+    paddingTop: 30,
     marginBottom: 10,
   },
 });

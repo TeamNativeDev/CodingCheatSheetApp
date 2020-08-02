@@ -37,8 +37,8 @@ const Tips = ({ route, navigation }) => {
 
   const fetchTips = useCallback(async () => {
     const result = await fetch(
-      `http://localhost:3000/api/v1/categories/${id}`,
-      // `https://flatiron-cheat-sheet.herokuapp.com/api/v1/categories/${id}`,
+      // `http://localhost:3000/api/v1/categories/${id}`,
+      `https://flatiron-cheat-sheet.herokuapp.com/api/v1/categories/${id}`,
     );
     const fetchedTips = await result.json();
     setTips(fetchedTips);

@@ -28,7 +28,11 @@ const TipModal = ({ route, navigation }) => {
         },
       }),
     };
-    fetch('http://localhost:3000/api/v1/tips', configObject)
+    // fetch('http://localhost:3000/api/v1/tips', configObject)
+    fetch(
+      'https://flatiron-cheat-sheet.herokuapp.com/api/v1/tips',
+      configObject,
+    )
       .then((data) => data.json())
       .then((json) => {
         if (json.message === 'ok') {
