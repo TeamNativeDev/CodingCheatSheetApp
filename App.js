@@ -9,19 +9,29 @@ import AnimatedSplash from 'react-native-animated-splash-screen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const RootStack = createStackNavigator();
-const MainStack = createStackNavigator();
+// const MainStack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
-const MainStackScreen = () => {
+// const MainStackScreen = () => {
+//   return (
+//     <MainStack.Navigator>
+//       <MainStack.Screen name="Home" component={Home} />
+//       <MainStack.Screen name="Categories" component={Categories} />
+//       <MainStack.Screen
+//         name="Tips"
+//         component={Tips}
+//         options={({ route }) => ({ title: `${route.params.title} Tips` })}
+//       />
+//     </MainStack.Navigator>
+//   );
+// };
+
+const MainStackTabs = () => {
   return (
-    <MainStack.Navigator>
-      <MainStack.Screen name="Home" component={Home} />
-      <MainStack.Screen name="Categories" component={Categories} />
-      <MainStack.Screen
-        name="Tips"
-        component={Tips}
-        options={({ route }) => ({ title: `${route.params.title} Tips` })}
-      />
-    </MainStack.Navigator>
+    <Tab.Navigator>
+      <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen name="Categories" component={Categories} />
+    </Tab.Navigator>
   );
 };
 
@@ -45,11 +55,21 @@ const App = () => {
         <RootStack.Navigator mode="modal">
           <RootStack.Screen
             name="Main"
-            component={MainStackScreen}
+            component={MainStackTabs}
             options={{ headerShown: false }}
           />
-
-          <RootStack.Screen name="TipModal" component={TipModal} />
+          <RootStack.Screen
+            name="Tips"
+            component={Tips}
+            options={({ route }) => ({ title: `${route.params.title} Tips` })}
+          />
+          <RootStack.Screen
+            name="NewTip"
+            component={TipModal}
+            options={({ route }) => ({
+              title: 'New Tip',
+            })}
+          />
         </RootStack.Navigator>
       </NavigationContainer>
     </AnimatedSplash>
