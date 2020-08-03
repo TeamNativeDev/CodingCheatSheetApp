@@ -11,6 +11,15 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 const RootStack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
+// const MainStackTabs = () => {
+//   return (
+//     <Tab.Navigator>
+//       <Tab.Screen name="Home" component={Home} />
+//       <Tab.Screen name="Categories" children={() => <Categories />} />
+//     </Tab.Navigator>
+//   );
+// };
+
 const MainStackTabs = () => {
   return (
     <Tab.Navigator>
