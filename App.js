@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { Text, SafeAreaView } from 'react-native';
 import Home from './screens/Home';
 import Categories from './screens/Categories';
 import Tips from './screens/Tips';
@@ -8,6 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import TipModal from './screens/TipModal';
 import AnimatedSplash from 'react-native-animated-splash-screen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Auth from './screens/Auth';
 
 const RootStack = createStackNavigator();
 const Tab = createBottomTabNavigator();
