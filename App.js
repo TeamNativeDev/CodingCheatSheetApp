@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import { Text, SafeAreaView } from 'react-native';
 import Home from './screens/Home';
 import Categories from './screens/Categories';
 import Tips from './screens/Tips';
@@ -20,9 +21,10 @@ const App = () => {
         <Tab.Screen name="Home" component={Home} />
         <Tab.Screen
           name="Categories"
-          component={Categories}
           initialParams={{ categories: categories }}
+          component={Categories}
         />
+        <Tab.Screen name={'Profile'} component={Auth} />
       </Tab.Navigator>
     );
   };
