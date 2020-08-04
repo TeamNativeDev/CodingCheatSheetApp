@@ -19,8 +19,8 @@ const Auth = () => {
         body: JSON.stringify({ user }),
       };
       fetch('http://localhost:3000/api/v1/login', configObject)
-        .then((res) => console.log(res))
-        // .then((json) => SecureStore.setItemAsync('user', json))
+        .then((res) => res.json())
+        .then((json) => SecureStore.setItemAsync('user', JSON.stringify(json)))
         .then(setIsLogin(true));
       // fetch(
       //   'https://flatiron-cheat-sheet.herokuapp.com/api/v1/login',
