@@ -11,22 +11,32 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 const RootStack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-const MainStackTabs = () => {
-  return (
-    <Tab.Navigator>
-      <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Categories" component={Categories} />
-    </Tab.Navigator>
-  );
-};
-
 const App = () => {
+  const [categories, setCategories] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
+  const MainStackTabs = () => {
+    return (
+      <Tab.Navigator>
+        <Tab.Screen name="Home" component={Home} />
+        <Tab.Screen
+          name="Categories"
+          component={Categories}
+          initialParams={{ categories: categories }}
+        />
+      </Tab.Navigator>
+    );
+  };
   useEffect(() => {
-    setTimeout(() => {
-      setIsLoaded(true);
-    }, 2000);
+    fetch('https://flatiron-cheat-sheet.herokuapp.com/api/v1/categories')
+      // fetch('http://localhost:3000/api/v1/categories')
+      .then((resp) => resp.json())
+      .then((data) => setCategories(data))
+      .then(()=>{
+        setTimeout(() => {
+          setIsLoaded(true)});
+        }, 1000);
   }, []);
+
   return (
     <AnimatedSplash
       translucent={true}
