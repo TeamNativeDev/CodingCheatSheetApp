@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Text,
   SafeAreaView,
@@ -10,6 +10,9 @@ import Category from '../components/Category';
 
 const Categories = ({ navigation, route }) => {
   const categories = route.params.categories;
+
+
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.headerText}> All Categories:</Text>

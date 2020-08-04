@@ -3,7 +3,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { View, StyleSheet, FlatList } from 'react-native';
 import Tip from '../components/Tip';
 import FloatLabelInput from '../components/FloatLabelInput';
-
+import * as SecureStore from 'expo-secure-store';
 import AppButton from '../components/AppButton';
 
 const Tips = ({ route, navigation }) => {
@@ -12,6 +12,8 @@ const Tips = ({ route, navigation }) => {
   const [tips, setTips] = useState([]);
   const [input, setInput] = useState('');
   const [filter, setFilter] = useState(tips);
+  const [isLogin, setIsLogin] = useState(false);
+  const [userId, setUserId] = useState(null);
 
   const styles = StyleSheet.create({
     container: {
@@ -33,6 +35,16 @@ const Tips = ({ route, navigation }) => {
     if (data) {
       setTips((prevState) => [data, ...prevState]);
     }
+    async function checkLogin() {
+      const userData = await SecureStore.getItemAsync('user');
+      console.log(userData);
+      if (userData) {
+        const userObject = await JSON.parse(userData);
+        setUserId(userObject.id);
+        setIsLogin(true);
+      }
+    }
+    checkLogin();
   }, [data]);
 
   const fetchTips = useCallback(async () => {
@@ -86,7 +98,7 @@ const Tips = ({ route, navigation }) => {
       />
       <AppButton
         style={styles.button}
-        onPress={() => navigation.navigate('TipModal', { ...route.params })}
+        onPress={() => navigation.navigate('TipModal', { ...route.params, id })}
       >
         Add your brand new learned Tip
       </AppButton>
