@@ -1,7 +1,7 @@
 import React from 'react';
 import { SafeAreaView, Text, View, StyleSheet } from 'react-native';
 
-const Home = ({ navigation }) => {
+const Home = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.headerText}>Hello Flatironers !</Text>
