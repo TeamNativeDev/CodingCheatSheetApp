@@ -8,6 +8,7 @@ import TipModal from './screens/TipModal';
 import AnimatedSplash from 'react-native-animated-splash-screen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Auth from './screens/Auth';
+import { Entypo } from '@expo/vector-icons';
 
 const RootStack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -18,13 +19,28 @@ const App = () => {
   const MainStackTabs = () => {
     return (
       <Tab.Navigator>
-        <Tab.Screen name="Home" component={Home} />
+        <Tab.Screen
+          name="Home"
+          component={Home}
+          options={{
+            tabBarIcon: () => <Entypo name="home" size={24} color="black" />,
+          }}
+        />
         <Tab.Screen
           name="Categories"
           initialParams={{ categories: categories }}
           component={Categories}
+          options={{
+            tabBarIcon: () => <Entypo name="list" size={24} color="black" />,
+          }}
         />
-        <Tab.Screen name={'Profile'} component={Auth} />
+        <Tab.Screen
+          name={'Profile'}
+          component={Auth}
+          options={{
+            tabBarIcon: () => <Entypo name="user" size={24} color="black" />,
+          }}
+        />
       </Tab.Navigator>
     );
   };
