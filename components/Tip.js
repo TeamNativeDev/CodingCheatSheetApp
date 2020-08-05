@@ -37,10 +37,9 @@ const styles = StyleSheet.create({
   tipBox: {
     ...shadow,
     flex: 1,
-    height: 150,
+    height: 300,
     paddingVertical: 10,
     paddingHorizontal: 5,
-    // justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 10,
   },
@@ -53,6 +52,9 @@ const styles = StyleSheet.create({
   headerText: {
     textAlignVertical: 'top',
     fontWeight: 'bold',
+    fontSize: 18,
+    paddingBottom: 4,
+    textDecorationLine: 'underline',
   },
   scroll: {
     flexGrow: 1,
