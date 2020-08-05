@@ -2,15 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as SecureStore from 'expo-secure-store';
+import FloatLabelInput from './FloatLabelInput';
+import AppButton from './AppButton';
 
 const Profile = () => {
-  const [user, setUser] = useState(null);
+  const [username, setUsername] = useState('');
+  const [userEmail, setUserEmail] = useState('');
+  const [editable, setEditable] = useState(false);
 
   useEffect(() => {
     async function getUSer() {
       const userData = await SecureStore.getItemAsync('user');
       const userObject = await JSON.parse(userData);
-      setUser(userObject.user);
+      setUserEmail(userObject.user.email);
+      setUsername(userObject.user.username);
     }
 
     getUSer();
@@ -19,11 +24,29 @@ const Profile = () => {
   return (
     <SafeAreaView>
       <Text>User Profile</Text>
-      <Text>{user?.username}</Text>
+      <AppButton style={styles.edit} onPress={() => setEditable(true)}>
+        Edit
+      </AppButton>
+      <FloatLabelInput
+        value={username}
+        setValue={setUsername}
+        mainLabel="Username"
+      />
+      <FloatLabelInput
+        value={userEmail}
+        setValue={setUserEmail}
+        mainLabel="Your Email"
+      />
     </SafeAreaView>
   );
 };
 
 export default Profile;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  edit: {
+    backgroundColor: 'gold',
+    width: 100,
+    padding: 5,
+  },
+});
