@@ -8,7 +8,7 @@ import AppButton from './AppButton';
 const Profile = () => {
   const [username, setUsername] = useState('');
   const [userEmail, setUserEmail] = useState('');
-  const [editable, setEditable] = useState(false);
+  const [bio, setBio] = useState('');
 
   useEffect(() => {
     async function getUSer() {
@@ -16,6 +16,7 @@ const Profile = () => {
       const userObject = await JSON.parse(userData);
       setUserEmail(userObject.user.email);
       setUsername(userObject.user.username);
+      setBio(userObject.user.bio);
     }
 
     getUSer();
@@ -24,23 +25,26 @@ const Profile = () => {
   return (
     <SafeAreaView>
       <Text>User Profile</Text>
-      <AppButton style={styles.edit} onPress={() => setEditable(true)}>
-        Edit
-      </AppButton>
       <FloatLabelInput
         value={username}
         setValue={setUsername}
         // Bug on label and on not editable
-        // mainLabel="Username"
+        mainLabel="Username"
         autoFocus={true}
-        editable={editable}
       />
       <FloatLabelInput
         value={userEmail}
         setValue={setUserEmail}
-        // mainLabel="Your Email"
+        mainLabel="Your Email"
         autoFocus={true}
-        editable={editable}
+      />
+      <FloatLabelInput
+        value={bio}
+        setValue={setBio}
+        mainLabel="Write something about you"
+        multiline={true}
+        numberOfLines={3}
+        autoFocus={true}
       />
     </SafeAreaView>
   );
