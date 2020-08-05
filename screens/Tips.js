@@ -38,7 +38,6 @@ const Tips = ({ route, navigation }) => {
     }
     async function checkLogin() {
       const userData = await SecureStore.getItemAsync('user');
-      console.log(userData);
       if (userData) {
         const userObject = await JSON.parse(userData);
         setUserId(userObject.id);
