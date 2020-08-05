@@ -5,6 +5,7 @@ import Tip from '../components/Tip';
 import FloatLabelInput from '../components/FloatLabelInput';
 import * as SecureStore from 'expo-secure-store';
 import AppButton from '../components/AppButton';
+import { Entypo } from '@expo/vector-icons';
 
 const Tips = ({ route, navigation }) => {
   const { color, id, data = null } = route.params;
@@ -100,7 +101,8 @@ const Tips = ({ route, navigation }) => {
         style={styles.button}
         onPress={() => navigation.navigate('TipModal', { ...route.params, id })}
       >
-        Add your brand new learned Tip
+        <Entypo name="add-to-list" size={24} color="black" /> Add your brand new
+        learned Tip
       </AppButton>
     </View>
   );
