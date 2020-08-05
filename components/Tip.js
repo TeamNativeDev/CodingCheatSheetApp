@@ -16,12 +16,13 @@ const Tip = ({ title, description, hexCode, code_snippet, votes }) => {
     <View style={[styles.tipBox, containerColor]}>
       <Text style={styles.headerText}>{title} </Text>
 
+      <View style={styles.codeSnippetBox}>
+        <Text style={styles.codeSnippetText}>Code Snippet: {code_snippet}</Text>
+      </View>
+
       <ScrollView style={styles.scroll} scrollEnabled={true}>
         <View style={styles.descriptionView}>
           <Text style={styles.descriptionText}>Description: {description}</Text>
-        </View>
-        <View style={styles.codeSnippetBox}>
-          <Text style={styles.codeSnippetText}>{code_snippet}</Text>
         </View>
       </ScrollView>
 
@@ -37,7 +38,7 @@ const styles = StyleSheet.create({
   tipBox: {
     ...shadow,
     flex: 1,
-    height: 300,
+    height: 250,
     paddingVertical: 10,
     paddingHorizontal: 5,
     alignItems: 'center',
@@ -48,12 +49,13 @@ const styles = StyleSheet.create({
   },
   descriptionView: {
     ...borderRadius,
+    paddingTop: 8,
   },
   headerText: {
     textAlignVertical: 'top',
     fontWeight: 'bold',
     fontSize: 18,
-    paddingBottom: 4,
+    paddingBottom: 8,
     textDecorationLine: 'underline',
   },
   scroll: {
