@@ -9,6 +9,14 @@ const Auth = () => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
+    async function getUSer() {
+      const userData = await SecureStore.getItemAsync('user');
+      console.log(userData);
+      if (userData) {
+        setIsLogin(true);
+      }
+    }
+    getUSer();
     if (user) {
       const configObject = {
         method: 'POST',
