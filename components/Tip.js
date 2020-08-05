@@ -7,6 +7,7 @@ import {
   ScrollView,
 } from 'react-native';
 import { borderRadius, shadow } from '../styles/MainStyles';
+import { Entypo } from '@expo/vector-icons';
 
 const Tip = ({ title, description, hexCode, code_snippet, votes }) => {
   const containerColor = {
@@ -27,7 +28,10 @@ const Tip = ({ title, description, hexCode, code_snippet, votes }) => {
       </ScrollView>
 
       <View>
-        <Text> Up Voted {votes.length} Times</Text>
+        <Text>
+          <Entypo name="thumbs-up" size={24} color="black" /> {votes.length}{' '}
+          Times
+        </Text>
         <TouchableOpacity onPress={() => console.warn('pressed')} />
       </View>
     </View>
