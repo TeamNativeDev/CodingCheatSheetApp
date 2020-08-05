@@ -27,7 +27,7 @@ const Tips = ({ route, navigation }) => {
       marginBottom: 10,
     },
     button: {
-      backgroundColor: 'red',
+      backgroundColor: color,
     },
   });
 
