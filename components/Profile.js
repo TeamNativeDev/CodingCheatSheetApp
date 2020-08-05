@@ -30,12 +30,17 @@ const Profile = () => {
       <FloatLabelInput
         value={username}
         setValue={setUsername}
-        mainLabel="Username"
+        // Bug on label and on not editable
+        // mainLabel="Username"
+        autoFocus={true}
+        editable={editable}
       />
       <FloatLabelInput
         value={userEmail}
         setValue={setUserEmail}
-        mainLabel="Your Email"
+        // mainLabel="Your Email"
+        autoFocus={true}
+        editable={editable}
       />
     </SafeAreaView>
   );
