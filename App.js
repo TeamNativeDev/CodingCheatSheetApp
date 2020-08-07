@@ -9,6 +9,7 @@ import AnimatedSplash from 'react-native-animated-splash-screen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Auth from './screens/Auth';
 import { Entypo } from '@expo/vector-icons';
+import BASEURL from './helpers/BaseUrl';
 
 const RootStack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -45,8 +46,7 @@ const App = () => {
     );
   };
   useEffect(() => {
-    fetch('https://flatiron-cheat-sheet.herokuapp.com/api/v1/categories')
-      // fetch('http://localhost:3000/api/v1/categories')
+    fetch(BASEURL + 'categories')
       .then((resp) => resp.json())
       .then((data) => setCategories(data))
       .then(() => {
