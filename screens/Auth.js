@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 import Login from '../components/Login';
 import Profile from '../components/Profile';
 import * as SecureStore from 'expo-secure-store';
+import BASEURL from '../helpers/BaseUrl';
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -26,14 +27,10 @@ const Auth = () => {
         },
         body: JSON.stringify({ user }),
       };
-      fetch('http://localhost:3000/api/v1/login', configObject)
+      fetch(BASEURL + 'login', configObject)
         .then((res) => res.json())
         .then((json) => SecureStore.setItemAsync('user', JSON.stringify(json)))
         .then(setIsLogin(true));
-      // fetch(
-      //   'https://flatiron-cheat-sheet.herokuapp.com/api/v1/login',
-      //   configObject,
-      // )
     }
   }, [user]);
 
