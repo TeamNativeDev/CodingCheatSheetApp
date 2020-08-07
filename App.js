@@ -10,9 +10,19 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Auth from './screens/Auth';
 import { Entypo } from '@expo/vector-icons';
 import BASEURL from './helpers/BaseUrl';
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
+import rootReducer from './reducers/rootReducer';
+import { Provider } from 'react-redux';
 
 const RootStack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(
+  rootReducer,
+  undefined,
+  composeEnhancers(applyMiddleware(thunk)),
+);
 
 const App = () => {
   const [categories, setCategories] = useState([]);
@@ -57,36 +67,38 @@ const App = () => {
   }, []);
 
   return (
-    <AnimatedSplash
-      translucent={true}
-      isLoaded={isLoaded}
-      logoImage={require('./assets/logo.png')}
-      backgroundColor={'#fff'}
-      logoHeight={300}
-      logoWidth={300}
-    >
-      <NavigationContainer>
-        <RootStack.Navigator mode="modal">
-          <RootStack.Screen
-            name="Main"
-            component={MainStackTabs}
-            options={{ headerShown: false }}
-          />
-          <RootStack.Screen
-            name="Tips"
-            component={Tips}
-            options={({ route }) => ({ title: `${route.params.title} Tips` })}
-          />
-          <RootStack.Screen
-            name="TipModal"
-            component={TipModal}
-            options={({ route }) => ({
-              title: 'New Tip',
-            })}
-          />
-        </RootStack.Navigator>
-      </NavigationContainer>
-    </AnimatedSplash>
+    <Provider store={store}>
+      <AnimatedSplash
+        translucent={true}
+        isLoaded={isLoaded}
+        logoImage={require('./assets/logo.png')}
+        backgroundColor={'#fff'}
+        logoHeight={300}
+        logoWidth={300}
+      >
+        <NavigationContainer>
+          <RootStack.Navigator mode="modal">
+            <RootStack.Screen
+              name="Main"
+              component={MainStackTabs}
+              options={{ headerShown: false }}
+            />
+            <RootStack.Screen
+              name="Tips"
+              component={Tips}
+              options={({ route }) => ({ title: `${route.params.title} Tips` })}
+            />
+            <RootStack.Screen
+              name="TipModal"
+              component={TipModal}
+              options={({ route }) => ({
+                title: 'New Tip',
+              })}
+            />
+          </RootStack.Navigator>
+        </NavigationContainer>
+      </AnimatedSplash>
+    </Provider>
   );
 };
 
