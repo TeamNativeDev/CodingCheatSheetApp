@@ -10,7 +10,7 @@ const discovery = {
   authorizationEndpoint: 'https://github.com/login/oauth/authorize',
   tokenEndpoint: 'https://github.com/login/oauth/access_token',
   revocationEndpoint:
-  'https://github.com/settings/connections/applications/<CLIENT_ID>',
+    'https://github.com/settings/connections/applications/<CLIENT_ID>',
 };
 
 const Uri = makeRedirectUri({ useProxy: false });
@@ -19,7 +19,7 @@ console.log(Uri);
 export default function Login() {
   const [request, response, promptAsync] = useAuthRequest(
     {
-      clientId: '5a63c954373f25903ebd',
+      clientId: '1f326ae427ac57cff355',
       scopes: ['identity'],
       // For usage in managed apps using the proxy
       redirectUri: makeRedirectUri({
