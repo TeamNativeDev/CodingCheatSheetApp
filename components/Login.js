@@ -1,34 +1,69 @@
-import React, { useState } from 'react';
-import { StyleSheet } from 'react-native';
+import React, { useEffect } from 'react';
+import * as WebBrowser from 'expo-web-browser';
+import { makeRedirectUri, useAuthRequest } from 'expo-auth-session';
+import { Button } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import FloatLabelInput from './FloatLabelInput';
-import AppButton from './AppButton';
 
-const Login = ({ setUser }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleSubmit = () => {
-    setUser({ username: username.toLowerCase(), password });
-  };
-  return (
-    <SafeAreaView>
-      <FloatLabelInput
-        value={username}
-        setValue={setUsername}
-        mainLabel="Username"
-      />
-      <FloatLabelInput
-        value={password}
-        setValue={setPassword}
-        mainLabel="Password"
-        secureTextEntry={true}
-      />
-      <AppButton onPress={handleSubmit}>Login</AppButton>
-    </SafeAreaView>
-  );
+WebBrowser.maybeCompleteAuthSession();
+// Endpoint
+const discovery = {
+  authorizationEndpoint: 'https://github.com/login/oauth/authorize',
+  tokenEndpoint: 'https://github.com/login/oauth/access_token',
+  revocationEndpoint:
+  'https://github.com/settings/connections/applications/<CLIENT_ID>',
 };
 
-export default Login;
+const Uri = makeRedirectUri({ useProxy: false });
+console.log(Uri);
 
-const styles = StyleSheet.create({});
+export default function Login() {
+  const [request, response, promptAsync] = useAuthRequest(
+    {
+      clientId: '5a63c954373f25903ebd',
+      scopes: ['identity'],
+      // For usage in managed apps using the proxy
+      redirectUri: makeRedirectUri({
+        // For usage in bare and standalone
+        native: 'cheatsheetapp://redirect',
+      }),
+    },
+    discovery,
+  );
+
+  useEffect(() => {
+    if (response?.type === 'success') {
+      const { code } = response.params;
+      console.warn(code);
+    }
+  }, [response]);
+
+  return (
+    <SafeAreaView>
+      <Button
+        disabled={!request}
+        title="Login"
+        onPress={() => {
+          promptAsync({ Uri });
+        }}
+      />
+    </SafeAreaView>
+  );
+}
+
+// import * as React from 'react';
+// import { FontAwesome as Icon } from '@expo/vector-icons';
+
+// export default class GithubButton extends React.PureComponent {
+//   render() {
+//     return (
+//       <Icon.Button
+//         name="github"
+//         color="black"
+//         backgroundColor="transparent"
+//         onPress={this.props.onPress}
+//       >
+//         Sign In with Github
+//       </Icon.Button>
+//     );
+//   }
+// }
