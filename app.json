@@ -1,8 +1,9 @@
 {
   "expo": {
-    "name": "FlatironCheetSheetApp",
-    "slug": "FlatironCheetSheetApp",
+    "name": "FlatironCheatSheetApp",
+    "slug": "FlatironCheatSheetApp",
     "version": "1.0.0",
+    "scheme": "cheatsheetapp",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
