@@ -6,6 +6,7 @@ import FloatLabelInput from '../components/FloatLabelInput';
 import * as SecureStore from 'expo-secure-store';
 import AppButton from '../components/AppButton';
 import { Entypo } from '@expo/vector-icons';
+import BASEURL from '../helpers/BaseUrl';
 
 const Tips = ({ route, navigation }) => {
   const { color, id, data = null } = route.params;
@@ -48,10 +49,7 @@ const Tips = ({ route, navigation }) => {
   }, [data]);
 
   const fetchTips = useCallback(async () => {
-    const result = await fetch(
-      // `http://localhost:3000/api/v1/categories/${id}`,
-      `https://flatiron-cheat-sheet.herokuapp.com/api/v1/categories/${id}`,
-    );
+    const result = await fetch(BASEURL + `categories/${id}`);
     const fetchedTips = await result.json();
     setTips(fetchedTips);
   }, []);
