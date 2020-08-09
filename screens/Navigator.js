@@ -61,11 +61,9 @@ const Navigator = (props) => {
     </AnimatedSplash>
   );
 };
-
-const mapStateToProps = ({ categoriesStore }) => ({
-  categories: categoriesStore.categories,
-});
-
+// const mapStateToProps = ({ categoriesStore }) => ({
+//   categories: categoriesStore.categories,
+// });
 const mapDispatchToProps = { fetchCategories };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Navigator);
+export default connect(null, mapDispatchToProps)(Navigator);

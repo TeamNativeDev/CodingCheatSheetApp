@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import {
   Text,
   SafeAreaView,
@@ -8,11 +9,9 @@ import {
 } from 'react-native';
 import Category from '../components/Category';
 
-const Categories = ({ navigation, route }) => {
+const Categories = ({ navigation, route }, props) => {
   const categories = route.params.categories;
-
-
-
+  console.log(props);
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.headerText}> All Categories:</Text>
@@ -44,4 +43,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Categories;
+const mapStateToProps = ({ categoriesStore }) => ({
+  categories: categoriesStore.categories,
+});
+export default connect(mapStateToProps)(Categories);
