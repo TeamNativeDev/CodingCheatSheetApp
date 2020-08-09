@@ -5,11 +5,20 @@ import {
   StyleSheet,
   TouchableOpacity,
   ScrollView,
+  Linking,
 } from 'react-native';
 import { borderRadius, shadow } from '../styles/MainStyles';
 import { Entypo } from '@expo/vector-icons';
 
-const Tip = ({ title, description, hexCode, code_snippet, votes }) => {
+const Tip = ({
+  title,
+  description,
+  hexCode,
+  code_snippet,
+  votes,
+  by_username,
+  more_info,
+}) => {
   const containerColor = {
     backgroundColor: hexCode,
   };
@@ -25,7 +34,16 @@ const Tip = ({ title, description, hexCode, code_snippet, votes }) => {
         <View style={styles.descriptionView}>
           <Text style={styles.descriptionText}>Description: {description}</Text>
         </View>
+        <Text
+          style={{ color: 'blue' }}
+          onPress={() => Linking.openURL('http://google.com')}
+        >
+          More Info
+        </Text>
       </ScrollView>
+      <View>
+        <Text>By {by_username}</Text>
+      </View>
 
       <View>
         <Text>
