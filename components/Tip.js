@@ -35,8 +35,8 @@ const Tip = ({
           <Text style={styles.descriptionText}>Description: {description}</Text>
         </View>
         <Text
-          style={{ color: 'blue' }}
-          onPress={() => Linking.openURL('http://google.com')}
+          style={styles.more_info}
+          onPress={() => Linking.openURL(more_info)}
         >
           More Info
         </Text>
@@ -47,7 +47,7 @@ const Tip = ({
 
       <View>
         <Text>
-          <Entypo name="thumbs-up" size={24} color="black" /> {votes.length}{' '}
+          <Entypo name="thumbs-up" size={24} color="black" /> {votes.length}
           Times
         </Text>
         <TouchableOpacity onPress={() => console.warn('pressed')} />
@@ -90,6 +90,10 @@ const styles = StyleSheet.create({
   },
   codeSnippetText: {
     color: 'white',
+  },
+  more_info: {
+    color: 'blue',
+    paddingTop: 10,
   },
 });
 
