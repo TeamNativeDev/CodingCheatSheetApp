@@ -1,7 +1,8 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { KeyboardAvoidingView, StyleSheet } from 'react-native';
 import FloatLabelInput from '../components/FloatLabelInput';
 import AppButton from '../components/AppButton';
+import BASEURL from '../helpers/BaseUrl';
 
 const TipModal = ({ route, navigation }) => {
   const [title, setTitle] = useState('');
@@ -28,11 +29,7 @@ const TipModal = ({ route, navigation }) => {
         },
       }),
     };
-    // fetch('http://localhost:3000/api/v1/tips', configObject)
-    fetch(
-      'https://flatiron-cheat-sheet.herokuapp.com/api/v1/tips',
-      configObject,
-    )
+    fetch(BASEURL + 'tips', configObject)
       .then((data) => data.json())
       .then((json) => {
         if (json.message === 'ok') {
