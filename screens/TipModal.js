@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { KeyboardAvoidingView, StyleSheet } from 'react-native';
+import { KeyboardAvoidingView, StyleSheet, Alert } from 'react-native';
 import FloatLabelInput from '../components/FloatLabelInput';
 import AppButton from '../components/AppButton';
 import BASEURL from '../helpers/BaseUrl';
+import { connect } from 'react-redux';
 
-const TipModal = ({ route, navigation }) => {
+const TipModal = ({ route, navigation, jwt }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [snippet, setSnippet] = useState('');
@@ -17,6 +18,7 @@ const TipModal = ({ route, navigation }) => {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
+        Authorization: `Bearer ${jwt}`,
       },
       body: JSON.stringify({
         tip: {
@@ -25,14 +27,16 @@ const TipModal = ({ route, navigation }) => {
           code_snippet: snippet,
           category_id: id,
           more_info: moreInfo,
-          user_id: 10,
         },
       }),
     };
     fetch(BASEURL + 'tips', configObject)
       .then((data) => data.json())
       .then((json) => {
-        if (json.message === 'ok') {
+        console.log(json);
+        if (json.error) {
+          Alert.alert(json.message);
+        } else {
           navigation.navigate('Tips', { data: json.data, ...route.params });
         }
       });
@@ -77,4 +81,8 @@ const TipModal = ({ route, navigation }) => {
   );
 };
 
-export default TipModal;
+const mapStateToProps = ({ authStore }) => ({
+  jwt: authStore.jwt,
+});
+
+export default connect(mapStateToProps)(TipModal);
