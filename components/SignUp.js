@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+// import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import FloatLabelInput from './FloatLabelInput';
 import AppButton from './AppButton';
-import { connect } from 'react-redux';
-import { loginUser } from '../actions/authActions';
-import SignUp from './SignUp';
 
-const Login = (props) => {
+const SignUp = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
 
   const handleSubmit = () => {
-    props.loginUser({ user: { username: username.toLowerCase(), password } });
+    console.log(username, password, email);
   };
   return (
     <SafeAreaView>
@@ -27,16 +25,12 @@ const Login = (props) => {
         mainLabel="Password"
         secureTextEntry={true}
       />
-      <AppButton onPress={handleSubmit}>Login</AppButton>
 
-      <View>
-        <Text>Don't have an account? Sign Up Below</Text>
-      </View>
-      <SignUp />
+      <FloatLabelInput value={email} setValue={setEmail} mainLabel="Email" />
+
+      <AppButton onPress={handleSubmit}>Sign Up</AppButton>
     </SafeAreaView>
   );
 };
 
-export default connect(null, { loginUser })(Login);
-
-const styles = StyleSheet.create({});
+export default SignUp;
