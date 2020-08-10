@@ -3,7 +3,7 @@ import { Text, View, StyleSheet } from 'react-native';
 import { shadow, borderRadius } from '../styles/MainStyles';
 
 const Category = (props) => {
-  const { title, color, id } = props;
+  const { title, color } = props;
   const containerColor = {
     backgroundColor: color,
   };
