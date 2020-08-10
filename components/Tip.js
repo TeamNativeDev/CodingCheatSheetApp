@@ -34,23 +34,32 @@ const Tip = ({
         <View style={styles.descriptionView}>
           <Text style={styles.descriptionText}>Description: {description}</Text>
         </View>
+      </ScrollView>
+      {/* <View>
+        <Text>By {by_username}</Text>
+      </View> */}
+
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-around',
+          alignItems: 'center',
+        }}
+      >
         <Text
           style={styles.more_info}
           onPress={() => Linking.openURL(more_info)}
         >
           More Info
         </Text>
-      </ScrollView>
-      <View>
-        <Text>By {by_username}</Text>
-      </View>
-
-      <View>
         <Text>
-          <Entypo name="thumbs-up" size={24} color="black" /> {votes.length}
-          Times
+          <Entypo name="thumbs-up" size={24} color="black" />
+          {votes.length} Times
         </Text>
         <TouchableOpacity onPress={() => console.warn('pressed')} />
+        <View>
+          <Text>By {by_username}</Text>
+        </View>
       </View>
     </View>
   );
@@ -82,6 +91,7 @@ const styles = StyleSheet.create({
   },
   scroll: {
     flexGrow: 1,
+    backgroundColor: 'white',
   },
   codeSnippetBox: {
     ...borderRadius,
@@ -90,6 +100,7 @@ const styles = StyleSheet.create({
   },
   codeSnippetText: {
     color: 'white',
+    paddingBottom: 8,
   },
   more_info: {
     color: 'blue',

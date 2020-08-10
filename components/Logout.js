@@ -15,7 +15,7 @@ const Logout = ({ logoutUser: logout, navigation }) => {
   }, []);
   return (
     <SafeAreaView>
-      <Text>Thanks for use our App</Text>
+      <Text>Thanks for using our App</Text>
     </SafeAreaView>
   );
 };
