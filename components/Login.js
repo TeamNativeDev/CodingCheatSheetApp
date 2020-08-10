@@ -11,7 +11,7 @@ const Login = (props) => {
   const [password, setPassword] = useState('');
 
   const handleSubmit = () => {
-    props.loginUser();
+    props.loginUser({ user: { username: username.toLowerCase(), password } });
   };
   return (
     <SafeAreaView>
