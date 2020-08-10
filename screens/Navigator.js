@@ -11,20 +11,12 @@ import MainStackTabs from '../components/MainStackTabs';
 const RootStack = createStackNavigator();
 
 const Navigator = (props) => {
-  const [categories, setCategories] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    props
-      .fetchCategories()
-      .then(() => {
-        console.log('prop: ', props.categories);
-        setCategories(props.categories);
-      })
-      .then(() => {
-        console.log('state: ', categories);
-        setIsLoaded(true);
-      });
+    props.fetchCategories().then(() => {
+      setIsLoaded(true);
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -61,9 +53,5 @@ const Navigator = (props) => {
     </AnimatedSplash>
   );
 };
-// const mapStateToProps = ({ categoriesStore }) => ({
-//   categories: categoriesStore.categories,
-// });
-const mapDispatchToProps = { fetchCategories };
 
-export default connect(null, mapDispatchToProps)(Navigator);
+export default connect(null, { fetchCategories })(Navigator);
