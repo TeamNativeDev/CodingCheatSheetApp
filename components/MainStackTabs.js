@@ -5,8 +5,9 @@ import Home from '../screens/Home';
 import Categories from '../screens/Categories';
 import { Entypo } from '@expo/vector-icons';
 import { connect } from 'react-redux';
+import Logout from './Logout';
 
-const MainStackTabs = ({ categories }) => {
+const MainStackTabs = ({ isLogin }) => {
   const Tab = createBottomTabNavigator();
 
   return (
@@ -26,14 +27,27 @@ const MainStackTabs = ({ categories }) => {
         }}
       />
       <Tab.Screen
-        name={'Profile'}
+        name={isLogin ? 'Profile' : 'Login'}
         component={Auth}
         options={{
           tabBarIcon: () => <Entypo name="user" size={24} color="black" />,
         }}
       />
+      {isLogin ? (
+        <Tab.Screen
+          name={'Logout'}
+          component={Logout}
+          options={{
+            tabBarIcon: () => <Entypo name="user" size={24} color="black" />,
+          }}
+        />
+      ) : null}
     </Tab.Navigator>
   );
 };
 
-export default MainStackTabs;
+const mapStateToProps = ({ authStore }) => ({
+  isLogin: authStore.isLogin,
+});
+
+export default connect(mapStateToProps)(MainStackTabs);
