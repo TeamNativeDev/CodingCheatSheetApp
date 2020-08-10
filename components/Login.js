@@ -3,13 +3,15 @@ import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import FloatLabelInput from './FloatLabelInput';
 import AppButton from './AppButton';
+import { connect } from 'react-redux';
+import { loginUser } from '../actions/authActions';
 
-const Login = ({ setUser }) => {
+const Login = (props) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = () => {
-    setUser({ username: username.toLowerCase(), password });
+    props.loginUser();
   };
   return (
     <SafeAreaView>
@@ -29,6 +31,6 @@ const Login = ({ setUser }) => {
   );
 };
 
-export default Login;
+export default connect(null, { loginUser })(Login);
 
 const styles = StyleSheet.create({});
