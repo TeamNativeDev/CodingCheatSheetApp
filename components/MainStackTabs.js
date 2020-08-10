@@ -20,7 +20,6 @@ const MainStackTabs = ({ categories }) => {
       />
       <Tab.Screen
         name="Categories"
-        initialParams={{ categories }}
         component={Categories}
         options={{
           tabBarIcon: () => <Entypo name="list" size={24} color="black" />,
@@ -36,8 +35,5 @@ const MainStackTabs = ({ categories }) => {
     </Tab.Navigator>
   );
 };
-const mapStateToProps = ({ categoriesStore }) => ({
-  categories: categoriesStore.categories,
-});
 
-export default connect(mapStateToProps)(MainStackTabs);
+export default MainStackTabs;
