@@ -98,8 +98,8 @@ const Tips = ({ route, navigation }) => {
         style={styles.button}
         onPress={() =>
           isLogin
-            ? navigation.navigate('TipModal', { ...route.params, id })
-            : navigation.navigate('Auth')
+            ? navigation.navigate('Auth')
+            : navigation.navigate('TipModal', { ...route.params, id })
         }
       >
         <Entypo name="add-to-list" size={24} color="black" /> Add your brand new
