@@ -96,7 +96,11 @@ const Tips = ({ route, navigation }) => {
       />
       <AppButton
         style={styles.button}
-        onPress={() => navigation.navigate('TipModal', { ...route.params, id })}
+        onPress={() =>
+          isLogin
+            ? navigation.navigate('TipModal', { ...route.params, id })
+            : navigation.navigate('Auth')
+        }
       >
         <Entypo name="add-to-list" size={24} color="black" /> Add your brand new
         learned Tip
