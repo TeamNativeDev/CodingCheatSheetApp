@@ -9,9 +9,8 @@ import {
 } from 'react-native';
 import Category from '../components/Category';
 
-const Categories = ({ navigation, route }, props) => {
-  const categories = route.params.categories;
-  console.log(props);
+const Categories = (props) => {
+  const { navigation, categories } = props;
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.headerText}> All Categories:</Text>
