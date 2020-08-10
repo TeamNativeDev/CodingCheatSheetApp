@@ -1,27 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import * as SecureStore from 'expo-secure-store';
 import FloatLabelInput from './FloatLabelInput';
-import AppButton from './AppButton';
-import { logoutUser } from '../actions/authActions';
 import { connect } from 'react-redux';
 
 const Profile = (props) => {
-  const [username, setUsername] = useState('');
-  const [userEmail, setUserEmail] = useState('');
-  const [bio, setBio] = useState('');
-
-  useEffect(() => {}, []);
-
-  const logout = () => {
-    props.logoutUser();
-  };
-
+  const [username, setUsername] = useState(props.user.username);
+  const [userEmail, setUserEmail] = useState(props.user.email);
+  const [bio, setBio] = useState(props.user.bio);
   return (
     <SafeAreaView>
       <Text>User Profile</Text>
-      <AppButton onPress={logout}>Logout </AppButton>
       <FloatLabelInput
         value={username}
         setValue={setUsername}
@@ -46,8 +35,12 @@ const Profile = (props) => {
     </SafeAreaView>
   );
 };
+const mapStateToProps = ({ authStore }) => ({
+  user: authStore.user,
+  jwt: authStore.jwt,
+});
 
-export default connect(null, { logoutUser })(Profile);
+export default connect(mapStateToProps)(Profile);
 
 const styles = StyleSheet.create({
   edit: {
