@@ -27,9 +27,10 @@ const MainStackTabs = ({ isLogin }) => {
         }}
       />
       <Tab.Screen
-        name={isLogin ? 'Profile' : 'Login'}
+        name={'Auth'}
         component={Auth}
         options={{
+          tabBarLabel: isLogin ? 'Profile' : 'Login',
           tabBarIcon: () => (
             <Entypo name={isLogin ? 'user' : 'login'} size={24} color="black" />
           ),
