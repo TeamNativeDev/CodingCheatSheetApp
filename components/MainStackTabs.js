@@ -30,7 +30,9 @@ const MainStackTabs = ({ isLogin }) => {
         name={isLogin ? 'Profile' : 'Login'}
         component={Auth}
         options={{
-          tabBarIcon: () => <Entypo name="user" size={24} color="black" />,
+          tabBarIcon: () => (
+            <Entypo name={isLogin ? 'user' : 'login'} size={24} color="black" />
+          ),
         }}
       />
       {isLogin ? (
@@ -38,7 +40,7 @@ const MainStackTabs = ({ isLogin }) => {
           name={'Logout'}
           component={Logout}
           options={{
-            tabBarIcon: () => <Entypo name="user" size={24} color="black" />,
+            tabBarIcon: () => <Entypo name="log-out" size={24} color="black" />,
           }}
         />
       ) : null}
