@@ -33,7 +33,6 @@ const TipModal = ({ route, navigation, jwt }) => {
     fetch(BASEURL + 'tips', configObject)
       .then((data) => data.json())
       .then((json) => {
-        console.log(json);
         if (json.error) {
           Alert.alert(json.message);
         } else {
