@@ -37,7 +37,9 @@ const FloatLabelInput = (props) => {
   });
   return (
     <View style={styles.floatLabel}>
-      <Text style={styles.label}>{isFocused ? secondLabel : mainLabel}</Text>
+      <Text onPress={() => setIsFocused(true)} style={styles.label}>
+        {isFocused ? secondLabel : mainLabel}
+      </Text>
       <TextInput
         {...props}
         onChangeText={(text) => setValue(text)}
