@@ -14,7 +14,7 @@ const SignUp = (props) => {
   console.log(props);
   const handleSubmit = () => {
     props.signUpUser({
-      user: { username: username.toLowerCase(), password, email },
+      user: { username: username, password, email },
     });
   };
   return (
