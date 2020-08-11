@@ -22,26 +22,26 @@ const FloatLabelInput = (props) => {
       left: 10,
       top: isFocused ? 0 : 25,
       fontSize: isFocused ? 16 : 20,
-      color: isFocused ? '#000' : '#555',
-      zIndex: 5,
+      color: 'blue',
     },
     input: {
-      paddingHorizontal: 5,
+      padding: 5,
       fontSize: 20,
       borderBottomWidth: 2,
       borderBottomColor: isFocused ? 'blue' : 'black',
       textAlignVertical: 'top',
-      backgroundColor: code ? 'black' : null,
+      backgroundColor: code ? 'black' : 'white',
       color: code ? 'white' : 'black',
     },
   });
   return (
     <View style={styles.floatLabel}>
-      <Text onPress={() => setIsFocused(true)} style={styles.label}>
-        {isFocused ? secondLabel : mainLabel}
-      </Text>
+      <Text style={styles.label}>{isFocused ? secondLabel : mainLabel}</Text>
       <TextInput
         {...props}
+        placeholder={isFocused ? null : mainLabel}
+        // strange behavior on the TipModal form because multiline ???
+        placeholderTextColor={code ? 'white' : 'black'}
         onChangeText={(text) => setValue(text)}
         value={value}
         style={styles.input}
