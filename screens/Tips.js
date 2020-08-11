@@ -7,15 +7,14 @@ import * as SecureStore from 'expo-secure-store';
 import AppButton from '../components/AppButton';
 import { Entypo } from '@expo/vector-icons';
 import BASEURL from '../helpers/BaseUrl';
+import { connect } from 'react-redux';
 
-const Tips = ({ route, navigation }) => {
+const Tips = ({ route, navigation, isLogin }) => {
   const { color, id, data = null } = route.params;
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [tips, setTips] = useState([]);
   const [input, setInput] = useState('');
   const [filter, setFilter] = useState(tips);
-  const [isLogin, setIsLogin] = useState(false);
-  const [userId, setUserId] = useState(null);
 
   const styles = StyleSheet.create({
     container: {
@@ -37,15 +36,6 @@ const Tips = ({ route, navigation }) => {
     if (data) {
       setTips((prevState) => [data, ...prevState]);
     }
-    async function checkLogin() {
-      const userData = await SecureStore.getItemAsync('user');
-      if (userData) {
-        const userObject = await JSON.parse(userData);
-        setUserId(userObject.id);
-        setIsLogin(true);
-      }
-    }
-    checkLogin();
   }, [data]);
 
   const fetchTips = useCallback(async () => {
@@ -108,5 +98,8 @@ const Tips = ({ route, navigation }) => {
     </View>
   );
 };
+const mapStateToProps = ({ authStore }) => ({
+  isLogin: authStore.isLogin,
+});
 
-export default Tips;
+export default connect(mapStateToProps)(Tips);
