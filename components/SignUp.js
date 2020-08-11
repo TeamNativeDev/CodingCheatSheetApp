@@ -3,14 +3,19 @@ import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import FloatLabelInput from './FloatLabelInput';
 import AppButton from './AppButton';
+import { signUpUser } from '../actions/authActions';
+import { connect } from 'react-redux';
 
-const SignUp = () => {
+const SignUp = (props) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
 
+  console.log(props);
   const handleSubmit = () => {
-    console.log(username, password, email);
+    props.signUpUser({
+      user: { username: username.toLowerCase(), password, email },
+    });
   };
   return (
     <SafeAreaView>
@@ -33,4 +38,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default connect(null, { signUpUser })(SignUp);
