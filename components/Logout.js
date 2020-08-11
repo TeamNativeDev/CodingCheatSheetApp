@@ -8,11 +8,8 @@ const Logout = ({ logoutUser: logout, navigation }) => {
     const unsubscribe = navigation.addListener('focus', () => {
       logout();
     });
-    setTimeout(() => {
-      navigation.navigate('Home');
-    }, 5000);
     return unsubscribe;
-  }, []);
+  }, [navigation]);
   return (
     <SafeAreaView>
       <Text>Thanks for using our App</Text>
