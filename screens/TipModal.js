@@ -72,7 +72,7 @@ const TipModal = ({ route, navigation, jwt }) => {
         value={moreInfo}
         setValue={setMoreInfo}
         mainLabel="Write a Url with more useful info about it"
-        secondLabel="Url to an other resource"
+        secondLabel="Url to another resource"
       />
       <AppButton style={styles.button} onPress={() => handleSubmit()}>
         Send, your new {categoryTitle} Tip
