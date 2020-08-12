@@ -1,8 +1,17 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import React, { useState, useRef, useEffect } from 'react';
+import { StyleSheet, Text, View, TextInput, Animated } from 'react-native';
 
 const FloatLabelInput = (props) => {
   const [isFocused, setIsFocused] = useState(false);
+  const animatedText = useRef(new Animated.Value(25)).current;
+
+  const animate = (toValue) =>
+    Animated.timing(animatedText, {
+      toValue,
+      duration: 500,
+      useNativeDriver: true,
+    }).start();
+
   const {
     value,
     setValue,
@@ -20,9 +29,9 @@ const FloatLabelInput = (props) => {
     label: {
       position: 'absolute',
       left: 10,
-      top: isFocused ? 0 : 25,
-      fontSize: isFocused ? 16 : 20,
+      fontSize: 16,
       color: 'blue',
+      transform: [{ translateY: animatedText }],
     },
     input: {
       padding: 5,
@@ -36,7 +45,9 @@ const FloatLabelInput = (props) => {
   });
   return (
     <View style={styles.floatLabel}>
-      <Text style={styles.label}>{isFocused ? secondLabel : mainLabel}</Text>
+      <Animated.Text style={styles.label}>
+        {isFocused ? secondLabel : mainLabel}
+      </Animated.Text>
       <TextInput
         {...props}
         placeholder={isFocused ? null : mainLabel}
@@ -45,10 +56,14 @@ const FloatLabelInput = (props) => {
         onChangeText={(text) => setValue(text)}
         value={value}
         style={styles.input}
-        onFocus={() => setIsFocused(true)}
+        onFocus={() => {
+          setIsFocused(true);
+          animate(0);
+        }}
         onBlur={() => {
           if (value === '') {
             setIsFocused(false);
+            animate(25);
           }
         }}
       />
