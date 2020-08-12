@@ -26,6 +26,21 @@ const AnimatedButton = ({ animatedValue, onPress, flipped }) => {
       margin: 10,
       alignItems: 'center',
     },
+    text: {
+      color: 'white',
+      fontSize: 20,
+      fontWeight: '900',
+      transform: [
+        {
+          rotateY: animatedValue.interpolate({
+            //percentage on animation
+            inputRange: [0, 0.5, 1],
+            //the values for that time in animation
+            outputRange: ['0deg', '-90deg', '-180deg'],
+          }),
+        },
+      ],
+    },
   });
 
   return (
@@ -65,7 +80,9 @@ const AnimatedButton = ({ animatedValue, onPress, flipped }) => {
       >
         <TouchableOpacity onPress={onPress}>
           <View style={[styles.circle, styles.circleButton]}>
-            <Text>{flipped ? 'Login' : 'Signup'}</Text>
+            <Animated.Text style={styles.text}>
+              {flipped ? 'Login' : 'Signup'}
+            </Animated.Text>
             <AntDesign name="arrowright" size={28} color={'white'} />
           </View>
         </TouchableOpacity>
