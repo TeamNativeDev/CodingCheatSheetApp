@@ -1,12 +1,11 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import Login from '../components/Login';
 import Profile from '../components/Profile';
-
 import { connect } from 'react-redux';
+import AuthPage from '../components/AuthPage';
 
 const Auth = ({ isLogin }) => {
-  return isLogin ? <Profile /> : <Login />;
+  return isLogin ? <Profile /> : <AuthPage />;
 };
 
 const mapStateToProps = ({ authStore }) => ({
