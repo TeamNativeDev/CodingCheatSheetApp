@@ -2,7 +2,6 @@ import React, { useRef, useState } from 'react';
 import { StyleSheet, View, Animated } from 'react-native';
 import Login from './Login';
 import SignUp from './SignUp';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import AnimatedButton from './AnimatedButton';
 
 const AuthPage = () => {
@@ -45,15 +44,19 @@ const AuthPage = () => {
   });
 
   return (
-    <SafeAreaView style={styles.container}>
+    <Animated.View style={[styles.container, { backgroundColor: containerBg }]}>
       <View style={styles.login}>
         <Login />
       </View>
-      <AnimatedButton onPress={handlePress} animatedValue={animatedValue} />
+      <AnimatedButton
+        onPress={handlePress}
+        animatedValue={animatedValue}
+        flipped={flip}
+      />
       <View style={styles.signup}>
         <SignUp />
       </View>
-    </SafeAreaView>
+    </Animated.View>
   );
 };
 
