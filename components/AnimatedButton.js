@@ -3,8 +3,8 @@ import { StyleSheet, Text, View, Animated } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { AntDesign } from '@expo/vector-icons';
 
-const CIRCLE_SIZE = 75;
-const AnimatedButton = ({ animatedValue, onPress }) => {
+const CIRCLE_SIZE = 100;
+const AnimatedButton = ({ animatedValue, onPress, flipped }) => {
   const inputRange = [0, 0.001, 0.5, 0.501, 1];
   const containerBg = animatedValue.interpolate({
     inputRange,
@@ -12,9 +12,6 @@ const AnimatedButton = ({ animatedValue, onPress }) => {
   });
   const styles = StyleSheet.create({
     circleButton: {
-      height: CIRCLE_SIZE,
-      width: CIRCLE_SIZE,
-      borderRadius: CIRCLE_SIZE / 2,
       justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: 'transparent',
@@ -22,7 +19,7 @@ const AnimatedButton = ({ animatedValue, onPress }) => {
     circle: {
       width: CIRCLE_SIZE,
       height: CIRCLE_SIZE,
-      borderRadius: CIRCLE_SIZE / 2,
+      borderRadius: CIRCLE_SIZE / 4,
       backgroundColor: '#444',
     },
     container: {
@@ -68,6 +65,7 @@ const AnimatedButton = ({ animatedValue, onPress }) => {
       >
         <TouchableOpacity onPress={onPress}>
           <View style={[styles.circle, styles.circleButton]}>
+            <Text>{flipped ? 'Login' : 'Signup'}</Text>
             <AntDesign name="arrowright" size={28} color={'white'} />
           </View>
         </TouchableOpacity>
