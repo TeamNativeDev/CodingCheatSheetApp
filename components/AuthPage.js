@@ -11,7 +11,7 @@ const AuthPage = () => {
   const inputRange = [0, 0.001, 0.5, 0.501, 1];
   const containerBg = animatedValue.interpolate({
     inputRange,
-    outputRange: ['#444', '#444', '#444', 'gold', 'gold'],
+    outputRange: ['#318fb5', '#318fb5', '#318fb5', '#005086', '#005086'],
   });
   const animation = (toValue) =>
     Animated.timing(animatedValue, {
@@ -33,7 +33,7 @@ const AuthPage = () => {
       flex: 1,
       alignContent: 'center',
       justifyContent: 'center',
-      backgroundColor: 'gold',
+      backgroundColor: '#005086',
     },
     login: {
       display: flip ? 'none' : 'flex',
@@ -45,17 +45,37 @@ const AuthPage = () => {
 
   return (
     <Animated.View style={[styles.container, { backgroundColor: containerBg }]}>
-      <View style={styles.login}>
+      <Animated.View
+        style={[
+          styles.login,
+          {
+            opacity: animatedValue.interpolate({
+              inputRange: [0, 0.5, 1],
+              outputRange: [1, 0, 0],
+            }),
+          },
+        ]}
+      >
         <Login />
-      </View>
+      </Animated.View>
       <AnimatedButton
         onPress={handlePress}
         animatedValue={animatedValue}
         flipped={flip}
       />
-      <View style={styles.signup}>
+      <Animated.View
+        style={[
+          styles.signup,
+          {
+            opacity: animatedValue.interpolate({
+              inputRange: [0, 0.5, 1],
+              outputRange: [1, 0, 1],
+            }),
+          },
+        ]}
+      >
         <SignUp />
-      </View>
+      </Animated.View>
     </Animated.View>
   );
 };
