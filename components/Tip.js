@@ -73,7 +73,12 @@ const Tip = ({
         </Text>
         <TouchableOpacity onPress={() => handleUpVote(user)}>
           <Text>
-            <Entypo name="thumbs-up" size={24} color="black" />
+            <Entypo
+              // iconStyle={{ transform: [{ rotate: '90deg' }] }}
+              name="thumbs-up"
+              size={30}
+              color="white"
+            />
             {tipVotes.length} Times
           </Text>
         </TouchableOpacity>

@@ -6,7 +6,10 @@ const Home = () => {
     <SafeAreaView style={styles.container}>
       <Text style={styles.headerText}>Hello Flatironers !</Text>
       <View>
-        <Text style={styles.mainText}> Populate Home Screen with things!</Text>
+        <Text style={styles.mainText}>
+          {' '}
+          App logo, Cards about us, description
+        </Text>
       </View>
     </SafeAreaView>
   );
