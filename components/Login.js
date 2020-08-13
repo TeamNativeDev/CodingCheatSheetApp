@@ -15,18 +15,23 @@ const Login = (props) => {
   };
   return (
     <View style={styles.container}>
+      <Text style={styles.text}>Login</Text>
       <FloatLabelInput
         value={username}
         setValue={setUsername}
         mainLabel="Username"
+        theme="#f7d6bf"
       />
       <FloatLabelInput
         value={password}
         setValue={setPassword}
         mainLabel="Password"
         secureTextEntry={true}
+        theme="#f7d6bf"
       />
-      <AppButton onPress={handleSubmit}>Login</AppButton>
+      <AppButton style={styles.button} onPress={handleSubmit}>
+        Login
+      </AppButton>
     </View>
   );
 };
@@ -37,8 +42,17 @@ const styles = StyleSheet.create({
   container: {
     ...borderRadius,
     ...shadow,
-    backgroundColor: 'turquoise',
+    backgroundColor: '#005086',
     margin: 5,
     padding: 5,
+    paddingVertical: 20,
+  },
+  button: {
+    backgroundColor: '#b0cac7',
+  },
+  text: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
 });
