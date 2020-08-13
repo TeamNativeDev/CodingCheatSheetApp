@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Text,
   View,
@@ -6,9 +6,11 @@ import {
   TouchableOpacity,
   ScrollView,
   Linking,
+  Alert,
 } from 'react-native';
 import { borderRadius, shadow } from '../styles/MainStyles';
 import { Entypo } from '@expo/vector-icons';
+import { connect } from 'react-redux';
 
 const Tip = ({
   title,
@@ -18,10 +20,27 @@ const Tip = ({
   votes,
   by_username,
   more_info,
+  user,
 }) => {
   const containerColor = {
     backgroundColor: hexCode,
   };
+
+  const [tipVotes, setTipVotes] = useState(votes);
+
+  const handleUpVote = (currentUser) => {
+    if (user.id) {
+      let vote = tipVotes.find((voteId) => voteId === currentUser.id);
+      if (vote) {
+        setTipVotes((prev) => prev.filter((userVote) => userVote !== vote));
+      } else {
+        setTipVotes((prev) => [...prev, currentUser.id]);
+      }
+    } else {
+      Alert.alert('Only Logged In Users can vote');
+    }
+  };
+
   return (
     <View style={[styles.tipBox, containerColor]}>
       <Text style={styles.headerText}>{title} </Text>
@@ -52,11 +71,13 @@ const Tip = ({
         >
           More Info
         </Text>
-        <Text>
-          <Entypo name="thumbs-up" size={24} color="black" />
-          {votes.length} Times
-        </Text>
-        <TouchableOpacity onPress={() => console.warn('pressed')} />
+        <TouchableOpacity onPress={() => handleUpVote(user)}>
+          <Text>
+            <Entypo name="thumbs-up" size={24} color="black" />
+            {tipVotes.length} Times
+          </Text>
+        </TouchableOpacity>
+
         <View>
           <Text>By {by_username}</Text>
         </View>
@@ -108,4 +129,8 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Tip;
+const mapStateToProps = ({ authStore }) => ({
+  user: authStore.user,
+});
+
+export default connect(mapStateToProps)(Tip);
