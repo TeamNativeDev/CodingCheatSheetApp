@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { StyleSheet, Text, View, TextInput, Animated } from 'react-native';
+import React, { useState, useRef } from 'react';
+import { StyleSheet, View, TextInput, Animated } from 'react-native';
 
 const FloatLabelInput = (props) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -30,7 +30,7 @@ const FloatLabelInput = (props) => {
       position: 'absolute',
       left: 10,
       fontSize: 16,
-      color: 'blue',
+      color: props.theme || 'blue',
       transform: [{ translateY: animatedText }],
     },
     input: {
