@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 import FloatLabelInput from './FloatLabelInput';
 import AppButton from './AppButton';
 import { signUpUser } from '../actions/authActions';
@@ -20,6 +20,7 @@ const SignUp = (props) => {
   };
   return (
     <View style={styles.container}>
+      <Text style={styles.text}>Sign Up</Text>
       <FloatLabelInput
         value={username}
         setValue={setUsername}
@@ -34,7 +35,9 @@ const SignUp = (props) => {
 
       <FloatLabelInput value={email} setValue={setEmail} mainLabel="Email" />
 
-      <AppButton onPress={handleSubmit}>Sign Up</AppButton>
+      <AppButton style={styles.button} onPress={handleSubmit}>
+        Sign Up
+      </AppButton>
     </View>
   );
 };
@@ -43,9 +46,18 @@ const styles = StyleSheet.create({
   container: {
     ...borderRadius,
     ...shadow,
-    backgroundColor: 'turquoise',
+    backgroundColor: '#318fb5',
     margin: 5,
     padding: 5,
+    paddingVertical: 20,
+  },
+  button: {
+    backgroundColor: '#b0cac7',
+  },
+  text: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
 });
 
