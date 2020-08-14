@@ -43,17 +43,6 @@ const Tip = ({
 
   return (
     <View style={[mainViewStyles.tipBox, containerColor]}>
-      <View style={rightViewStyle.right_side}>
-        <Text style={rightViewStyle.headerText}>{title} </Text>
-
-        <View
-          style={[rightViewStyle.right_side, rightViewStyle.codeSnippetBox]}
-        >
-          <Text style={rightViewStyle.codeSnippetText}>
-            Code Snippet: {code_snippet}
-          </Text>
-        </View>
-      </View>
       <View style={leftViewStyle.left_side}>
         <View>
           <Text>By: {by_username}</Text>
@@ -73,17 +62,35 @@ const Tip = ({
           More Info
         </Text>
       </View>
+
+      <View style={rightViewStyle.right_side}>
+        <Text style={rightViewStyle.headerText}>{title} </Text>
+
+        <View
+          style={[rightViewStyle.right_side, rightViewStyle.codeSnippetBox]}
+        >
+          <Text style={rightViewStyle.codeSnippetText}>
+            Code Snippet: {code_snippet}
+          </Text>
+        </View>
+      </View>
     </View>
   );
 };
+
+const viewHeight = 200;
 const mainViewStyles = StyleSheet.create({
   tipBox: {
     ...shadow,
+    ...borderRadius,
     flex: 1,
     aspectRatio: 1.5,
     paddingVertical: 10,
-    paddingHorizontal: 5,
+    paddingHorizontal: 8,
+    paddingBottom: 10,
     marginBottom: 10,
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
 });
 
@@ -94,19 +101,22 @@ const leftViewStyle = StyleSheet.create({
   },
   left_side: {
     flex: 1,
-    width: 105,
+    height: viewHeight,
+    width: 300,
     flexDirection: 'column',
     justifyContent: 'space-between',
     paddingLeft: 8,
-    borderRightWidth: 1,
-    backgroundColor: 'antiquewhite',
+    backgroundColor: 'lightgreen',
   },
 });
 
 const rightViewStyle = StyleSheet.create({
   right_side: {
-    flexDirection: 'column-reverse',
-    left: 30,
+    height: viewHeight,
+    width: 215,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    backgroundColor: 'aliceblue',
   },
   headerText: {
     textAlignVertical: 'top',
@@ -119,11 +129,9 @@ const rightViewStyle = StyleSheet.create({
   codeSnippetBox: {
     ...borderRadius,
     backgroundColor: 'black',
-    padding: 10,
-    position: 'absolute',
-    alignSelf: 'auto',
-    marginHorizontal: 60,
-    marginVertical: -100,
+    paddingBottom: 10,
+    marginVertical: 50,
+    height: 115,
   },
   codeSnippetText: {
     color: 'white',
