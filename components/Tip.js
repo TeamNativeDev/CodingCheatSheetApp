@@ -42,95 +42,92 @@ const Tip = ({
   };
 
   return (
-    <View style={[styles.tipBox, containerColor]}>
-      <Text style={styles.headerText}>{title} </Text>
+    <View style={[mainViewStyles.tipBox, containerColor]}>
+      <View style={rightViewStyle.right_side}>
+        <Text style={rightViewStyle.headerText}>{title} </Text>
 
-      <View style={styles.codeSnippetBox}>
-        <Text style={styles.codeSnippetText}>Code Snippet: {code_snippet}</Text>
-      </View>
-
-      <ScrollView style={styles.scroll} scrollEnabled={true}>
-        <View style={styles.descriptionView}>
-          <Text style={styles.descriptionText}>Description: {description}</Text>
-        </View>
-      </ScrollView>
-      {/* <View>
-        <Text>By {by_username}</Text>
-      </View> */}
-
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-around',
-          alignItems: 'center',
-        }}
-      >
-        <Text
-          style={styles.more_info}
-          onPress={() => Linking.openURL(more_info)}
+        <View
+          style={[rightViewStyle.right_side, rightViewStyle.codeSnippetBox]}
         >
-          More Info
-        </Text>
+          <Text style={rightViewStyle.codeSnippetText}>
+            Code Snippet: {code_snippet}
+          </Text>
+        </View>
+      </View>
+      <View style={leftViewStyle.left_side}>
+        <View>
+          <Text>By: {by_username}</Text>
+        </View>
+
         <TouchableOpacity onPress={() => handleUpVote(user)}>
           <Text>
-            <Entypo
-              // iconStyle={{ transform: [{ rotate: '90deg' }] }}
-              name="thumbs-up"
-              size={30}
-              color="white"
-            />
+            <Entypo name="thumbs-up" size={30} color="black" />
             {tipVotes.length} Times
           </Text>
         </TouchableOpacity>
 
-        <View>
-          <Text>By {by_username}</Text>
-        </View>
+        <Text
+          style={leftViewStyle.more_info}
+          onPress={() => Linking.openURL(more_info)}
+        >
+          More Info
+        </Text>
       </View>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
+const mainViewStyles = StyleSheet.create({
   tipBox: {
     ...shadow,
     flex: 1,
-    height: 250,
+    aspectRatio: 1.5,
     paddingVertical: 10,
     paddingHorizontal: 5,
-    alignItems: 'center',
     marginBottom: 10,
   },
-  descriptionText: {
-    fontWeight: 'bold',
+});
+
+const leftViewStyle = StyleSheet.create({
+  more_info: {
+    color: 'blue',
+    paddingTop: 10,
   },
-  descriptionView: {
-    ...borderRadius,
-    paddingTop: 8,
+  left_side: {
+    flex: 1,
+    width: 105,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    paddingLeft: 8,
+    borderRightWidth: 1,
+    backgroundColor: 'white',
+  },
+});
+
+const rightViewStyle = StyleSheet.create({
+  right_side: {
+    flexDirection: 'column-reverse',
+    left: 30,
   },
   headerText: {
     textAlignVertical: 'top',
     fontWeight: 'bold',
-    fontSize: 18,
+    fontSize: 16,
     paddingBottom: 8,
     textDecorationLine: 'underline',
-  },
-  scroll: {
-    flexGrow: 1,
-    backgroundColor: 'white',
+    alignSelf: 'center',
   },
   codeSnippetBox: {
     ...borderRadius,
     backgroundColor: 'black',
     padding: 10,
+    position: 'absolute',
+    alignSelf: 'auto',
+    marginHorizontal: 60,
+    marginVertical: -100,
   },
   codeSnippetText: {
     color: 'white',
     paddingBottom: 8,
-  },
-  more_info: {
-    color: 'blue',
-    paddingTop: 10,
   },
 });
 
@@ -139,3 +136,36 @@ const mapStateToProps = ({ authStore }) => ({
 });
 
 export default connect(mapStateToProps)(Tip);
+
+// const oldStyles = StyleSheet.create({
+//   tipBox: {
+//     ...shadow,
+//     flex: 1,
+//     height: 250,
+//     paddingVertical: 10,
+//     paddingHorizontal: 5,
+//     alignItems: 'center',
+//     marginBottom: 10,
+//   },
+//   descriptionText: {
+//     fontWeight: 'bold',
+//   },
+//   descriptionView: {
+//     ...borderRadius,
+//     paddingTop: 8,
+//   },
+
+//   scroll: {
+//     flexGrow: 1,
+//     backgroundColor: 'white',
+//   },
+//   codeSnippetBox: {
+//     ...borderRadius,
+//     backgroundColor: 'black',
+//     padding: 10,
+//   },
+//   codeSnippetText: {
+//     color: 'white',
+//     paddingBottom: 8,
+//   },
+// });
