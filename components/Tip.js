@@ -99,7 +99,7 @@ const leftViewStyle = StyleSheet.create({
     justifyContent: 'space-between',
     paddingLeft: 8,
     borderRightWidth: 1,
-    backgroundColor: 'white',
+    backgroundColor: 'antiquewhite',
   },
 });
 
