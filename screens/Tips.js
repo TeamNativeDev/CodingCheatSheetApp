@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useCallback } from 'react';
-import { View, StyleSheet, FlatList } from 'react-native';
+import { View, StyleSheet, FlatList, Animated } from 'react-native';
 import Tip from '../components/Tip';
 import FloatLabelInput from '../components/FloatLabelInput';
 import * as SecureStore from 'expo-secure-store';
@@ -8,6 +8,8 @@ import AppButton from '../components/AppButton';
 import { Entypo } from '@expo/vector-icons';
 import BASEURL from '../helpers/BaseUrl';
 import { connect } from 'react-redux';
+
+const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
 const Tips = ({ route, navigation, isLogin }) => {
   const { color, id, data = null } = route.params;
@@ -68,6 +70,12 @@ const Tips = ({ route, navigation, isLogin }) => {
     }
   }, [input, tips]);
 
+  const y = new Animated.Value(0);
+
+  const onScroll = Animated.event([{ nativeEvent: { contentOffset: { y } } }], {
+    useNativeDriver: true,
+  });
+
   return (
     <View style={styles.container}>
       <FloatLabelInput
@@ -77,12 +85,16 @@ const Tips = ({ route, navigation, isLogin }) => {
         value={input}
         setValue={setInput}
       />
-      <FlatList
+      <AnimatedFlatList
+        scrollEventThrottle={16}
         data={filter}
         keyExtractor={(item) => item.id + ''}
-        renderItem={({ item }) => <Tip {...item} hexCode={color} />}
+        renderItem={({ index, item }) => (
+          <Tip {...item} index={index} y={y} hexCode={color} />
+        )}
         refreshing={isRefreshing}
         onRefresh={() => handleRefresh()}
+        {...{ onScroll }}
       />
       <AppButton
         style={styles.button}

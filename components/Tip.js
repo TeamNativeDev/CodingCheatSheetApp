@@ -7,6 +7,7 @@ import {
   ScrollView,
   Linking,
   Alert,
+  Animated,
 } from 'react-native';
 import { borderRadius, shadow } from '../styles/MainStyles';
 import { Entypo } from '@expo/vector-icons';
@@ -21,6 +22,8 @@ const Tip = ({
   by_username,
   more_info,
   user,
+  y,
+  index,
 }) => {
   const containerColor = {
     backgroundColor: hexCode,
@@ -40,9 +43,23 @@ const Tip = ({
       Alert.alert('Only Logged In Users can vote');
     }
   };
-
+  const TIP_CARD_HEIGHT = TIP_HEIGHT + 16 * 2;
+  const translateY = Animated.add(
+    y,
+    y.interpolate({
+      inputRange: [0, 0.00001 + index * TIP_CARD_HEIGHT],
+      outputRange: [0, -index * TIP_CARD_HEIGHT],
+      extrapolateRight: 'clamp',
+    }),
+  );
   return (
-    <View style={[mainViewStyles.tipBox, containerColor]}>
+    <Animated.View
+      style={[
+        mainViewStyles.tipBox,
+        containerColor,
+        { transform: [{ translateY }] },
+      ]}
+    >
       <View style={leftViewStyle.left_side}>
         <View>
           <Text>By: {by_username}</Text>
@@ -74,11 +91,11 @@ const Tip = ({
           </Text>
         </View>
       </View>
-    </View>
+    </Animated.View>
   );
 };
 
-const viewHeight = 200;
+const TIP_HEIGHT = 200;
 const mainViewStyles = StyleSheet.create({
   tipBox: {
     ...shadow,
@@ -101,7 +118,7 @@ const leftViewStyle = StyleSheet.create({
   },
   left_side: {
     flex: 1,
-    height: viewHeight,
+    height: TIP_HEIGHT,
     width: 300,
     flexDirection: 'column',
     justifyContent: 'space-between',
@@ -112,7 +129,7 @@ const leftViewStyle = StyleSheet.create({
 
 const rightViewStyle = StyleSheet.create({
   right_side: {
-    height: viewHeight,
+    height: TIP_HEIGHT,
     width: 215,
     flexDirection: 'column',
     justifyContent: 'space-between',
