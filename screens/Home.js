@@ -1,21 +1,21 @@
 import React from 'react';
 import { SafeAreaView, Text, View, StyleSheet } from 'react-native';
+import TypedText from '../components/TypedText';
 
 const Home = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.headerText}>Hello Flatironers !</Text>
-      <View>
-        <Text style={styles.mainText}>
-          {' '}
-          App logo, Cards about us, description
-        </Text>
-      </View>
+      <Text style={styles.text}>
+        Hello <TypedText style={styles.text} />
+      </Text>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  text: {
+    fontSize: 25,
+  },
   container: {
     justifyContent: 'center',
     alignItems: 'center',
