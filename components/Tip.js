@@ -209,7 +209,7 @@ const rightViewStyle = StyleSheet.create({
     ...borderRadius,
     backgroundColor: 'black',
     paddingBottom: 10,
-    marginVertical: 35,
+    marginVertical: 15,
     height: 115,
   },
   codeSnippetText: {
@@ -222,11 +222,11 @@ const rightViewStyle = StyleSheet.create({
   descriptionView: {
     ...borderRadius,
     paddingTop: 8,
+    height: 115,
   },
 
   scroll: {
     flexGrow: 1,
-    backgroundColor: 'white',
   },
 });
 
