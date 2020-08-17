@@ -1,41 +1,58 @@
 import React from 'react';
-import { SafeAreaView, Text, StyleSheet, Image } from 'react-native';
+crimport { SafeAreaView, Text, StyleSheet, Image, View } from 'react-native';
 import TypedText from '../components/TypedText';
+import { borderRadius, shadow } from '../styles/MainStyles';
+import { WHITE } from '../styles/Pallete';
 
 const Home = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <Image source={require('../assets/icon.png')} />
-      <Text style={styles.text}>
-        Hello <TypedText style={styles.text} />
-      </Text>
+      <View style={[styles.base]}>
+        <Image style={styles.logo} source={require('../assets/logo.png')} />
+      </View>
+      <View style={styles.textContainer}>
+        <Text style={styles.text}>
+          Hello <TypedText style={styles.text} />
+        </Text>
+      </View>
+      <View>
+        <Text style={styles.descriptionContainer}>Description</Text>
+      </View>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  base: {
+    ...shadow,
+    ...borderRadius,
+    backgroundColor: WHITE,
+  },
+  container: {
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    backgroundColor: 'blue',
+    flex: 1,
+  },
+  logo: {
+    marginVertical: 30,
+  },
+  textContainer: {
+    ...borderRadius,
+    ...shadow,
+    backgroundColor: 'red',
+    width: '90%',
+    height: '10%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   text: {
     fontSize: 25,
   },
-  container: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginVertical: 40,
-  },
-  headerText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    padding: 10,
-    borderRadius: 3,
-    paddingVertical: 20,
-    marginBottom: 20,
-    backgroundColor: '#2aa198',
-  },
-  mainText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    justifyContent: 'center',
-    alignItems: 'center',
+  descriptionContainer: {
+    backgroundColor: 'yellow',
+    width: '90%',
+    height: '20%',
   },
 });
 
