@@ -52,13 +52,18 @@ const Tip = ({
       extrapolateRight: 'clamp',
     }),
   );
-  const animatedValue = React.useRef(new Animated.Value(0)).current;
-  const onPress = () => {
+  const animatedValue = useRef(new Animated.Value(0)).current;
+  const [flipIndex, setFlipIndex] = useState(0);
+  const animation = (toValue) =>
     Animated.timing(animatedValue, {
-      toValue: 1,
-      duration: 1500,
+      toValue,
+      duration: 1000,
       useNativeDriver: false,
-    }).start();
+    });
+
+  const onPress = () => {
+    setFlipIndex(flipIndex === 1 ? 0 : 1);
+    animation(flipIndex === 1 ? 0 : 1).start();
   };
 
   return (
@@ -101,6 +106,12 @@ const Tip = ({
                 rotateY: animatedValue.interpolate({
                   inputRange: [0, 0.5, 1],
                   outputRange: ['0deg', '-90deg', '-180deg'],
+                }),
+              },
+              {
+                translateX: animatedValue.interpolate({
+                  inputRange: [0, 0.5, 1],
+                  outputRange: ['0%', '25%', '0%'],
                 }),
               },
             ],
