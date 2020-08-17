@@ -1,10 +1,11 @@
 import React from 'react';
-import { SafeAreaView, Text, View, StyleSheet } from 'react-native';
+import { SafeAreaView, Text, StyleSheet, Image } from 'react-native';
 import TypedText from '../components/TypedText';
 
 const Home = () => {
   return (
     <SafeAreaView style={styles.container}>
+      <Image source={require('../assets/icon.png')} />
       <Text style={styles.text}>
         Hello <TypedText style={styles.text} />
       </Text>

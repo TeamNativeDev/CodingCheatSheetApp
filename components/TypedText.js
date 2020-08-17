@@ -15,7 +15,6 @@ const TypedText = () => {
     if (deleting === 1) {
       await _sleep(1000);
     }
-
     setDeleting((prev) => (prev === 1 ? -1 : 1));
     if (deleting === -1) {
       greetings.push(greetings.shift());
