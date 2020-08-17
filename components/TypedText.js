@@ -1,4 +1,4 @@
-import React, { useState,} from 'react';
+import React, { useState } from 'react';
 import TypeWriter from 'react-native-typewriter';
 
 const greetings = [
