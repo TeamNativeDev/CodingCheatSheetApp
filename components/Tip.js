@@ -89,11 +89,13 @@ const Tip = ({
       <View>
         <Text>Press to see the Code Snippet</Text>
       </View>
-      <View style={rightViewStyle.right_side}>
-        <View>
-          <Text>{description}</Text>
+      <ScrollView style={rightViewStyle.scroll} scrollEnabled={true}>
+        <View style={rightViewStyle.descriptionView}>
+          <Text style={rightViewStyle.descriptionText}>
+            Description: {description}
+          </Text>
         </View>
-      </View>
+      </ScrollView>
     </TouchableOpacity>
   );
 
@@ -233,25 +235,3 @@ const mapStateToProps = ({ authStore }) => ({
 });
 
 export default connect(mapStateToProps)(Tip);
-
-// const oldStyles = StyleSheet.create({
-//   tipBox: {
-//     ...shadow,
-//     flex: 1,
-//     height: 250,
-//     paddingVertical: 10,
-//     paddingHorizontal: 5,
-//     alignItems: 'center',
-//     marginBottom: 10,
-//   },
-
-//   codeSnippetBox: {
-//     ...borderRadius,
-//     backgroundColor: 'black',
-//     padding: 10,
-//   },
-//   codeSnippetText: {
-//     color: 'white',
-//     paddingBottom: 8,
-//   },
-// });
