@@ -1,5 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState,} from 'react';
 import TypeWriter from 'react-native-typewriter';
 
 const greetings = [
@@ -10,8 +9,8 @@ const greetings = [
   'Flatironers.',
 ];
 
-const TypedText = ({ style }) => {
-  const [deleting, setDeleting] = useState(1)
+const TypedText = () => {
+  const [deleting, setDeleting] = useState(1);
   async function makeloop() {
     if (deleting === 1) {
       await _sleep(1000);
