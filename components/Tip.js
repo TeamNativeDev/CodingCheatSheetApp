@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   Text,
   View,
@@ -52,6 +52,15 @@ const Tip = ({
       extrapolateRight: 'clamp',
     }),
   );
+  const animatedValue = React.useRef(new Animated.Value(0)).current;
+  const onPress = () => {
+    Animated.timing(animatedValue, {
+      toValue: 1,
+      duration: 1500,
+      useNativeDriver: false,
+    }).start();
+  };
+
   return (
     <Animated.View
       style={[
@@ -80,17 +89,39 @@ const Tip = ({
         </Text>
       </View>
 
-      <View style={rightViewStyle.right_side}>
-        <Text style={rightViewStyle.headerText}>{title} </Text>
+      <Animated.View
+        style={[
+          rightViewStyle.right_side,
+          {
+            transform: [
+              {
+                perspective: 200,
+              },
+              {
+                rotateY: animatedValue.interpolate({
+                  inputRange: [0, 0.5, 1],
+                  outputRange: ['0deg', '-90deg', '-180deg'],
+                }),
+              },
+            ],
+          },
+        ]}
+      >
+        <TouchableOpacity onPress={onPress}>
+          <Text style={rightViewStyle.headerText}>{title} </Text>
 
-        <View
-          style={[rightViewStyle.right_side, rightViewStyle.codeSnippetBox]}
-        >
-          <Text style={rightViewStyle.codeSnippetText}>
-            Code Snippet: {code_snippet}
-          </Text>
-        </View>
-      </View>
+          <View>
+            <Text>Click to see the description</Text>
+          </View>
+          <View
+            style={[rightViewStyle.right_side, rightViewStyle.codeSnippetBox]}
+          >
+            <Text style={rightViewStyle.codeSnippetText}>
+              Code Snippet: {code_snippet}
+            </Text>
+          </View>
+        </TouchableOpacity>
+      </Animated.View>
     </Animated.View>
   );
 };
@@ -147,7 +178,7 @@ const rightViewStyle = StyleSheet.create({
     ...borderRadius,
     backgroundColor: 'black',
     paddingBottom: 10,
-    marginVertical: 50,
+    marginVertical: 35,
     height: 115,
   },
   codeSnippetText: {
