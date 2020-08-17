@@ -12,6 +12,7 @@ import {
 import { borderRadius, shadow } from '../styles/MainStyles';
 import { Entypo } from '@expo/vector-icons';
 import { connect } from 'react-redux';
+import { render } from 'react-dom';
 
 const Tip = ({
   title,
@@ -66,6 +67,36 @@ const Tip = ({
     animation(flipIndex === 1 ? 0 : 1).start();
   };
 
+  const renderFrontCard = (
+    <TouchableOpacity onPress={onPress}>
+      <Text style={rightViewStyle.headerText}>{title} </Text>
+
+      <View>
+        <Text>Press to see the description</Text>
+      </View>
+      <View style={[rightViewStyle.right_side, rightViewStyle.codeSnippetBox]}>
+        <Text style={rightViewStyle.codeSnippetText}>
+          Code Snippet: {code_snippet}
+        </Text>
+      </View>
+    </TouchableOpacity>
+  );
+
+  const renderBackCard = (
+    <TouchableOpacity onPress={onPress}>
+      <Text style={rightViewStyle.headerText}>{title} </Text>
+
+      <View>
+        <Text>Press to see the Code Snippet</Text>
+      </View>
+      <View style={rightViewStyle.right_side}>
+        <View>
+          <Text>{description}</Text>
+        </View>
+      </View>
+    </TouchableOpacity>
+  );
+
   return (
     <Animated.View
       style={[
@@ -118,20 +149,7 @@ const Tip = ({
           },
         ]}
       >
-        <TouchableOpacity onPress={onPress}>
-          <Text style={rightViewStyle.headerText}>{title} </Text>
-
-          <View>
-            <Text>Click to see the description</Text>
-          </View>
-          <View
-            style={[rightViewStyle.right_side, rightViewStyle.codeSnippetBox]}
-          >
-            <Text style={rightViewStyle.codeSnippetText}>
-              Code Snippet: {code_snippet}
-            </Text>
-          </View>
-        </TouchableOpacity>
+        {flipIndex === 0 ? renderFrontCard : renderBackCard}
       </Animated.View>
     </Animated.View>
   );
@@ -196,6 +214,18 @@ const rightViewStyle = StyleSheet.create({
     color: 'white',
     paddingBottom: 8,
   },
+  descriptionText: {
+    fontWeight: 'bold',
+  },
+  descriptionView: {
+    ...borderRadius,
+    paddingTop: 8,
+  },
+
+  scroll: {
+    flexGrow: 1,
+    backgroundColor: 'white',
+  },
 });
 
 const mapStateToProps = ({ authStore }) => ({
@@ -214,18 +244,7 @@ export default connect(mapStateToProps)(Tip);
 //     alignItems: 'center',
 //     marginBottom: 10,
 //   },
-//   descriptionText: {
-//     fontWeight: 'bold',
-//   },
-//   descriptionView: {
-//     ...borderRadius,
-//     paddingTop: 8,
-//   },
 
-//   scroll: {
-//     flexGrow: 1,
-//     backgroundColor: 'white',
-//   },
 //   codeSnippetBox: {
 //     ...borderRadius,
 //     backgroundColor: 'black',
