@@ -1,22 +1,56 @@
 import React from 'react';
-crimport { SafeAreaView, Text, StyleSheet, Image, View } from 'react-native';
+import {
+  SafeAreaView,
+  Text,
+  StyleSheet,
+  Image,
+  View,
+  Linking,
+} from 'react-native';
 import TypedText from '../components/TypedText';
-import { borderRadius, shadow } from '../styles/MainStyles';
+import { borderRadius, shadow, absoluteCenter } from '../styles/MainStyles';
 import { WHITE } from '../styles/Pallete';
-
+import { LinearGradient } from 'expo-linear-gradient';
+import Constants from 'expo-constants';
 const Home = () => {
   return (
     <SafeAreaView style={styles.container}>
+      <LinearGradient
+        colors={['#00d4ff', '#021863', '#090979']}
+        // start={[0.1, 0.6]}
+        // end={[0.2, 0.88]}
+        style={styles.gradient}
+      />
       <View style={[styles.base]}>
         <Image style={styles.logo} source={require('../assets/logo.png')} />
       </View>
-      <View style={styles.textContainer}>
+      <View style={[styles.base, styles.textContainer]}>
         <Text style={styles.text}>
           Hello <TypedText style={styles.text} />
         </Text>
       </View>
-      <View>
-        <Text style={styles.descriptionContainer}>Description</Text>
+      <View style={styles.descriptionContainer}>
+        <Text>Description</Text>
+      </View>
+      <View style={[styles.base, styles.byContainer]}>
+        <View style={[absoluteCenter]}>
+          <Text style={styles.text}>With love by</Text>
+          <Text
+            style={[styles.link, styles.text]}
+            onPress={() => Linking.openURL('https://github.com/TeamNativeDev')}
+          >
+            Team Native Dev
+          </Text>
+          <View />
+          <View style={styles.byText}>
+            <View style={[styles.base, styles.member]}>
+              <Text>Biagio</Text>
+            </View>
+            <View style={[styles.base, styles.member]}>
+              <Text>LorryDriveloper</Text>
+            </View>
+          </View>
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -31,16 +65,14 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: 'blue',
+    backgroundColor: WHITE,
     flex: 1,
+    paddingTop: Constants.statusBarHeight,
   },
   logo: {
     marginVertical: 30,
   },
   textContainer: {
-    ...borderRadius,
-    ...shadow,
-    backgroundColor: 'red',
     width: '90%',
     height: '10%',
     justifyContent: 'center',
@@ -53,6 +85,35 @@ const styles = StyleSheet.create({
     backgroundColor: 'yellow',
     width: '90%',
     height: '20%',
+  },
+  byContainer: {
+    width: '90%',
+    padding: 15,
+    alignItems: 'center',
+  },
+  byText: {
+    marginTop: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  member: {
+    ...absoluteCenter,
+    height: 75,
+    width: 150,
+  },
+  link: {
+    color: '#00aaff',
+    textDecorationLine: 'underline',
+    fontSize: 28,
+    fontStyle: 'italic',
+    fontWeight: 'bold',
+  },
+  gradient: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    height: '100%',
   },
 });
 
