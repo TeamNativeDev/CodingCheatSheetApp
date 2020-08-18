@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Entypo } from '@expo/vector-icons';
-// import { TIP_HEIGHT } from '../styles/TipStyle';
+import { TIP_HEIGHT } from '../../styles/TipStyle';
 import {
   View,
   Text,
@@ -58,7 +58,7 @@ const leftViewStyle = StyleSheet.create({
   },
   left_side: {
     flex: 1,
-    height: 200,
+    height: TIP_HEIGHT,
     width: 300,
     flexDirection: 'column',
     justifyContent: 'space-around',

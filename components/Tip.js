@@ -8,6 +8,7 @@ import {
   Animated,
 } from 'react-native';
 import TipFrontLeft from './TipCardComponents/TipFrontLeft';
+import TipBackRight from './TipCardComponents/TipBackRight';
 import { TIP_HEIGHT } from '../styles/TipStyle';
 import { borderRadius, shadow } from '../styles/MainStyles';
 import { connect } from 'react-redux';
@@ -66,32 +67,6 @@ const Tip = ({
     </TouchableOpacity>
   );
 
-  const renderBackCard = (
-    <TouchableOpacity onPress={onPress}>
-      <Text
-        style={[
-          rightViewStyle.headerText,
-          { transform: [{ rotateY: '180deg' }] },
-        ]}
-      >
-        {title}{' '}
-      </Text>
-
-      <View>
-        <Text style={{ transform: [{ rotateY: '180deg' }] }}>
-          Press to see the Code Snippet
-        </Text>
-      </View>
-      <ScrollView style={rightViewStyle.scroll} scrollEnabled={true}>
-        <View style={rightViewStyle.descriptionView}>
-          <Text style={rightViewStyle.descriptionText}>
-            Description: {description}
-          </Text>
-        </View>
-      </ScrollView>
-    </TouchableOpacity>
-  );
-
   return (
     <Animated.View
       style={[
@@ -132,7 +107,15 @@ const Tip = ({
           },
         ]}
       >
-        {flipIndex === 0 ? renderFrontCard : renderBackCard}
+        {flipIndex === 0 ? (
+          renderFrontCard
+        ) : (
+          <TipBackRight
+            title={title}
+            description={description}
+            onPress={onPress}
+          />
+        )}
       </Animated.View>
     </Animated.View>
   );
