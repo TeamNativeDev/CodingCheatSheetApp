@@ -9,6 +9,7 @@ import {
   Alert,
   Animated,
 } from 'react-native';
+import { TIP_HEIGHT } from '../styles/TipStyle';
 import { borderRadius, shadow } from '../styles/MainStyles';
 import { Entypo } from '@expo/vector-icons';
 import { connect } from 'react-redux';
@@ -166,7 +167,6 @@ const Tip = ({
   );
 };
 
-const TIP_HEIGHT = 200;
 const mainViewStyles = StyleSheet.create({
   tipBox: {
     ...shadow,
