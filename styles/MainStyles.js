@@ -9,3 +9,8 @@ export const shadow = {
   shadowRadius: 3,
   elevation: 3,
 };
+
+export const absoluteCenter = {
+  justifyContent: 'center',
+  alignItems: 'center',
+};
