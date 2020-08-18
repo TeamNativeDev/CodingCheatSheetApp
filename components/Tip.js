@@ -5,13 +5,11 @@ import {
   StyleSheet,
   TouchableOpacity,
   ScrollView,
-  Linking,
-  Alert,
   Animated,
 } from 'react-native';
+import TipFrontLeft from './TipCardComponents/TipFrontLeft';
 import { TIP_HEIGHT } from '../styles/TipStyle';
 import { borderRadius, shadow } from '../styles/MainStyles';
-import { Entypo } from '@expo/vector-icons';
 import { connect } from 'react-redux';
 
 const Tip = ({
@@ -30,20 +28,6 @@ const Tip = ({
     backgroundColor: hexCode,
   };
 
-  const [tipVotes, setTipVotes] = useState(votes);
-
-  const handleUpVote = (currentUser) => {
-    if (user.id) {
-      let vote = tipVotes.find((voteId) => voteId === currentUser.id);
-      if (vote) {
-        setTipVotes((prev) => prev.filter((userVote) => userVote !== vote));
-      } else {
-        setTipVotes((prev) => [...prev, currentUser.id]);
-      }
-    } else {
-      Alert.alert('Only Logged In Users can vote');
-    }
-  };
   const TIP_CARD_HEIGHT = TIP_HEIGHT + 16 * 2;
   const translateY = Animated.add(
     y,
@@ -116,27 +100,14 @@ const Tip = ({
         { transform: [{ translateY }] },
       ]}
     >
-      <View style={leftViewStyle.left_side}>
-        <View style={{ alignItems: 'center' }}>
-          <Text>Tip By:</Text>
-          <Text> {by_username}</Text>
-        </View>
-
-        <TouchableOpacity onPress={() => handleUpVote(user)}>
-          <Text>
-            <Entypo name="thumbs-up" size={30} color="black" />
-            {tipVotes.length} Times
-          </Text>
-        </TouchableOpacity>
-
-        <Text
-          style={leftViewStyle.more_info}
-          onPress={() => Linking.openURL(more_info)}
-        >
-          More Info
-        </Text>
-      </View>
-
+      {
+        <TipFrontLeft
+          user={user}
+          by_username={by_username}
+          more_info={more_info}
+          votes={votes}
+        />
+      }
       <Animated.View
         style={[
           rightViewStyle.right_side,
@@ -179,23 +150,6 @@ const mainViewStyles = StyleSheet.create({
     marginBottom: 10,
     flexDirection: 'row',
     justifyContent: 'center',
-  },
-});
-
-const leftViewStyle = StyleSheet.create({
-  more_info: {
-    color: 'blue',
-    paddingTop: 10,
-    textAlign: 'center',
-  },
-  left_side: {
-    flex: 1,
-    height: TIP_HEIGHT,
-    width: 300,
-    flexDirection: 'column',
-    justifyContent: 'space-around',
-    paddingLeft: 8,
-    backgroundColor: 'lightgreen',
   },
 });
 

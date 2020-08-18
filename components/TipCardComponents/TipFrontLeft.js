@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Entypo } from '@expo/vector-icons';
+// import { TIP_HEIGHT } from '../styles/TipStyle';
 import {
   View,
   Text,
@@ -9,7 +10,7 @@ import {
   Linking,
 } from 'react-native';
 
-const TipFrontLeft = ({ user, by_username, more_info }) => {
+const TipFrontLeft = ({ user, by_username, more_info, votes }) => {
   const [tipVotes, setTipVotes] = useState(votes);
 
   const handleUpVote = (currentUser) => {
@@ -57,7 +58,7 @@ const leftViewStyle = StyleSheet.create({
   },
   left_side: {
     flex: 1,
-    height: TIP_HEIGHT,
+    height: 200,
     width: 300,
     flexDirection: 'column',
     justifyContent: 'space-around',
