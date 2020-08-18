@@ -1,12 +1,10 @@
-import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import React from 'react';
+import { View, Text } from 'react-native';
 
-export default class TipFrontRight extends Component {
-  render() {
-    return (
-      <View>
-        <Text> textInComponent </Text>
-      </View>
-    );
-  }
+export default function TipFrontRight() {
+  return (
+    <View>
+      <Text></Text>
+    </View>
+  );
 }
