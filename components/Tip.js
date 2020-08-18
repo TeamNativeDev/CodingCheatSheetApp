@@ -12,7 +12,6 @@ import {
 import { borderRadius, shadow } from '../styles/MainStyles';
 import { Entypo } from '@expo/vector-icons';
 import { connect } from 'react-redux';
-import { render } from 'react-dom';
 
 const Tip = ({
   title,
@@ -84,10 +83,19 @@ const Tip = ({
 
   const renderBackCard = (
     <TouchableOpacity onPress={onPress}>
-      <Text style={rightViewStyle.headerText}>{title} </Text>
+      <Text
+        style={[
+          rightViewStyle.headerText,
+          { transform: [{ rotateY: '180deg' }] },
+        ]}
+      >
+        {title}{' '}
+      </Text>
 
       <View>
-        <Text>Press to see the Code Snippet</Text>
+        <Text style={{ transform: [{ rotateY: '180deg' }] }}>
+          Press to see the Code Snippet
+        </Text>
       </View>
       <ScrollView style={rightViewStyle.scroll} scrollEnabled={true}>
         <View style={rightViewStyle.descriptionView}>
@@ -108,8 +116,9 @@ const Tip = ({
       ]}
     >
       <View style={leftViewStyle.left_side}>
-        <View>
-          <Text>By: {by_username}</Text>
+        <View style={{ alignItems: 'center' }}>
+          <Text>Tip By:</Text>
+          <Text> {by_username}</Text>
         </View>
 
         <TouchableOpacity onPress={() => handleUpVote(user)}>
@@ -177,13 +186,14 @@ const leftViewStyle = StyleSheet.create({
   more_info: {
     color: 'blue',
     paddingTop: 10,
+    textAlign: 'center',
   },
   left_side: {
     flex: 1,
     height: TIP_HEIGHT,
     width: 300,
     flexDirection: 'column',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     paddingLeft: 8,
     backgroundColor: 'lightgreen',
   },
@@ -218,6 +228,7 @@ const rightViewStyle = StyleSheet.create({
   },
   descriptionText: {
     fontWeight: 'bold',
+    transform: [{ rotateY: '180deg' }],
   },
   descriptionView: {
     ...borderRadius,
