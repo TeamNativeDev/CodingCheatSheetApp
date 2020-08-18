@@ -10,17 +10,12 @@ import {
 import TypedText from '../components/TypedText';
 import { borderRadius, shadow, absoluteCenter } from '../styles/MainStyles';
 import { WHITE } from '../styles/Pallete';
-import { LinearGradient } from 'expo-linear-gradient';
+
 import Constants from 'expo-constants';
 const Home = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <LinearGradient
-        colors={['#00d4ff', '#021863', '#090979']}
-        // start={[0.1, 0.6]}
-        // end={[0.2, 0.88]}
-        style={styles.gradient}
-      />
+      
       <View style={[styles.base]}>
         <Image style={styles.logo} source={require('../assets/logo.png')} />
       </View>
@@ -67,7 +62,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: WHITE,
     flex: 1,
-    paddingTop: Constants.statusBarHeight,
   },
   logo: {
     marginVertical: 30,
@@ -82,7 +76,9 @@ const styles = StyleSheet.create({
     fontSize: 25,
   },
   descriptionContainer: {
-    backgroundColor: 'yellow',
+    ...shadow,
+    ...borderRadius,
+    backgroundColor: WHITE,
     width: '90%',
     height: '20%',
   },
