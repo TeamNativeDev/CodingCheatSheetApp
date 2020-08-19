@@ -1,13 +1,7 @@
 import React, { useRef, useState } from 'react';
-import {
-  Text,
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  ScrollView,
-  Animated,
-} from 'react-native';
+import { StyleSheet, Animated } from 'react-native';
 import TipFrontLeft from './TipCardComponents/TipFrontLeft';
+import TipFrontRight from './TipCardComponents/TipFrontRight';
 import TipBackRight from './TipCardComponents/TipBackRight';
 import { TIP_HEIGHT } from '../styles/TipStyle';
 import { borderRadius, shadow } from '../styles/MainStyles';
@@ -52,21 +46,6 @@ const Tip = ({
     animation(flipIndex === 1 ? 0 : 1).start();
   };
 
-  const renderFrontCard = (
-    <TouchableOpacity onPress={onPress}>
-      <Text style={rightViewStyle.headerText}>{title} </Text>
-
-      <View>
-        <Text>Press to see the description</Text>
-      </View>
-      <View style={[rightViewStyle.right_side, rightViewStyle.codeSnippetBox]}>
-        <Text style={rightViewStyle.codeSnippetText}>
-          Code Snippet: {code_snippet}
-        </Text>
-      </View>
-    </TouchableOpacity>
-  );
-
   return (
     <Animated.View
       style={[
@@ -108,7 +87,11 @@ const Tip = ({
         ]}
       >
         {flipIndex === 0 ? (
-          renderFrontCard
+          <TipFrontRight
+            title={title}
+            onPress={onPress}
+            code_snippet={code_snippet}
+          />
         ) : (
           <TipBackRight
             title={title}
@@ -143,38 +126,6 @@ const rightViewStyle = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
     backgroundColor: 'aliceblue',
-  },
-  headerText: {
-    textAlignVertical: 'top',
-    fontWeight: 'bold',
-    fontSize: 16,
-    paddingBottom: 8,
-    textDecorationLine: 'underline',
-    alignSelf: 'center',
-  },
-  codeSnippetBox: {
-    ...borderRadius,
-    backgroundColor: 'black',
-    paddingBottom: 10,
-    marginVertical: 15,
-    height: 115,
-  },
-  codeSnippetText: {
-    color: 'white',
-    paddingBottom: 8,
-  },
-  descriptionText: {
-    fontWeight: 'bold',
-    transform: [{ rotateY: '180deg' }],
-  },
-  descriptionView: {
-    ...borderRadius,
-    paddingTop: 8,
-    height: 115,
-  },
-
-  scroll: {
-    flexGrow: 1,
   },
 });
 

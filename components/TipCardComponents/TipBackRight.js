@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import { TIP_HEIGHT } from '../../styles/TipStyle';
 import { borderRadius } from '../../styles/MainStyles';
 import {
