@@ -7,7 +7,7 @@ export const shadow = {
   shadowOffset: { width: 3, height: 3 },
   shadowOpacity: 0.5,
   shadowRadius: 3,
-  elevation: 3,
+  elevation: 6,
 };
 
 export const absoluteCenter = {
