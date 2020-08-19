@@ -36,7 +36,6 @@ const TipModal = ({ route, navigation, jwt }) => {
         if (json.error) {
           Alert.alert(json.message);
         } else {
-          console.log(json.data);
           navigation.navigate('Tips', { data: json.data, ...route.params });
         }
       });

@@ -12,7 +12,6 @@ const SignUp = (props) => {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
 
-  console.log(props);
   const handleSubmit = () => {
     props.signUpUser({
       user: { username: username, password, email },
