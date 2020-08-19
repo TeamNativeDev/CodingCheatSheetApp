@@ -8,6 +8,7 @@ import AppButton from '../components/AppButton';
 import { Entypo } from '@expo/vector-icons';
 import BASEURL from '../helpers/BaseUrl';
 import { connect } from 'react-redux';
+import Gradient from '../components/Gradient';
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
@@ -78,6 +79,7 @@ const Tips = ({ route, navigation, isLogin }) => {
 
   return (
     <View style={styles.container}>
+      <Gradient />
       <FloatLabelInput
         mainLabel="Search your Favorite Tip"
         // if second label is not given it will use main

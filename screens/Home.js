@@ -1,40 +1,30 @@
 import React from 'react';
-import { SafeAreaView, Text, View, StyleSheet } from 'react-native';
+import { SafeAreaView, StyleSheet, Image } from 'react-native';
+import { WHITE } from '../styles/Pallete';
+import Gradient from '../components/Gradient';
+import Description from '../components/homeComponents/Description';
+import Greetings from './Greetings';
+import BySection from '../components/homeComponents/BySection';
 
 const Home = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.headerText}>Hello Flatironers !</Text>
-      <View>
-        <Text style={styles.mainText}>
-          {' '}
-          App logo, Cards about us, description
-        </Text>
-      </View>
+      <Gradient />
+      <Image style={styles.logo} source={require('../assets/logo.png')} />
+      <Greetings />
+      <Description />
+      <BySection />
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     alignItems: 'center',
-    marginVertical: 40,
-  },
-  headerText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    padding: 10,
-    borderRadius: 3,
-    paddingVertical: 20,
-    marginBottom: 20,
-    backgroundColor: '#2aa198',
-  },
-  mainText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: WHITE,
+    flex: 1,
+    paddingTop: 50,
   },
 });
 
