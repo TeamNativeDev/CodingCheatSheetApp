@@ -8,11 +8,14 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Category from '../components/Category';
+import Gradient from '../components/Gradient';
+import { absoluteCenter } from '../styles/MainStyles';
 
 const Categories = (props) => {
   const { navigation, categories } = props;
   return (
     <SafeAreaView style={styles.container}>
+      <Gradient />
       <Text style={styles.headerText}> All Categories:</Text>
       <FlatList
         data={categories}
@@ -30,8 +33,10 @@ const Categories = (props) => {
 
 const styles = StyleSheet.create({
   container: {
+    ...absoluteCenter,
+    marginTop: 40,
     paddingHorizontal: 10,
-    paddingVertical: 40,
+    flex: 1,
   },
 
   headerText: {
