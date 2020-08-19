@@ -3,9 +3,8 @@ import { StyleSheet, Text, Linking } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 const CardIcon = ({ link, icon, text }) => {
   return (
-    <Text style={styles.icon} onPress={() => Linking.openURL(link)}>
-      <AntDesign name={icon} size={16} />
-      {text}
+    <Text style={styles.text} onPress={() => Linking.openURL(link)}>
+      <AntDesign style={styles.icon} name={icon} size={16} /> {text}
     </Text>
   );
 };
@@ -13,7 +12,7 @@ const CardIcon = ({ link, icon, text }) => {
 export default CardIcon;
 
 const styles = StyleSheet.create({
-  icon: {
+  text: {
     textDecorationLine: 'underline',
     marginVertical: 5,
   },
