@@ -8,6 +8,7 @@ import AppButton from '../components/AppButton';
 import { Entypo } from '@expo/vector-icons';
 import BASEURL from '../helpers/BaseUrl';
 import { connect } from 'react-redux';
+import Gradient from '../components/Gradient';
 
 const Tips = ({ route, navigation, isLogin }) => {
   const { color, id, data = null } = route.params;
@@ -70,6 +71,7 @@ const Tips = ({ route, navigation, isLogin }) => {
 
   return (
     <View style={styles.container}>
+      <Gradient />
       <FloatLabelInput
         mainLabel="Search your Favorite Tip"
         // if second label is not given it will use main

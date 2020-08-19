@@ -10,9 +10,8 @@ import {
 import TypedText from '../components/TypedText';
 import { borderRadius, shadow, absoluteCenter } from '../styles/MainStyles';
 import { WHITE } from '../styles/Pallete';
-
-import Constants from 'expo-constants';
 import Gradient from '../components/Gradient';
+
 const Home = () => {
   return (
     <SafeAreaView style={styles.container}>
@@ -38,14 +37,7 @@ const Home = () => {
             Team Native Dev
           </Text>
           <View />
-          <View style={styles.byText}>
-            <View style={[styles.base, styles.member]}>
-              <Text>Biagio</Text>
-            </View>
-            <View style={[styles.base, styles.member]}>
-              <Text>LorryDriveloper</Text>
-            </View>
-          </View>
+          <View style={styles.cardContainer} />
         </View>
       </View>
     </SafeAreaView>
@@ -84,19 +76,15 @@ const styles = StyleSheet.create({
     height: '20%',
   },
   byContainer: {
+    position: 'relative',
     width: '90%',
     padding: 15,
     alignItems: 'center',
   },
-  byText: {
-    marginTop: 20,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  member: {
-    ...absoluteCenter,
-    height: 75,
-    width: 150,
+  cardContainer: {
+    backgroundColor: 'red',
+    width: 300,
+    height: 50,
   },
   link: {
     color: '#00aaff',
