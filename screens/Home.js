@@ -43,14 +43,18 @@ const Home = () => {
             <MemberCard
               name="Biagio"
               twitter={'https://twitter.com/mindful_dev'}
-              linkedIn={'biagio'}
-              portfolio={'Biagio'}
+              linkedIn={
+                'https://www.linkedin.com/in/biagio-mendolia-913069176/'
+              }
+              portfolio={'https://biagiomendolia.vercel.app/'}
+              github={'https://github.com/biagioo'}
             />
             <MemberCard
               name="Lorrydriveloper"
               twitter={'https://twitter.com/lorrydriveloper'}
-              linkedIn={'biagio'}
-              portfolio={'Biagio'}
+              linkedIn={'https://www.linkedin.com/in/pedro-david-garcia-lopez/'}
+              portfolio={'https://www.lorrydriveloper.com'}
+              github={'https://github.com/lorrydriveloper'}
             />
           </View>
         </View>
