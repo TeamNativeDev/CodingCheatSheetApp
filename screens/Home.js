@@ -7,10 +7,12 @@ import {
   View,
   Linking,
 } from 'react-native';
-import TypedText from '../components/TypedText';
+import TypedText from '../components/homeComponents/TypedText';
 import { borderRadius, shadow, absoluteCenter } from '../styles/MainStyles';
 import { WHITE } from '../styles/Pallete';
 import Gradient from '../components/Gradient';
+import MemberCard from '../components/homeComponents/MemberCard';
+import { round } from 'react-native-reanimated';
 
 const Home = () => {
   return (
@@ -37,7 +39,20 @@ const Home = () => {
             Team Native Dev
           </Text>
           <View />
-          <View style={styles.cardContainer} />
+          <View style={styles.cardContainer}>
+            <MemberCard
+              name="Biagio"
+              twitter={'https://twitter.com/mindful_dev'}
+              linkedIn={'biagio'}
+              portfolio={'Biagio'}
+            />
+            <MemberCard
+              name="Lorrydriveloper"
+              twitter={'https://twitter.com/lorrydriveloper'}
+              linkedIn={'biagio'}
+              portfolio={'Biagio'}
+            />
+          </View>
         </View>
       </View>
     </SafeAreaView>
@@ -82,9 +97,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   cardContainer: {
-    backgroundColor: 'red',
-    width: 300,
-    height: 50,
+    width: '100%',
+    justifyContent: 'space-around',
+    height: 75,
+    flexDirection: 'row',
+    marginTop: 10,
   },
   link: {
     color: '#00aaff',
