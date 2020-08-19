@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { WHITE } from '../../styles/Pallete';
-import { borderRadius, shadow } from '../../styles/MainStyles';
+import { borderRadius, shadow, absoluteCenter } from '../../styles/MainStyles';
 
 const Description = () => {
   return (
@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
   descriptionContainer: {
     ...shadow,
     ...borderRadius,
+    ...absoluteCenter,
     backgroundColor: WHITE,
     width: '90%',
     height: '20%',
@@ -27,7 +28,8 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   description: {
-    fontSize: 18,
+    fontSize: 20,
+    fontWeight: '700',
     textAlign: 'center',
   },
 });

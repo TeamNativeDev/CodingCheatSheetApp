@@ -3,7 +3,7 @@ import { SafeAreaView, StyleSheet, Image } from 'react-native';
 import { WHITE } from '../styles/Pallete';
 import Gradient from '../components/Gradient';
 import Description from '../components/homeComponents/Description';
-import Greetings from './Grettings';
+import Greetings from './Greetings';
 import BySection from '../components/homeComponents/BySection';
 
 const Home = () => {
