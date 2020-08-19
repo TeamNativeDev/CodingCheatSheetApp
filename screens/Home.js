@@ -12,10 +12,11 @@ import { borderRadius, shadow, absoluteCenter } from '../styles/MainStyles';
 import { WHITE } from '../styles/Pallete';
 
 import Constants from 'expo-constants';
+import Gradient from '../components/Gradient';
 const Home = () => {
   return (
     <SafeAreaView style={styles.container}>
-      
+      <Gradient />
       <View style={[styles.base]}>
         <Image style={styles.logo} source={require('../assets/logo.png')} />
       </View>
@@ -103,13 +104,6 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontStyle: 'italic',
     fontWeight: 'bold',
-  },
-  gradient: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 0,
-    height: '100%',
   },
 });
 
