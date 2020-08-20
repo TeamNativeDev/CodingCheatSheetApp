@@ -10,29 +10,25 @@ import {
 } from 'react-native';
 
 const TipBackRight = ({ title, description, onPress }) => {
+  const contentTransform = { transform: [{ rotateY: '180deg' }] };
   return (
     <TouchableOpacity onPress={onPress}>
-      <Text
-        style={[
-          rightViewStyle.headerText,
-          { transform: [{ rotateY: '180deg' }] },
-        ]}
-      >
-        {title}{' '}
-      </Text>
-
       <View>
-        <Text style={{ transform: [{ rotateY: '180deg' }] }}>
-          Press to see the Code Snippet
+        <Text style={[rightViewStyle.headerText, contentTransform]}>
+          {title}{' '}
         </Text>
-      </View>
-      <ScrollView style={rightViewStyle.scroll} scrollEnabled={true}>
-        <View style={rightViewStyle.descriptionView}>
-          <Text style={rightViewStyle.descriptionText}>
-            Description: {description}
-          </Text>
+
+        <View>
+          <Text style={contentTransform}>Press to see the Code Snippet</Text>
         </View>
-      </ScrollView>
+        <ScrollView style={rightViewStyle.scroll} scrollEnabled={true}>
+          <View style={rightViewStyle.descriptionView}>
+            <Text style={[rightViewStyle.descriptionText, contentTransform]}>
+              Description: {description}
+            </Text>
+          </View>
+        </ScrollView>
+      </View>
     </TouchableOpacity>
   );
 };
@@ -53,20 +49,8 @@ const rightViewStyle = StyleSheet.create({
     textDecorationLine: 'underline',
     alignSelf: 'center',
   },
-  // codeSnippetBox: {
-  //   ...borderRadius,
-  //   backgroundColor: 'black',
-  //   paddingBottom: 10,
-  //   marginVertical: 15,
-  //   height: 115,
-  // },
-  // codeSnippetText: {
-  //   color: 'white',
-  //   paddingBottom: 8,
-  // },
   descriptionText: {
     fontWeight: 'bold',
-    transform: [{ rotateY: '180deg' }],
   },
   descriptionView: {
     ...borderRadius,

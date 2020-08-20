@@ -29,50 +29,13 @@ const Tip = ({
   by_username,
   more_info,
   user,
-  y,
-  index,
 }) => {
   const containerColor = {
     backgroundColor: hexCode,
   };
 
-  const { height: wHeight } = Dimensions.get('window');
-  const height = wHeight - 64;
-  const TIP_CARD_HEIGHT = TIP_HEIGHT + 10 * 2;
-  const position = Animated.subtract(index * TIP_CARD_HEIGHT, y);
-  const isDisappearing = -TIP_CARD_HEIGHT;
-  const isTop = 0;
-  const isBottom = height - TIP_CARD_HEIGHT;
-  const isAppearing = height;
-  const translateY = Animated.add(
-    Animated.add(
-      y,
-      y.interpolate({
-        inputRange: [0, 0.00001 + index * TIP_CARD_HEIGHT],
-        outputRange: [0, -index * TIP_CARD_HEIGHT],
-        extrapolateRight: 'clamp',
-      }),
-    ),
-    position.interpolate({
-      inputRange: [isBottom, isAppearing],
-      outputRange: [0, -TIP_CARD_HEIGHT / 4],
-      extrapolate: 'clamp',
-    }),
-  );
-
-  const scale = position.interpolate({
-    inputRange: [isDisappearing, isTop, isBottom, isAppearing],
-    outputRange: [0.5, 1, 1, 0.5],
-    extrapolate: 'clamp',
-  });
-  const opacity = position.interpolate({
-    inputRange: [isDisappearing, isTop, isBottom, isAppearing],
-    outputRange: [0.5, 1, 1, 0.5],
-  });
-
   const animatedValue = useRef(new Animated.Value(0)).current;
   const [flipIndex, setFlipIndex] = useState(0);
-  const [flipContext, setFlipContext] = useState(true);
   const animation = (toValue) =>
     Animated.timing(animatedValue, {
       toValue,
@@ -81,21 +44,14 @@ const Tip = ({
     });
 
   const onPress = () => {
-    setFlipIndex(flipIndex === 1 ? 0 : 1);
     setTimeout(() => {
-      setFlipContext(false);
+      setFlipIndex(flipIndex === 1 ? 0 : 1);
     }, 500);
     animation(flipIndex === 1 ? 0 : 1).start();
   };
 
   return (
-    <Animated.View
-      style={[
-        mainViewStyles.tipBox,
-        containerColor,
-        { opacity, transform: [{ translateY }, { scale }] },
-      ]}
-    >
+    <Animated.View style={[mainViewStyles.tipBox, containerColor]}>
       {
         <TipFrontLeft
           user={user}
@@ -128,7 +84,7 @@ const Tip = ({
           },
         ]}
       >
-        {flipContext ? (
+        {flipIndex === 0 ? (
           <TipFrontRight
             title={title}
             onPress={onPress}
