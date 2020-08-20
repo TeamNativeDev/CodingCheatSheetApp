@@ -8,6 +8,7 @@ import AppButton from '../components/AppButton';
 import { Entypo } from '@expo/vector-icons';
 import BASEURL from '../helpers/BaseUrl';
 import { connect } from 'react-redux';
+import VegaScrollList from 'react-native-vega-scroll-list';
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
@@ -75,6 +76,7 @@ const Tips = ({ route, navigation, isLogin }) => {
   const onScroll = Animated.event([{ nativeEvent: { contentOffset: { y } } }], {
     useNativeDriver: true,
   });
+  // console.log(onScroll);
 
   return (
     <View style={styles.container}>
@@ -96,6 +98,14 @@ const Tips = ({ route, navigation, isLogin }) => {
         onRefresh={() => handleRefresh()}
         {...{ onScroll }}
       />
+
+      {/* <FlatList
+        data={filter}
+        keyExtractor={(item) => item.title}
+        renderItem={({ item }) => <Tip {...item} hexCode={color} />}
+        refreshing={isRefreshing}
+        onRefresh={() => handleRefresh()}
+      /> */}
       <AppButton
         style={styles.button}
         onPress={() =>

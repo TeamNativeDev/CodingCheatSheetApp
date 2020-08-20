@@ -1,11 +1,24 @@
 import React, { useRef, useState } from 'react';
-import { StyleSheet, Animated } from 'react-native';
+import { StyleSheet, Animated, Dimensions } from 'react-native';
 import TipFrontLeft from './TipCardComponents/TipFrontLeft';
 import TipFrontRight from './TipCardComponents/TipFrontRight';
 import TipBackRight from './TipCardComponents/TipBackRight';
 import { TIP_HEIGHT } from '../styles/TipStyle';
 import { borderRadius, shadow } from '../styles/MainStyles';
 import { connect } from 'react-redux';
+
+// interface TipProps {
+//   y: Animated.Value;
+//   index: number;
+//   title: string;
+//   description: string;
+//   hexCode: string;
+//   code_snippet: string;
+//   votes: [];
+//   by_username: string;
+//   more_info: string;
+//   user: {};
+// }
 
 const Tip = ({
   title,
@@ -23,17 +36,43 @@ const Tip = ({
     backgroundColor: hexCode,
   };
 
-  const TIP_CARD_HEIGHT = TIP_HEIGHT + 16 * 2;
+  const { height: wHeight } = Dimensions.get('window');
+  const height = wHeight - 64;
+  const TIP_CARD_HEIGHT = TIP_HEIGHT + 10 * 2;
+  const position = Animated.subtract(index * TIP_CARD_HEIGHT, y);
+  const isDisappearing = -TIP_CARD_HEIGHT;
+  const isTop = 0;
+  const isBottom = height - TIP_CARD_HEIGHT;
+  const isAppearing = height;
   const translateY = Animated.add(
-    y,
-    y.interpolate({
-      inputRange: [0, 0.00001 + index * TIP_CARD_HEIGHT],
-      outputRange: [0, -index * TIP_CARD_HEIGHT],
-      extrapolateRight: 'clamp',
+    Animated.add(
+      y,
+      y.interpolate({
+        inputRange: [0, 0.00001 + index * TIP_CARD_HEIGHT],
+        outputRange: [0, -index * TIP_CARD_HEIGHT],
+        extrapolateRight: 'clamp',
+      }),
+    ),
+    position.interpolate({
+      inputRange: [isBottom, isAppearing],
+      outputRange: [0, -TIP_CARD_HEIGHT / 4],
+      extrapolate: 'clamp',
     }),
   );
+
+  const scale = position.interpolate({
+    inputRange: [isDisappearing, isTop, isBottom, isAppearing],
+    outputRange: [0.5, 1, 1, 0.5],
+    extrapolate: 'clamp',
+  });
+  const opacity = position.interpolate({
+    inputRange: [isDisappearing, isTop, isBottom, isAppearing],
+    outputRange: [0.5, 1, 1, 0.5],
+  });
+
   const animatedValue = useRef(new Animated.Value(0)).current;
   const [flipIndex, setFlipIndex] = useState(0);
+  const [flipContext, setFlipContext] = useState(true);
   const animation = (toValue) =>
     Animated.timing(animatedValue, {
       toValue,
@@ -43,6 +82,9 @@ const Tip = ({
 
   const onPress = () => {
     setFlipIndex(flipIndex === 1 ? 0 : 1);
+    setTimeout(() => {
+      setFlipContext(false);
+    }, 500);
     animation(flipIndex === 1 ? 0 : 1).start();
   };
 
@@ -51,7 +93,7 @@ const Tip = ({
       style={[
         mainViewStyles.tipBox,
         containerColor,
-        { transform: [{ translateY }] },
+        { opacity, transform: [{ translateY }, { scale }] },
       ]}
     >
       {
@@ -86,7 +128,7 @@ const Tip = ({
           },
         ]}
       >
-        {flipIndex === 0 ? (
+        {flipContext ? (
           <TipFrontRight
             title={title}
             onPress={onPress}
