@@ -10,20 +10,28 @@ import {
 } from 'react-native';
 
 const TipBackRight = ({ title, description, onPress }) => {
-  const contentTransform = { transform: [{ rotateY: '180deg' }] };
   return (
     <TouchableOpacity onPress={onPress}>
       <View>
-        <Text style={[rightViewStyle.headerText, contentTransform]}>
+        <Text
+          style={[rightViewStyle.headerText, rightViewStyle.transformContent]}
+        >
           {title}{' '}
         </Text>
 
         <View>
-          <Text style={contentTransform}>Press to see the Code Snippet</Text>
+          <Text style={rightViewStyle.transformContent}>
+            Press to see the Code Snippet
+          </Text>
         </View>
         <ScrollView style={rightViewStyle.scroll} scrollEnabled={true}>
           <View style={rightViewStyle.descriptionView}>
-            <Text style={[rightViewStyle.descriptionText, contentTransform]}>
+            <Text
+              style={[
+                rightViewStyle.descriptionText,
+                rightViewStyle.transformContent,
+              ]}
+            >
               Description: {description}
             </Text>
           </View>
@@ -57,6 +65,8 @@ const rightViewStyle = StyleSheet.create({
     paddingTop: 8,
     height: 115,
   },
+
+  transformContent: { transform: [{ rotateY: '180deg' }] },
 
   scroll: {
     flexGrow: 1,
