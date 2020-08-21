@@ -76,6 +76,7 @@ const Tips = ({ route, navigation, isLogin }) => {
   const onScroll = Animated.event([{ nativeEvent: { contentOffset: { y } } }], {
     useNativeDriver: true,
   });
+  // console.log(onScroll);
 
   return (
     <View style={styles.container}>
@@ -87,7 +88,7 @@ const Tips = ({ route, navigation, isLogin }) => {
         value={input}
         setValue={setInput}
       />
-      <AnimatedFlatList
+      {/* <AnimatedFlatList
         scrollEventThrottle={16}
         data={filter}
         keyExtractor={(item) => item.id + ''}
@@ -97,6 +98,14 @@ const Tips = ({ route, navigation, isLogin }) => {
         refreshing={isRefreshing}
         onRefresh={() => handleRefresh()}
         {...{ onScroll }}
+      /> */}
+
+      <FlatList
+        data={filter}
+        keyExtractor={(item) => item.title}
+        renderItem={({ item }) => <Tip {...item} hexCode={color} />}
+        refreshing={isRefreshing}
+        onRefresh={() => handleRefresh()}
       />
       <AppButton
         style={styles.button}
