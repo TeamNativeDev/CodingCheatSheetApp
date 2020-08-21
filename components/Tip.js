@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { StyleSheet, Animated, Dimensions } from 'react-native';
+import { StyleSheet, Animated, View } from 'react-native';
 import TipFrontLeft from './TipCardComponents/TipFrontLeft';
 import TipFrontRight from './TipCardComponents/TipFrontRight';
 import TipBackRight from './TipCardComponents/TipBackRight';
@@ -51,7 +51,7 @@ const Tip = ({
   };
 
   return (
-    <Animated.View style={[mainViewStyles.tipBox, containerColor]}>
+    <View style={[mainViewStyles.tipBox, containerColor]}>
       {
         <TipFrontLeft
           user={user}
@@ -74,12 +74,6 @@ const Tip = ({
                   outputRange: ['0deg', '-90deg', '-180deg'],
                 }),
               },
-              {
-                translateX: animatedValue.interpolate({
-                  inputRange: [0, 0.5, 1],
-                  outputRange: ['0%', '25%', '0%'],
-                }),
-              },
             ],
           },
         ]}
@@ -98,7 +92,7 @@ const Tip = ({
           />
         )}
       </Animated.View>
-    </Animated.View>
+    </View>
   );
 };
 
