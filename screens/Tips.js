@@ -71,13 +71,6 @@ const Tips = ({ route, navigation, isLogin }) => {
     }
   }, [input, tips]);
 
-  const y = new Animated.Value(0);
-
-  const onScroll = Animated.event([{ nativeEvent: { contentOffset: { y } } }], {
-    useNativeDriver: true,
-  });
-  // console.log(onScroll);
-
   return (
     <View style={styles.container}>
       <Gradient />
@@ -88,17 +81,6 @@ const Tips = ({ route, navigation, isLogin }) => {
         value={input}
         setValue={setInput}
       />
-      {/* <AnimatedFlatList
-        scrollEventThrottle={16}
-        data={filter}
-        keyExtractor={(item) => item.id + ''}
-        renderItem={({ index, item }) => (
-          <Tip {...item} index={index} y={y} hexCode={color} />
-        )}
-        refreshing={isRefreshing}
-        onRefresh={() => handleRefresh()}
-        {...{ onScroll }}
-      /> */}
 
       <FlatList
         data={filter}
