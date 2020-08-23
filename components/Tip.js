@@ -1,24 +1,12 @@
 import React, { useRef, useState } from 'react';
-import { StyleSheet, Animated, View } from 'react-native';
+import { StyleSheet, Animated, View, Dimensions } from 'react-native';
 import TipFrontLeft from './TipCardComponents/TipFrontLeft';
 import TipFrontRight from './TipCardComponents/TipFrontRight';
 import TipBackRight from './TipCardComponents/TipBackRight';
-import { TIP_HEIGHT } from '../styles/TipStyle';
 import { borderRadius, shadow } from '../styles/MainStyles';
 import { connect } from 'react-redux';
 
-// interface TipProps {
-//   y: Animated.Value;
-//   index: number;
-//   title: string;
-//   description: string;
-//   hexCode: string;
-//   code_snippet: string;
-//   votes: [];
-//   by_username: string;
-//   more_info: string;
-//   user: {};
-// }
+const { width, height } = Dimensions.get('window');
 
 const Tip = ({
   title,
@@ -101,7 +89,7 @@ const mainViewStyles = StyleSheet.create({
     ...shadow,
     ...borderRadius,
     flex: 1,
-    aspectRatio: 1.5,
+    height: height / 3,
     paddingVertical: 10,
     paddingHorizontal: 8,
     paddingBottom: 10,
@@ -113,8 +101,8 @@ const mainViewStyles = StyleSheet.create({
 
 const rightViewStyle = StyleSheet.create({
   right_side: {
-    height: TIP_HEIGHT,
-    width: 215,
+    height: height / 3.2,
+    width: width / 1.7,
     flexDirection: 'column',
     justifyContent: 'space-between',
     backgroundColor: 'aliceblue',

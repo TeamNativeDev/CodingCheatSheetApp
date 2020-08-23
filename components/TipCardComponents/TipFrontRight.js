@@ -1,5 +1,4 @@
 import React from 'react';
-import { TIP_HEIGHT } from '../../styles/TipStyle';
 import { borderRadius } from '../../styles/MainStyles';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
@@ -24,7 +23,7 @@ const TipFrontRight = ({ onPress, code_snippet, title }) => {
 
 const rightViewStyle = StyleSheet.create({
   right_side: {
-    height: TIP_HEIGHT,
+    height: 200,
     width: 215,
     flexDirection: 'column',
     justifyContent: 'space-between',

@@ -1,5 +1,4 @@
 import React from 'react';
-import { TIP_HEIGHT } from '../../styles/TipStyle';
 import { borderRadius } from '../../styles/MainStyles';
 import {
   View,
@@ -11,7 +10,6 @@ import {
 
 const TipBackRight = ({ title, description, onPress }) => {
   return (
-    // <TouchableOpacity onPress={onPress}>
     <View>
       <View>
         <TouchableOpacity onPress={onPress}>
@@ -21,7 +19,7 @@ const TipBackRight = ({ title, description, onPress }) => {
             {title}
           </Text>
 
-          <Text style={rightViewStyle.transformContent}>
+          <Text style={[rightViewStyle.transformContent, { paddingBottom: 6 }]}>
             Press to see the Code Snippet
           </Text>
         </TouchableOpacity>
@@ -42,14 +40,14 @@ const TipBackRight = ({ title, description, onPress }) => {
         </ScrollView>
       </View>
     </View>
-    // </TouchableOpacity>
   );
 };
 
 const rightViewStyle = StyleSheet.create({
   right_side: {
-    height: TIP_HEIGHT,
+    height: 200,
     width: 215,
+    flexGrow: 1,
     flexDirection: 'column',
     justifyContent: 'space-between',
     backgroundColor: 'aliceblue',
@@ -68,7 +66,7 @@ const rightViewStyle = StyleSheet.create({
   descriptionView: {
     ...borderRadius,
     paddingTop: 8,
-    height: 115,
+    height: 215,
   },
 
   transformContent: { transform: [{ rotateY: '180deg' }] },
