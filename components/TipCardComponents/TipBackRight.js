@@ -11,33 +11,38 @@ import {
 
 const TipBackRight = ({ title, description, onPress }) => {
   return (
-    <TouchableOpacity onPress={onPress}>
+    // <TouchableOpacity onPress={onPress}>
+    <View>
       <View>
-        <Text
-          style={[rightViewStyle.headerText, rightViewStyle.transformContent]}
-        >
-          {title}{' '}
-        </Text>
+        <TouchableOpacity onPress={onPress}>
+          <Text
+            style={[rightViewStyle.headerText, rightViewStyle.transformContent]}
+          >
+            {title}
+          </Text>
 
-        <View>
           <Text style={rightViewStyle.transformContent}>
             Press to see the Code Snippet
           </Text>
-        </View>
-        <ScrollView style={rightViewStyle.scroll} scrollEnabled={true}>
-          <View style={rightViewStyle.descriptionView}>
-            <Text
-              style={[
-                rightViewStyle.descriptionText,
-                rightViewStyle.transformContent,
-              ]}
-            >
-              Description: {description}
-            </Text>
-          </View>
+        </TouchableOpacity>
+      </View>
+      <View>
+        <ScrollView
+          style={[rightViewStyle.scroll, rightViewStyle.descriptionView]}
+          scrollEnabled={true}
+        >
+          <Text
+            style={[
+              rightViewStyle.descriptionText,
+              rightViewStyle.transformContent,
+            ]}
+          >
+            Description: {description}
+          </Text>
         </ScrollView>
       </View>
-    </TouchableOpacity>
+    </View>
+    // </TouchableOpacity>
   );
 };
 

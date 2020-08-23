@@ -5,18 +5,20 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 const TipFrontRight = ({ onPress, code_snippet, title }) => {
   return (
-    <TouchableOpacity onPress={onPress}>
-      <Text style={rightViewStyle.headerText}>{title} </Text>
-
+    <View>
       <View>
-        <Text>Press to see the description</Text>
+        <TouchableOpacity onPress={onPress}>
+          <Text style={rightViewStyle.headerText}>{title} </Text>
+
+          <Text>Press to see the description</Text>
+        </TouchableOpacity>
       </View>
       <View style={[rightViewStyle.right_side, rightViewStyle.codeSnippetBox]}>
         <Text style={rightViewStyle.codeSnippetText}>
           Code Snippet: {code_snippet}
         </Text>
       </View>
-    </TouchableOpacity>
+    </View>
   );
 };
 
