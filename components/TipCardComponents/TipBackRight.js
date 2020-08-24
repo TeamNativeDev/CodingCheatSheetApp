@@ -10,7 +10,7 @@ import {
 
 const TipBackRight = ({ title, description, onPress }) => {
   return (
-    <View>
+    <View style={{ alignSelf: 'center' }}>
       <View>
         <TouchableOpacity onPress={onPress}>
           <Text
@@ -58,7 +58,7 @@ const rightViewStyle = StyleSheet.create({
     fontSize: 16,
     paddingBottom: 8,
     textDecorationLine: 'underline',
-    alignSelf: 'center',
+    // alignSelf: 'center',
   },
   descriptionText: {
     fontWeight: 'bold',

@@ -4,12 +4,12 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 const TipFrontRight = ({ onPress, code_snippet, title }) => {
   return (
-    <View>
+    <View style={{ alignSelf: 'center' }}>
       <View>
         <TouchableOpacity onPress={onPress}>
           <Text style={rightViewStyle.headerText}>{title} </Text>
 
-          <Text>Press to see the description</Text>
+          <Text style>Press to see the description</Text>
         </TouchableOpacity>
       </View>
       <View style={[rightViewStyle.right_side, rightViewStyle.codeSnippetBox]}>
@@ -35,7 +35,6 @@ const rightViewStyle = StyleSheet.create({
     fontSize: 16,
     paddingBottom: 8,
     textDecorationLine: 'underline',
-    alignSelf: 'center',
   },
   codeSnippetBox: {
     ...borderRadius,
@@ -43,6 +42,7 @@ const rightViewStyle = StyleSheet.create({
     paddingBottom: 10,
     marginVertical: 15,
     height: 115,
+    // alignSelf: 'center',
   },
   codeSnippetText: {
     color: 'white',
