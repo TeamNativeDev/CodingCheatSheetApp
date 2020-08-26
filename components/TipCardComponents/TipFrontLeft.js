@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Entypo } from '@expo/vector-icons';
+import { EditTip } from '../../actions/tipAction';
 import {
   View,
   Text,
@@ -9,9 +10,11 @@ import {
   Linking,
   Dimensions,
 } from 'react-native';
+import { connect } from 'react-redux';
 
 const { width, height } = Dimensions.get('window');
-const TipFrontLeft = ({ user, by_username, more_info, votes }) => {
+const TipFrontLeft = (props) => {
+  const { user, by_username, more_info, votes, tip, jwt } = props;
   const [tipVotes, setTipVotes] = useState(votes);
 
   const handleUpVote = (currentUser) => {
@@ -22,6 +25,7 @@ const TipFrontLeft = ({ user, by_username, more_info, votes }) => {
       } else {
         setTipVotes((prev) => [...prev, currentUser.id]);
       }
+      props.EditTip(tip, jwt);
     } else {
       Alert.alert('Only Logged In Users can vote');
     }
@@ -68,4 +72,8 @@ const leftViewStyle = StyleSheet.create({
   },
 });
 
-export default TipFrontLeft;
+const mapStateToProps = ({ authStore }) => ({
+  jwt: authStore.jwt,
+});
+
+export default connect(mapStateToProps, { EditTip })(TipFrontLeft);
