@@ -85,7 +85,7 @@ const Tips = ({ route, navigation, isLogin }) => {
       <FlatList
         data={filter}
         keyExtractor={(item) => item.title}
-        renderItem={({ item }) => <Tip {...item} hexCode={color} />}
+        renderItem={({ item }) => <Tip tip={item} hexCode={color} />}
         refreshing={isRefreshing}
         onRefresh={() => handleRefresh()}
       />

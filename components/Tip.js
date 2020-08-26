@@ -8,18 +8,18 @@ import { connect } from 'react-redux';
 
 const { width, height } = Dimensions.get('window');
 
-const Tip = ({
-  title,
-  description,
-  hexCode,
-  code_snippet,
-  votes,
-  by_username,
-  more_info,
-  user,
-}) => {
+const Tip = (props) => {
+  const {
+    title,
+    description,
+    code_snippet,
+    votes,
+    by_username,
+    more_info,
+  } = props.tip;
+
   const containerColor = {
-    backgroundColor: hexCode,
+    backgroundColor: props.hexCode,
   };
 
   const animatedValue = useRef(new Animated.Value(0)).current;
@@ -42,10 +42,11 @@ const Tip = ({
     <View style={[mainViewStyles.tipBox, containerColor]}>
       {
         <TipFrontLeft
-          user={user}
+          user={props.user}
           by_username={by_username}
           more_info={more_info}
           votes={votes}
+          tip={props.tip}
         />
       }
       <Animated.View
