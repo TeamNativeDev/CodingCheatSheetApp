@@ -16,13 +16,13 @@ const Profile = (props) => {
         setValue={setUsername}
         // Bug on label and on not editable
         mainLabel="Username"
-        autoFocus={true}
+        autoFocus={false}
       />
       <FloatLabelInput
         value={userEmail}
         setValue={setUserEmail}
         mainLabel="Your Email"
-        autoFocus={true}
+        autoFocus={false}
       />
       <FloatLabelInput
         value={bio}
@@ -30,7 +30,7 @@ const Profile = (props) => {
         mainLabel="Write something about you"
         multiline={true}
         numberOfLines={3}
-        autoFocus={true}
+        autoFocus={false}
       />
     </SafeAreaView>
   );
