@@ -10,7 +10,7 @@ import {
 
 const TipBackRight = ({ title, description, onPress }) => {
   return (
-    <View style={{ alignSelf: 'center' }}>
+    <View style={rightViewStyle.containerView}>
       <View>
         <TouchableOpacity onPress={onPress}>
           <Text
@@ -24,26 +24,29 @@ const TipBackRight = ({ title, description, onPress }) => {
           </Text>
         </TouchableOpacity>
       </View>
-      <View>
-        <ScrollView
-          style={[rightViewStyle.scroll, rightViewStyle.descriptionView]}
-          scrollEnabled={true}
+
+      <ScrollView
+        nestedScrollEnabled={true}
+        style={[rightViewStyle.scroll, rightViewStyle.descriptionView]}
+        scrollEnabled={true}
+      >
+        <Text
+          style={[
+            rightViewStyle.descriptionText,
+            rightViewStyle.transformContent,
+          ]}
         >
-          <Text
-            style={[
-              rightViewStyle.descriptionText,
-              rightViewStyle.transformContent,
-            ]}
-          >
-            Description: {description}
-          </Text>
-        </ScrollView>
-      </View>
+          Description: {description}
+        </Text>
+      </ScrollView>
     </View>
   );
 };
 
 const rightViewStyle = StyleSheet.create({
+  containerView: {
+    padding: 8,
+  },
   right_side: {
     height: 200,
     width: 215,
@@ -58,15 +61,15 @@ const rightViewStyle = StyleSheet.create({
     fontSize: 16,
     paddingBottom: 8,
     textDecorationLine: 'underline',
-    // alignSelf: 'center',
   },
   descriptionText: {
     fontWeight: 'bold',
+    paddingBottom: 5,
   },
   descriptionView: {
     ...borderRadius,
     paddingTop: 8,
-    height: 215,
+    height: '70%',
   },
 
   transformContent: { transform: [{ rotateY: '180deg' }] },
