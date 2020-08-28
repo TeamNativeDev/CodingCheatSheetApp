@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Entypo } from '@expo/vector-icons';
 import { EditTip } from '../../actions/tipAction';
 import {
@@ -14,8 +14,10 @@ import { connect } from 'react-redux';
 
 const { width, height } = Dimensions.get('window');
 const TipFrontLeft = (props) => {
-  const { user, by_username, more_info, votes, tip, jwt } = props;
+  const { user, tip, jwt } = props;
+  const { by_username, more_info, votes } = tip;
   const [tipVotes, setTipVotes] = useState(votes);
+  const [firstRender, setFirstRender] = useState(false);
 
   const handleUpVote = (currentUser) => {
     if (user.id) {
@@ -25,11 +27,20 @@ const TipFrontLeft = (props) => {
       } else {
         setTipVotes((prev) => [...prev, currentUser.id]);
       }
-      props.EditTip(tip, jwt);
     } else {
       Alert.alert('Only Logged In Users can vote');
     }
   };
+
+  useEffect(() => {
+    if (firstRender) {
+      tip.votes = tipVotes;
+      props.EditTip(tip, jwt, 'updateVote');
+    } else {
+      setFirstRender(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tipVotes]);
 
   return (
     <View style={leftViewStyle.left_side}>
@@ -72,8 +83,4 @@ const leftViewStyle = StyleSheet.create({
   },
 });
 
-const mapStateToProps = ({ authStore }) => ({
-  jwt: authStore.jwt,
-});
-
-export default connect(mapStateToProps, { EditTip })(TipFrontLeft);
+export default connect(null, { EditTip })(TipFrontLeft);
