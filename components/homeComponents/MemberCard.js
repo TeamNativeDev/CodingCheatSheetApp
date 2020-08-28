@@ -27,7 +27,7 @@ const MemberCard = (props) => {
   const styles = StyleSheet.create({
     card: {
       ...borderRadius,
-      backgroundColor: 'red',
+      backgroundColor: '#cdcdcd',
       width: 150,
       height: 75,
       justifyContent: 'center',
@@ -38,7 +38,7 @@ const MemberCard = (props) => {
       alignItems: 'center',
     },
     text: {
-      fontSize: 20,
+      fontSize: 18,
       fontWeight: 'bold',
       transform: [
         {
@@ -86,7 +86,7 @@ const MemberCard = (props) => {
       >
         <TouchableOpacity onPress={handlePress}>
           <View style={[styles.card]}>
-            {flip ? (
+            {!flip ? (
               <Animated.Text style={styles.text}>{name}</Animated.Text>
             ) : (
               <BackCard {...props} />
