@@ -1,16 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useCallback } from 'react';
-import { View, StyleSheet, FlatList, Animated } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  FlatList,
+  Animated,
+  ActivityIndicator,
+} from 'react-native';
 import Tip from '../components/Tip';
 import FloatLabelInput from '../components/FloatLabelInput';
-import * as SecureStore from 'expo-secure-store';
 import AppButton from '../components/AppButton';
 import { Entypo } from '@expo/vector-icons';
 import BASEURL from '../helpers/BaseUrl';
 import { connect } from 'react-redux';
 import Gradient from '../components/Gradient';
 
-const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
 const Tips = ({ route, navigation, isLogin }) => {
   const { color, id, data = null } = route.params;
@@ -18,6 +22,7 @@ const Tips = ({ route, navigation, isLogin }) => {
   const [tips, setTips] = useState([]);
   const [input, setInput] = useState('');
   const [filter, setFilter] = useState(tips);
+  const [loaded, setLoaded] = useState(false);
 
   const styles = StyleSheet.create({
     container: {
@@ -45,6 +50,7 @@ const Tips = ({ route, navigation, isLogin }) => {
     const result = await fetch(BASEURL + `categories/${id}`);
     const fetchedTips = await result.json();
     setTips(fetchedTips);
+    setLoaded(true);
   }, []);
 
   const handleRefresh = useCallback(async () => {
@@ -74,6 +80,7 @@ const Tips = ({ route, navigation, isLogin }) => {
   return (
     <View style={styles.container}>
       <Gradient />
+
       <FloatLabelInput
         mainLabel="Search your Favorite Tip"
         // if second label is not given it will use main
@@ -82,13 +89,18 @@ const Tips = ({ route, navigation, isLogin }) => {
         setValue={setInput}
       />
 
-      <FlatList
-        data={filter}
-        keyExtractor={(item) => item.title}
-        renderItem={({ item }) => <Tip tip={item} hexCode={color} />}
-        refreshing={isRefreshing}
-        onRefresh={() => handleRefresh()}
-      />
+      {loaded ? (
+        <FlatList
+          data={filter}
+          keyExtractor={(item) => item.title}
+          renderItem={({ item }) => <Tip tip={item} hexCode={color} />}
+          refreshing={isRefreshing}
+          onRefresh={() => handleRefresh()}
+        />
+      ) : (
+        <ActivityIndicator size="large" />
+      )}
+
       <AppButton
         style={styles.button}
         onPress={() =>
