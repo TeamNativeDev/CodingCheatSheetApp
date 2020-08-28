@@ -40,15 +40,7 @@ const Tip = (props) => {
 
   return (
     <View style={[mainViewStyles.tipBox, containerColor]}>
-      {
-        <TipFrontLeft
-          user={props.user}
-          by_username={by_username}
-          more_info={more_info}
-          votes={votes}
-          tip={props.tip}
-        />
-      }
+      {<TipFrontLeft user={props.user} jwt={props.jwt} tip={props.tip} />}
       <Animated.View
         style={[
           rightViewStyle.right_side,
@@ -112,6 +104,7 @@ const rightViewStyle = StyleSheet.create({
 
 const mapStateToProps = ({ authStore }) => ({
   user: authStore.user,
+  jwt: authStore.jwt,
 });
 
 export default connect(mapStateToProps)(Tip);
