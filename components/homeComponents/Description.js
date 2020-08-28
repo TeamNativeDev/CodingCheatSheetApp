@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
     backgroundColor: WHITE,
     width: '90%',
     height: '20%',
-    fontSize: 18,
     padding: 10,
   },
   description: {
