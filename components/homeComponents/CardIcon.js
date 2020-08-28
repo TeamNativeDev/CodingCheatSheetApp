@@ -1,10 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, Linking, View } from 'react-native';
+import { StyleSheet, Linking, View } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { borderRadius, shadow } from '../../styles/MainStyles';
 import { WHITE } from '../../styles/Pallete';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-const CardIcon = ({ link, icon, text }) => {
+const CardIcon = ({ link, icon }) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={() => Linking.openURL(link)}>
