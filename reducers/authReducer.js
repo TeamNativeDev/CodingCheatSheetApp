@@ -1,5 +1,5 @@
 export default (
-  state = { isLogin: false, user: {}, jwt: '' },
+  state = { isLogin: false, user: {}, tips: {}, jwt: '' },
   { type, payload },
 ) => {
   switch (type) {
