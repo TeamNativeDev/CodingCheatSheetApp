@@ -20,7 +20,7 @@ export const loginUser = (user) => {
     } else {
       dispatch({
         type: 'LOGIN',
-        payload: { user: json.user, jwt: json.jwt },
+        payload: { user: json.user, jwt: json.jwt, tips: json.tips },
       });
     }
   };
