@@ -1,5 +1,5 @@
 export default (
-  state = { isLogin: false, user: {}, tips: {}, jwt: '' },
+  state = { isLogin: false, user: {}, jwt: '' },
   { type, payload },
 ) => {
   switch (type) {
@@ -11,6 +11,14 @@ export default (
       };
     case 'LOGOUT':
       return { isLogin: false, user: {} };
+    case 'NEW_TIP':
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          tips: [...state.user.tips, payload],
+        },
+      };
 
     default:
       return state;
