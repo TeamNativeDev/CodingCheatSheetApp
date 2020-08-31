@@ -40,7 +40,7 @@ const Tip = (props) => {
 
   return (
     <View style={[mainViewStyles.tipBox, containerColor]}>
-      {<TipFrontLeft user={props.user} jwt={props.jwt} tip={props.tip} />}
+      {<TipFrontLeft {...props} />}
       <Animated.View
         style={[
           rightViewStyle.right_side,
