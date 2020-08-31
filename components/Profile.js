@@ -10,6 +10,11 @@ const Profile = (props) => {
   const [userEmail, setUserEmail] = useState(props.user.email);
   const [bio, setBio] = useState(props.user.bio);
 
+  const findColor = (categories, id) => {
+    let output = categories.find((cat) => cat.id === id);
+    return output.color;
+  };
+
   return (
     <SafeAreaView>
       <Text>User Profile</Text>
@@ -39,26 +44,23 @@ const Profile = (props) => {
         <Text>My Tips</Text>
       </View>
 
-      {/* <FlatList
-        data={props.tips}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <Tip tip={item} />}
-      /> */}
+      <FlatList
+        data={props.user.tips}
+        keyExtractor={(item) => item.title}
+        renderItem={({ item }) => (
+          <Tip
+            tip={item}
+            color={findColor(props.categories, item.category_id)}
+          />
+        )}
+      />
     </SafeAreaView>
   );
 };
-const mapStateToProps = ({ authStore }) => ({
+const mapStateToProps = ({ authStore, categoriesStore }) => ({
   user: authStore.user,
   jwt: authStore.jwt,
-  tips: authStore.tips,
+  categories: categoriesStore.categories,
 });
 
 export default connect(mapStateToProps)(Profile);
-
-const styles = StyleSheet.create({
-  edit: {
-    backgroundColor: 'gold',
-    width: 100,
-    padding: 5,
-  },
-});
