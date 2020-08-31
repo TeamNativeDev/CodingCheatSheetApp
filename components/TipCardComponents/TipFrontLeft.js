@@ -19,6 +19,23 @@ const TipFrontLeft = (props) => {
   const [tipVotes, setTipVotes] = useState(votes);
   const [firstRender, setFirstRender] = useState(false);
 
+  const leftViewStyle = StyleSheet.create({
+    more_info: {
+      color: 'blue',
+      paddingTop: 10,
+      textAlign: 'center',
+    },
+    left_side: {
+      flex: 1,
+      height: height / 3.2,
+      width: width,
+      flexDirection: 'column',
+      justifyContent: 'space-around',
+      paddingLeft: 8,
+      backgroundColor: props.color || 'lightgreen',
+    },
+  });
+
   const handleUpVote = (currentUser) => {
     if (user.id) {
       let vote = tipVotes.find((voteId) => voteId === currentUser.id);
@@ -65,22 +82,5 @@ const TipFrontLeft = (props) => {
     </View>
   );
 };
-
-const leftViewStyle = StyleSheet.create({
-  more_info: {
-    color: 'blue',
-    paddingTop: 10,
-    textAlign: 'center',
-  },
-  left_side: {
-    flex: 1,
-    height: height / 3.2,
-    width: width,
-    flexDirection: 'column',
-    justifyContent: 'space-around',
-    paddingLeft: 8,
-    backgroundColor: 'lightgreen',
-  },
-});
 
 export default connect(null, { EditTip })(TipFrontLeft);
