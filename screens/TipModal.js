@@ -3,6 +3,7 @@ import { KeyboardAvoidingView, StyleSheet, Alert } from 'react-native';
 import FloatLabelInput from '../components/FloatLabelInput';
 import AppButton from '../components/AppButton';
 import BASEURL from '../helpers/BaseUrl';
+import { newTip } from '../actions/authActions';
 import { connect } from 'react-redux';
 
 const TipModal = ({ route, navigation, jwt }) => {
@@ -36,6 +37,8 @@ const TipModal = ({ route, navigation, jwt }) => {
         if (json.error) {
           Alert.alert(json.message);
         } else {
+          // props.newTip()
+          console.log(json);
           navigation.navigate('Tips', { data: json.data, ...route.params });
         }
       });
@@ -84,4 +87,4 @@ const mapStateToProps = ({ authStore }) => ({
   jwt: authStore.jwt,
 });
 
-export default connect(mapStateToProps)(TipModal);
+export default connect(mapStateToProps, { newTip })(TipModal);
