@@ -11,6 +11,7 @@ import {
   Dimensions,
 } from 'react-native';
 import { connect } from 'react-redux';
+import AppButton from '../AppButton';
 
 const { width, height } = Dimensions.get('window');
 const TipFrontLeft = (props) => {
@@ -19,7 +20,7 @@ const TipFrontLeft = (props) => {
   const [tipVotes, setTipVotes] = useState(votes);
   const [firstRender, setFirstRender] = useState(false);
 
-  const leftViewStyle = StyleSheet.create({
+  const styles = StyleSheet.create({
     more_info: {
       color: 'blue',
       paddingTop: 10,
@@ -33,6 +34,11 @@ const TipFrontLeft = (props) => {
       justifyContent: 'space-around',
       paddingLeft: 8,
       backgroundColor: props.color || 'lightgreen',
+    },
+    editButton: {
+      backgroundColor: 'yellow',
+      paddingHorizontal: 5,
+      paddingVertical: 10,
     },
   });
 
@@ -60,7 +66,7 @@ const TipFrontLeft = (props) => {
   }, [tipVotes]);
 
   return (
-    <View style={leftViewStyle.left_side}>
+    <View style={styles.left_side}>
       <View style={{ alignItems: 'center' }}>
         <Text>Tip By:</Text>
         <Text> {by_username}</Text>
@@ -73,12 +79,17 @@ const TipFrontLeft = (props) => {
         </Text>
       </TouchableOpacity>
 
-      <Text
-        style={leftViewStyle.more_info}
-        onPress={() => Linking.openURL(more_info)}
-      >
-        More Info
-      </Text>
+      {more_info ? (
+        <Text
+          style={styles.more_info}
+          onPress={() => Linking.openURL(more_info)}
+        >
+          More Info
+        </Text>
+      ) : null}
+      <AppButton onPress={() => console.log(props)} style={styles.editButton}>
+        Edit
+      </AppButton>
     </View>
   );
 };
