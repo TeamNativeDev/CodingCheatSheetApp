@@ -56,5 +56,5 @@ export const signUpUser = (newUser) => {
 };
 
 export const newTip = (tip) => {
-  return { action: 'NEW_TIP', payload: tip };
+  return { type: 'NEW_TIP', payload: tip };
 };
