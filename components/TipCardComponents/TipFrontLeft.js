@@ -15,8 +15,9 @@ import AppButton from '../AppButton';
 
 const { width, height } = Dimensions.get('window');
 const TipFrontLeft = (props) => {
-  const { user, tip, jwt } = props;
+  const { user, tip, jwt, onPress } = props;
   const { by_username, more_info, votes } = tip;
+
   const [tipVotes, setTipVotes] = useState(votes);
   const [firstRender, setFirstRender] = useState(false);
 
@@ -87,9 +88,11 @@ const TipFrontLeft = (props) => {
           More Info
         </Text>
       ) : null}
-      <AppButton onPress={() => console.log(props)} style={styles.editButton}>
-        Edit
-      </AppButton>
+      {props.route ? (
+        <AppButton onPress={onPress} style={styles.editButton}>
+          Edit
+        </AppButton>
+      ) : null}
     </View>
   );
 };
