@@ -8,16 +8,16 @@ import { connect } from 'react-redux';
 
 const TipModal = (props) => {
   const { route, navigation, jwt } = props;
-  const { id, title: categoryTitle, color } = route.params;
+  const { id, title: categoryTitle, color, tip } = route.params;
 
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [snippet, setSnippet] = useState('');
-  const [moreInfo, setMoreInfo] = useState('');
+  const [title, setTitle] = useState(tip?.title || '');
+  const [description, setDescription] = useState(tip?.description || '');
+  const [snippet, setSnippet] = useState(tip?.code_snippet || '');
+  const [moreInfo, setMoreInfo] = useState(tip?.more_info || '');
 
   const handleSubmit = () => {
     const configObject = {
-      method: 'POST',
+      method: tip ? 'PATCH' : 'POST',
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
@@ -28,7 +28,7 @@ const TipModal = (props) => {
           title,
           description,
           code_snippet: snippet,
-          category_id: id,
+          category_id: id || tip.category_id,
           more_info: moreInfo,
         },
       }),
@@ -50,7 +50,7 @@ const TipModal = (props) => {
       flex: 1,
     },
     button: {
-      backgroundColor: color,
+      backgroundColor: color || 'yellow',
     },
   });
   return (
@@ -78,7 +78,7 @@ const TipModal = (props) => {
         secondLabel="Url to another resource"
       />
       <AppButton style={styles.button} onPress={() => handleSubmit()}>
-        Send, your new {categoryTitle} Tip
+        {tip? 'Edit your Tip' :`Send, your new ${categoryTitle} Tip`}
       </AppButton>
     </KeyboardAvoidingView>
   );
