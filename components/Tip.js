@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react';
 import { StyleSheet, Animated, View, Dimensions } from 'react-native';
-import TipFrontLeft from './TipCardComponents/TipFrontLeft';
-import TipFrontRight from './TipCardComponents/TipFrontRight';
-import TipBackRight from './TipCardComponents/TipBackRight';
+import TipFrontLeft from './TipCardComponents/TipLeft';
+import TipFrontRight from './TipCardComponents/TipRightFront';
+import TipBackRight from './TipCardComponents/TipRightBack';
 import { borderRadius, shadow } from '../styles/MainStyles';
 import { connect } from 'react-redux';
 
