@@ -6,12 +6,14 @@ import BASEURL from '../helpers/BaseUrl';
 import { newTip } from '../actions/authActions';
 import { connect } from 'react-redux';
 
-const TipModal = ({ route, navigation, jwt }) => {
+const TipModal = (props) => {
+  const { route, navigation, jwt } = props;
+  const { id, title: categoryTitle, color } = route.params;
+
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [snippet, setSnippet] = useState('');
   const [moreInfo, setMoreInfo] = useState('');
-  const { id, title: categoryTitle, color } = route.params;
 
   const handleSubmit = () => {
     const configObject = {
@@ -37,8 +39,7 @@ const TipModal = ({ route, navigation, jwt }) => {
         if (json.error) {
           Alert.alert(json.message);
         } else {
-          // props.newTip()
-          console.log(json);
+          props.newTip(json.data);
           navigation.navigate('Tips', { data: json.data, ...route.params });
         }
       });
