@@ -1,9 +1,17 @@
 import React from 'react';
 import { borderRadius } from '../../styles/MainStyles';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Dimensions,
+} from 'react-native';
 import SyntaxHighlighter from 'react-native-syntax-highlighter';
 import { tomorrow } from 'react-syntax-highlighter/styles/prism';
 import { connect } from 'react-redux';
+
+const { height } = Dimensions.get('window');
 
 const TipFrontRight = ({
   category_id,
@@ -13,6 +21,7 @@ const TipFrontRight = ({
   categories,
 }) => {
   // TODO console.log(categories, category_id);
+
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.header} onPress={onPress}>
@@ -46,7 +55,7 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   right_side: {
-    height: 190,
+    height: height / 4.7,
     width: 215,
     flexDirection: 'column',
     justifyContent: 'space-between',
