@@ -12,7 +12,7 @@ const Profile = (props) => {
 
   const findColor = (categories, id) => {
     let output = categories.find((cat) => cat.id === id);
-    return output.color;
+    return output?.color;
   };
 
   return (
