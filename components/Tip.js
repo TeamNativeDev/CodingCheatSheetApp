@@ -28,10 +28,14 @@ const Tip = (props) => {
     }, 500);
     animation(flipIndex === 1 ? 0 : 1).start();
   };
+  const handlePress = () => {
+    const { tip, route, navigation } = props;
+    navigation.navigate('TipModal', { tip, ...route.params });
+  };
 
   return (
     <View style={[mainViewStyles.tipBox, containerColor]}>
-      {<TipFrontLeft {...props} />}
+      {<TipFrontLeft {...props} onPress={handlePress} />}
       <Animated.View
         style={[
           rightViewStyle.right_side,
