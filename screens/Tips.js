@@ -1,12 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useCallback } from 'react';
-import {
-  View,
-  StyleSheet,
-  FlatList,
-  Animated,
-  ActivityIndicator,
-} from 'react-native';
+import { View, StyleSheet, FlatList, ActivityIndicator } from 'react-native';
 import Tip from '../components/Tip';
 import FloatLabelInput from '../components/FloatLabelInput';
 import AppButton from '../components/AppButton';
@@ -14,7 +8,6 @@ import { Entypo } from '@expo/vector-icons';
 import BASEURL from '../helpers/BaseUrl';
 import { connect } from 'react-redux';
 import Gradient from '../components/Gradient';
-
 
 const Tips = ({ route, navigation, isLogin }) => {
   const { color, id, data = null } = route.params;
