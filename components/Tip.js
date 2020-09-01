@@ -9,15 +9,6 @@ import { connect } from 'react-redux';
 const { width, height } = Dimensions.get('window');
 
 const Tip = (props) => {
-  const {
-    title,
-    description,
-    code_snippet,
-    votes,
-    by_username,
-    more_info,
-  } = props.tip;
-
   const containerColor = {
     backgroundColor: props.hexCode,
   };
@@ -60,17 +51,9 @@ const Tip = (props) => {
         ]}
       >
         {flipIndex === 0 ? (
-          <TipFrontRight
-            title={title}
-            onPress={onPress}
-            code_snippet={code_snippet}
-          />
+          <TipFrontRight {...props.tip} onPress={onPress} />
         ) : (
-          <TipBackRight
-            title={title}
-            description={description}
-            onPress={onPress}
-          />
+          <TipBackRight {...props.tip} onPress={onPress} />
         )}
       </Animated.View>
     </View>
