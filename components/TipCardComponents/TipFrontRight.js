@@ -12,7 +12,7 @@ const TipFrontRight = ({
   title,
   categories,
 }) => {
-  // console.log(categories, category_id);
+  // TODO console.log(categories, category_id);
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.header} onPress={onPress}>
