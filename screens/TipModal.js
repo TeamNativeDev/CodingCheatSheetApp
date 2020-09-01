@@ -7,6 +7,7 @@ import { newTip } from '../actions/authActions';
 import { connect } from 'react-redux';
 
 const TipModal = (props) => {
+
   const { route, navigation, jwt } = props;
   const { id, title: categoryTitle, color, tip } = route.params;
 
@@ -33,14 +34,20 @@ const TipModal = (props) => {
         },
       }),
     };
-    fetch(BASEURL + 'tips', configObject)
+    const url = BASEURL + (tip ? `tips/${tip.id}` : 'tips');
+    fetch(url, configObject)
       .then((data) => data.json())
       .then((json) => {
         if (json.error) {
           Alert.alert(json.message);
         } else {
-          props.newTip(json.data);
-          navigation.navigate('Tips', { data: json.data, ...route.params });
+          if (tip) {
+            navigation.navigate('Auth');
+            // TODO update the TIP
+          } else {
+            props.newTip(json.data);
+            navigation.navigate('Tips', { data: json.data, ...route.params });
+          }
         }
       });
   };
@@ -50,7 +57,7 @@ const TipModal = (props) => {
       flex: 1,
     },
     button: {
-      backgroundColor: color || 'yellow',
+      backgroundColor: color,
     },
   });
   return (
@@ -78,7 +85,7 @@ const TipModal = (props) => {
         secondLabel="Url to another resource"
       />
       <AppButton style={styles.button} onPress={() => handleSubmit()}>
-        {tip? 'Edit your Tip' :`Send, your new ${categoryTitle} Tip`}
+        {tip ? 'Edit your Tip' : `Send, your new ${categoryTitle} Tip`}
       </AppButton>
     </KeyboardAvoidingView>
   );
