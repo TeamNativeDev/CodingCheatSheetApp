@@ -29,8 +29,8 @@ const Tip = (props) => {
     animation(flipIndex === 1 ? 0 : 1).start();
   };
   const handlePress = () => {
-    const { tip, route, navigation } = props;
-    navigation.navigate('TipModal', { tip, ...route.params });
+    const { tip, route, navigation, color } = props;
+    navigation.navigate('TipModal', { color, tip, ...route.params });
   };
 
   return (
