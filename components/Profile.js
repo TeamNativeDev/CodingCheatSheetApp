@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import React, { useState } from 'react';
+import { Text, View, FlatList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import FloatLabelInput from './FloatLabelInput';
 import { connect } from 'react-redux';
@@ -51,6 +51,7 @@ const Profile = (props) => {
           <Tip
             tip={item}
             color={findColor(props.categories, item.category_id)}
+            {...props}
           />
         )}
       />
