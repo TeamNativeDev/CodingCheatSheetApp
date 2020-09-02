@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import AppButton from '../../helpers/AppButton';
+import { absoluteCenter } from '../../styles/MainStyles';
 
 const { width, height } = Dimensions.get('window');
 const TipFrontLeft = (props) => {
@@ -20,6 +21,7 @@ const TipFrontLeft = (props) => {
 
   const [tipVotes, setTipVotes] = useState(votes);
   const [firstRender, setFirstRender] = useState(false);
+  const vote = tipVotes.find((voteId) => voteId === user.id);
 
   const styles = StyleSheet.create({
     more_info: {
@@ -34,22 +36,31 @@ const TipFrontLeft = (props) => {
       flexDirection: 'column',
       justifyContent: 'space-around',
       paddingLeft: 8,
-      backgroundColor: props.color || 'lightgreen',
+      backgroundColor: props.color || '#586F7C',
     },
     editButton: {
       backgroundColor: 'yellow',
       paddingHorizontal: 5,
       paddingVertical: 10,
     },
+    text: {
+      fontSize: 20,
+      color: 'white',
+    },
+    bold: {
+      fontWeight: 'bold',
+    },
+    italic: {
+      fontStyle: 'italic',
+    },
   });
 
-  const handleUpVote = (currentUser) => {
+  const handleUpVote = () => {
     if (user.id) {
-      let vote = tipVotes.find((voteId) => voteId === currentUser.id);
       if (vote) {
         setTipVotes((prev) => prev.filter((userVote) => userVote !== vote));
       } else {
-        setTipVotes((prev) => [...prev, currentUser.id]);
+        setTipVotes((prev) => [...prev, user.id]);
       }
     } else {
       Alert.alert('Only Logged In Users can vote');
@@ -68,14 +79,14 @@ const TipFrontLeft = (props) => {
 
   return (
     <View style={styles.left_side}>
-      <View style={{ alignItems: 'center' }}>
-        <Text>Tip By:</Text>
-        <Text> {by_username}</Text>
+      <View style={absoluteCenter}>
+        <Text style={[styles.text, styles.bold]}>Tip By</Text>
+        <Text style={styles.text}> {by_username}</Text>
       </View>
 
-      <TouchableOpacity onPress={() => handleUpVote(user)}>
-        <Text>
-          <Entypo name="thumbs-up" size={30} color="black" />
+      <TouchableOpacity style={absoluteCenter} onPress={() => handleUpVote()}>
+        <Entypo name="thumbs-up" size={30} color={vote ? '#09b812' : 'white'} />
+        <Text style={[styles.text, styles.italic]}>
           {tipVotes.length} Times
         </Text>
       </TouchableOpacity>
