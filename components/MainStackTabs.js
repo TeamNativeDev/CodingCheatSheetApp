@@ -5,7 +5,7 @@ import Home from '../screens/Home';
 import Categories from '../screens/Categories';
 import { Entypo } from '@expo/vector-icons';
 import { connect } from 'react-redux';
-import Logout from './Logout';
+import Logout from '../components/AuthComponents/Logout';
 
 const MainStackTabs = ({ isLogin }) => {
   const Tab = createBottomTabNavigator();

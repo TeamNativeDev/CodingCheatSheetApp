@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Text, View, FlatList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import FloatLabelInput from './FloatLabelInput';
+import FloatLabelInput from '../../helpers/FloatLabelInput';
 import { connect } from 'react-redux';
-import Tip from './Tip';
+import Tip from '../Tip';
 
 const Profile = (props) => {
   const [username, setUsername] = useState(props.user.username);

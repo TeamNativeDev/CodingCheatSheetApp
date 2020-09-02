@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import {
   Text,
@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Category from '../components/Category';
-import Gradient from '../components/Gradient';
+import Gradient from '../helpers/Gradient';
 import { absoluteCenter } from '../styles/MainStyles';
 
 const Categories = (props) => {

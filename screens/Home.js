@@ -1,10 +1,10 @@
 import React from 'react';
 import { SafeAreaView, StyleSheet, Image } from 'react-native';
 import { WHITE } from '../styles/Pallete';
-import Gradient from '../components/Gradient';
-import Description from '../components/homeComponents/Description';
-import Greetings from './Greetings';
-import BySection from '../components/homeComponents/BySection';
+import Gradient from '../helpers/Gradient';
+import Description from '../components/HomeComponents/Description';
+import Greetings from '../components/HomeComponents/Greetings';
+import BySection from '../components/HomeComponents/BySection';
 
 const Home = () => {
   return (

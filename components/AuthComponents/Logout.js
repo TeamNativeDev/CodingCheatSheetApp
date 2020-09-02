@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, Text, SafeAreaView } from 'react-native';
 import { connect } from 'react-redux';
-import { logoutUser } from '../actions/authActions';
+import { logoutUser } from '../../actions/authActions';
 
 const Logout = ({ logoutUser: logout, navigation }) => {
   useEffect(() => {

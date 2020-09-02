@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { StyleSheet, View, Animated } from 'react-native';
+import { StyleSheet, Animated } from 'react-native';
 import Login from './Login';
 import SignUp from './SignUp';
 import AnimatedButton from './AnimatedButton';

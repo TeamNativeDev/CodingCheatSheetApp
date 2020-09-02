@@ -11,7 +11,7 @@ import {
   Dimensions,
 } from 'react-native';
 import { connect } from 'react-redux';
-import AppButton from '../AppButton';
+import AppButton from '../../helpers/AppButton';
 
 const { width, height } = Dimensions.get('window');
 const TipFrontLeft = (props) => {
