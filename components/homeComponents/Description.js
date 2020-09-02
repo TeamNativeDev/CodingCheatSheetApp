@@ -7,8 +7,8 @@ const Description = () => {
   return (
     <View style={styles.descriptionContainer}>
       <Text style={styles.description}>
-        This App has been created to help future Flatiron Students and Alumni to
-        have a handful CheatSheet always in your Pocket.
+        This App has been created to help People Learning to code or Developers
+        to have a handful CheatSheet always in your Pocket.
       </Text>
     </View>
   );
