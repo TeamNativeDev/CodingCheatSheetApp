@@ -19,7 +19,16 @@ export default (
           tips: [...state.user.tips, payload],
         },
       };
-
+    case 'UPDATE_TIP':
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          tips: state.user.tips.map((tip) =>
+            tip.id === payload.id ? payload : tip,
+          ),
+        },
+      };
     default:
       return state;
   }

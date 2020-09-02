@@ -4,12 +4,11 @@ import FloatLabelInput from '../helpers/FloatLabelInput';
 import AppButton from '../helpers/AppButton';
 import BASEURL from '../helpers/BaseUrl';
 import { newTip } from '../actions/authActions';
+import { CreateOrUpdateTip, UpdateUserTips } from '../actions/tipAction';
 import { connect } from 'react-redux';
 
 const TipModal = (props) => {
-
-  const { route, navigation, jwt } = props;
-  const { id, title: categoryTitle, color, tip } = route.params;
+  const { id, title: categoryTitle, color, tip } = props.route.params;
 
   const [title, setTitle] = useState(tip?.title || '');
   const [description, setDescription] = useState(tip?.description || '');
@@ -17,39 +16,14 @@ const TipModal = (props) => {
   const [moreInfo, setMoreInfo] = useState(tip?.more_info || '');
 
   const handleSubmit = () => {
-    const configObject = {
-      method: tip ? 'PATCH' : 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        Authorization: `Bearer ${jwt}`,
-      },
-      body: JSON.stringify({
-        tip: {
-          title,
-          description,
-          code_snippet: snippet,
-          category_id: id || tip.category_id,
-          more_info: moreInfo,
-        },
-      }),
+    let tipObject = {
+      title,
+      description,
+      code_snippet: snippet,
+      category_id: id || tip.category_id,
+      more_info: moreInfo,
     };
-    const url = BASEURL + (tip ? `tips/${tip.id}` : 'tips');
-    fetch(url, configObject)
-      .then((data) => data.json())
-      .then((json) => {
-        if (json.error) {
-          Alert.alert(json.message);
-        } else {
-          if (tip) {
-            navigation.navigate('Auth');
-            // TODO update the TIP
-          } else {
-            props.newTip(json.data);
-            navigation.navigate('Tips', { data: json.data, ...route.params });
-          }
-        }
-      });
+    props.CreateOrUpdateTip(props, tipObject);
   };
 
   const styles = StyleSheet.create({
@@ -95,4 +69,8 @@ const mapStateToProps = ({ authStore }) => ({
   jwt: authStore.jwt,
 });
 
-export default connect(mapStateToProps, { newTip })(TipModal);
+export default connect(mapStateToProps, {
+  newTip,
+  CreateOrUpdateTip,
+  UpdateUserTips,
+})(TipModal);
