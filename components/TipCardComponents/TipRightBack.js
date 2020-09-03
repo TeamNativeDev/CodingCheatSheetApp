@@ -17,7 +17,7 @@ const TipBackRight = ({ title, description, onPress }) => {
             {title}
           </Text>
 
-          <Text style={[styles.transformContent, { paddingBottom: 6 }]}>
+          <Text style={[styles.transformContent, styles.press]}>
             Press to see the Code Snippet
           </Text>
         </TouchableOpacity>
@@ -37,6 +37,7 @@ const TipBackRight = ({ title, description, onPress }) => {
 };
 
 const styles = StyleSheet.create({
+  press: { paddingBottom: 6 },
   containerView: {
     padding: 8,
   },

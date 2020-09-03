@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, Text, SafeAreaView } from 'react-native';
+import { Text, SafeAreaView } from 'react-native';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/authActions';
 
@@ -9,6 +9,7 @@ const Logout = ({ logoutUser: logout, navigation }) => {
       logout();
     });
     return unsubscribe;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navigation]);
   return (
     <SafeAreaView>
@@ -18,5 +19,3 @@ const Logout = ({ logoutUser: logout, navigation }) => {
 };
 
 export default connect(null, { logoutUser })(Logout);
-
-const styles = StyleSheet.create({});

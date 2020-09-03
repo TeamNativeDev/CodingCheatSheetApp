@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { KeyboardAvoidingView, StyleSheet, Alert } from 'react-native';
+import { KeyboardAvoidingView, StyleSheet } from 'react-native';
 import FloatLabelInput from '../helpers/FloatLabelInput';
 import AppButton from '../helpers/AppButton';
-import BASEURL from '../helpers/BaseUrl';
 import { newTip } from '../actions/authActions';
 import { CreateOrUpdateTip, UpdateUserTips } from '../actions/tipAction';
 import { connect } from 'react-redux';

@@ -15,4 +15,3 @@ const mapStateToProps = ({ authStore }) => ({
 
 export default connect(mapStateToProps)(Auth);
 
-const styles = StyleSheet.create({});

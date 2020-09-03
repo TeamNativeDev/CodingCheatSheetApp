@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Text, View, FlatList, StyleSheet, Image } from 'react-native';
 import { connect } from 'react-redux';
 import Tip from '../Tip';
