@@ -14,11 +14,7 @@ const Profile = (props) => {
   };
 
   const _likes = (array) =>
-    array.reduce((acc, tip) => acc + tip.votes.length, 0);
-
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
+    array ? array.reduce((acc, tip) => acc + tip.votes.length, 0) : 0;
 
   return (
     <>
@@ -37,7 +33,7 @@ const Profile = (props) => {
                   style={styles.like}
                   source={require('../../assets/code.png')}
                 />
-                <Text style={styles.text}>{user.tips.length} TIPS</Text>
+                <Text style={styles.text}>{user.tips?.length || 0} TIPS</Text>
               </View>
               <View style={absoluteCenter}>
                 <Image
@@ -50,17 +46,21 @@ const Profile = (props) => {
           </View>
         </View>
         <View style={styles.tipsContainer}>
-          <FlatList
-            data={user.tips}
-            keyExtractor={(item) => item.title}
-            renderItem={({ item }) => (
-              <Tip
-                tip={item}
-                color={_findColor(categories, item.category_id)}
-                {...props}
-              />
-            )}
-          />
+          {user.tips ? (
+            <FlatList
+              data={user.tips}
+              keyExtractor={(item) => item.title}
+              renderItem={({ item }) => (
+                <Tip
+                  tip={item}
+                  color={_findColor(categories, item.category_id)}
+                  {...props}
+                />
+              )}
+            />
+          ) : (
+            <Text>Here would be the tips you created!</Text>
+          )}
         </View>
       </SafeAreaView>
     </>
