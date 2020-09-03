@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Entypo } from '@expo/vector-icons';
 import { EditTip } from '../../actions/tipAction';
 import {
   View,
@@ -9,6 +8,7 @@ import {
   TouchableOpacity,
   Linking,
   Dimensions,
+  Image,
 } from 'react-native';
 import { connect } from 'react-redux';
 import AppButton from '../../helpers/AppButton';
@@ -44,14 +44,19 @@ const TipFrontLeft = (props) => {
       paddingVertical: 10,
     },
     text: {
-      fontSize: 20,
+      fontSize: 16,
       color: 'white',
+      paddingVertical: 5,
     },
     bold: {
       fontWeight: 'bold',
     },
     italic: {
       fontStyle: 'italic',
+    },
+    like: {
+      width: 75,
+      height: 75,
     },
   });
 
@@ -85,7 +90,17 @@ const TipFrontLeft = (props) => {
       </View>
 
       <TouchableOpacity style={absoluteCenter} onPress={() => handleUpVote()}>
-        <Entypo name="thumbs-up" size={30} color={vote ? '#09b812' : 'white'} />
+        {vote ? (
+          <Image
+            style={styles.like}
+            source={require('../../assets/liked.png')}
+          />
+        ) : (
+          <Image
+            style={styles.like}
+            source={require('../../assets/like.png')}
+          />
+        )}
         <Text style={[styles.text, styles.italic]}>
           {tipVotes.length} Times
         </Text>
