@@ -22,7 +22,7 @@ The home screen of the app is a Welcome Screen and a brief Description of the ap
 
 |    Home    |    Login/SignUp    |    Categories    |
 | ------------------------- |:-----------------------:|:-----------------------:|
-| ![Output sample](https://github.com/TeamNativeDev/CodingCheatSheetApp/blob/master/assets/Gifs/Home.gif)|![Output sample](https://github.com/Project-ReadMe/ReadMe-EXPO/blob/master/resources/home.jpeg)| ![Output sample](https://github.com/TeamNativeDev/CodingCheatSheetApp/blob/master/assets/Gifs/Categories.gif)
+| ![Output sample](https://media.giphy.com/media/jUPeuffIYYuAlgDwO4/giphy.gif)| ![Output sample](https://media.giphy.com/media/jUQ3IdWciVr7NBuodc/giphy.gif)|![Output sample](https://media.giphy.com/media/d5vzvgMnZsqOBtCqYK/giphy.gif)
 
 
 ## Getting Started
