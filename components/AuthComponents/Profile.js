@@ -17,7 +17,17 @@ const Profile = (props) => {
       <Gradient />
       <View style={styles.userContainer} />
       <View style={styles.tipsContainer}>
-       
+        <FlatList
+          data={user.tips}
+          keyExtractor={(item) => item.title}
+          renderItem={({ item }) => (
+            <Tip
+              tip={item}
+              color={findColor(categories, item.category_id)}
+              {...props}
+            />
+          )}
+        />
       </View>
     </View>
   );
