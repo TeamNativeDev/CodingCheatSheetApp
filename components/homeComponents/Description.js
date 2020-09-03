@@ -7,8 +7,8 @@ const Description = () => {
   return (
     <View style={styles.descriptionContainer}>
       <Text style={styles.description}>
-        This App has been created to help People Learning to code or Developers
-        to have a handful CheatSheet always in your Pocket.
+        This App has been created to help people learning to code or for
+        developers to have a helpful cheat sheet in your pocket at all times.
       </Text>
     </View>
   );

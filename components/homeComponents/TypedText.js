@@ -6,7 +6,7 @@ const greetings = [
   'Alumni.',
   'Students.',
   'Fellowships.',
-  'Flatironers.',
+  'Developers.',
 ];
 
 const TypedText = () => {
