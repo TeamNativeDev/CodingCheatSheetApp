@@ -1,5 +1,4 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import Profile from '../components/AuthComponents/Profile';
 import AuthPage from '../components/AuthComponents/AuthPage';
@@ -14,4 +13,3 @@ const mapStateToProps = ({ authStore }) => ({
 });
 
 export default connect(mapStateToProps)(Auth);
-
