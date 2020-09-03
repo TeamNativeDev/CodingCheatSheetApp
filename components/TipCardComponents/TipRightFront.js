@@ -20,8 +20,21 @@ const TipFrontRight = ({
   title,
   categories,
 }) => {
-  // TODO console.log(categories, category_id);
+  function findLanguage(arrayObjects, id) {
+    let category = arrayObjects.find((cat) => cat.id === id);
+    switch (category.title) {
+      case 'CSS':
+        return 'css';
+      case 'Ruby on Rails':
+        return 'ruby';
+      case 'React':
+        return 'javascript';
+      default:
+        return category.title.toLowerCase();
+    }
+  }
 
+  findLanguage(categories, category_id);
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.header} onPress={onPress}>
@@ -32,7 +45,7 @@ const TipFrontRight = ({
         <SyntaxHighlighter
           style={tomorrow}
           customStyle={styles.highlighter}
-          language="javascript"
+          language={findLanguage(categories, category_id)}
           fontSize={12}
           highlighter="prism"
         >
