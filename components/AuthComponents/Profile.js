@@ -18,7 +18,7 @@ const Profile = (props) => {
 
   useEffect(() => {
     console.log(user);
-  }, [user);
+  }, [user]);
 
   return (
     <>
