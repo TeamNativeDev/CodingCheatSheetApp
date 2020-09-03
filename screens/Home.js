@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Gradient />
-      <Image style={styles.logo} source={require('../assets/logo.png')} />
+      <Image source={require('../assets/logo.png')} />
       <Greetings />
       <Description />
       <BySection />
