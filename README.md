@@ -7,13 +7,16 @@
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 [Backend](https://github.com/TeamNativeDev/CodingCheatSheetAPI) - The API repository.
-[Video](https://drive.google.com/file/d/1Y7tAiCgc3obvBbhLpBNS3IimYe4HAQr4/view?usp=sharing) - Walk through of the application.
 
 ## Overview
 
 Hello and Welcome!
 
 The Coding Cheat Sheet’s purpose is to be a digital cheat sheet for all developers to be able to quickly look up tips about various languages and frameworks. Users have the ability to view, like, create and edit tips! This gives the developer community a chance to come together and help one another!
+
+Here is a [video](https://drive.google.com/file/d/1Y7tAiCgc3obvBbhLpBNS3IimYe4HAQr4/view?usp=sharing) walk through of the application.
+
+Enjoy!
 
 ## Motivation
 
