@@ -20,7 +20,9 @@ Enjoy!
 
 ## Motivation
 
-During our time at Flatiron, Pedro and I learned quickly that as a developer, researching problems and solutions is a very common thing! After graduation, we came together and decided to dive into React Native by creating the Coding Cheat Sheet. We believed that it could help give boot campers and developers of all levels another place to look for answers or a quick syntax look up.
+When we finished Flatiron School, we felt that our pair programming skills and experience working with a team were not up to par. This motivated us to come together and develop this entire app while pair programming! This experience has enhanced our communication skills and pair programming skills.
+
+During our time at Flatiron, we learned quickly that as a developer, researching problems and solutions is a very common thing! After graduation, we came together and decided to dive into React Native by creating the Coding Cheat Sheet. We believed that it could help give boot campers and developers of all levels another place to look for answers or a quick syntax look up.
 
 ## Features
 
